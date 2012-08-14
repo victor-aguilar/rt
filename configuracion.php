@@ -1,7 +1,7 @@
 <?php
 
 define("HOST_NAME","localhost");
-define("USER_DB", "rt");
+define("USER_DB", "liceo.com_rt");
 define("PASSWORD_DB","r2d2");
 define("DB_NAME","tutorias");
 

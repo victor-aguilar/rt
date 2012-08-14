@@ -16,7 +16,7 @@ $ubicacion="local";
 $hostname_esviap_conn = "localhost";
 $password_esviap_conn = "r2d2";
 $database_esviap_conn = "tutorias";
-$username_esviap_conn = "rt";
+$username_esviap_conn = "liceo.com_rt";
 $esviap_conn = mysql_pconnect($hostname_esviap_conn, $username_esviap_conn, $password_esviap_conn) or trigger_error(
 mysql_error(),E_USER_ERROR); 
 $database_conn=$database_esviap_conn;

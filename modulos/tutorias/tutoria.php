@@ -17,6 +17,7 @@ header('Content-Type: text/html; charset=UTF-8');
     <link rel="StyleSheet" href="lib/css/estilos.css" type="text/css"/>
     <script type="text/javascript" src="../../lib/js/jquery.js"></script>
     <script type="text/javascript" src="../../lib/js/funciones.js"></script>
+    <script type="text/javascript" src="../../lib/js/modernizr.js"></script>
     <script type="text/javascript" src="lib/js/chat.js"></script>
     <script tupe="text/javascript" src="../demostracion/lib/js/demostraciones.js"></script>
 
@@ -25,6 +26,7 @@ header('Content-Type: text/html; charset=UTF-8');
     <button name="home" onclick="window.location='../../loged.php'">HOME</button>
     <div>
         <div id="chat">
+			<div id="audio"></div>
             <div id="ventanaDeConversacion"></div>
             <div id="controles">
                 <input type="button" value="Enviar Archivo" id="enviarArchivo"/>
