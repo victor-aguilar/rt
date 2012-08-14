@@ -86,7 +86,7 @@ if(! $db -> query($query)){
 //(la condicion anterior) tambien se recupera esta ultima insercion.
 if ($idEtapa < $etapaDemostracion ){
     $query = sprintf('select m.*, u.nick 
-                    from Mensajes as m, Usuarios as u
+                    from mensajes as m, usuarios as u
                         where 
                             m.idTutoria = %1$d and 
                             u.idUsuario = m.idUsuario and
@@ -96,7 +96,7 @@ if ($idEtapa < $etapaDemostracion ){
     $error .= $query;
 }else{ //la etapa
     $query = sprintf('select m.*, u.nick 
-                    from Mensajes as m, Usuarios as u
+                    from mensajes as m, usuarios as u
                         where 
                             m.idTutoria = %1$d and 
                             autorizacion = true and
