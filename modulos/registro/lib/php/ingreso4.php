@@ -85,7 +85,6 @@ errors += 'Sexo es obligatorio '; }
             <td nowrap="nowrap" align="right">Turno:</td>
             <td>
               <select name="idTurno" id="turno">
-                <option value='0'>Seleccione turno</option>
                 <option value='1'>Matutino</option>
                 <option value='2'>Vespertino</option>
                 <option value='3'>Nocturno</option>
