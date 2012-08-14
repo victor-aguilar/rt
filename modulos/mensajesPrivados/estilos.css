@@ -1,0 +1,62 @@
+/* 
+    Document   : mensajesPrivados
+    Created on : 2/08/2012, 02:24:53 PM
+    Author     : jose.aguilar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#bandejaDeEntrada{
+    border: black solid 1px;
+    height: 500px;
+    float:left;
+    margin: 5px;
+    min-width: 400px;
+    overflow: auto;
+}
+
+#bandejaDeEntrada div[name="mensaje"]{ 
+    border: black solid 1px;
+}
+
+#bandejaDeEntrada span{
+    width: 100px;
+    border: black solid 1px;
+    padding: 3px;
+    margin: 3px;
+    float:left;
+    cursor: pointer;
+}
+
+#bandejaDeEntrada div[name="leido"],
+#bandejaDeEntrada div[name="noleido"]{
+    width: 100px;
+    border: black solid 1px;
+    padding: 3px;
+    margin: 5px;
+    background: greenyellow;
+    float:left;
+    cursor: pointer;
+}
+#bandejaDeEntrada div[name="noleido"]{
+    background-color:red;
+}
+
+#actualizar{
+    width:200px;
+    cursor: pointer;
+}
+
+#actualizar:hover{
+    background:gray;
+}
+
+#mensaje{
+    padding:10px;
+    margin:5px;
+    float:left;
+    border: black solid 1px;
+    width: 400px;
+    height: 500px;
+}
+

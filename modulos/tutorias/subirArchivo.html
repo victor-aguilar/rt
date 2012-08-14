@@ -1,0 +1,107 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="../../lib/js/funciones.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.js"></script>
+        <script type="text/javascript">
+        //Agregamos un campo oculto para pasar la direccion donde se
+        //guardara el archivo. Ejemplo de direccion: recursos/1/2/ o chat/2/4/
+        
+        var tipo = "archivo";
+        
+        $(document).ready(function(){
+            var idUsuario = getUrlVars()['idUsuario'];
+            var idTema = getUrlVars()['idTema'];
+            var idTutoria = getUrlVars()['idTutoria'];
+            //crp = chat.recuros.producto
+            var crp = getUrlVars()['crp'];
+            var tmp;
+            
+            /* Datos ocultos a traves de inputs*/
+            
+            //idUsuario
+            tmp = '<input type="hidden" name="idUsuario" value="' +idUsuario + '"/>';
+            $("form").html( $('form').html() + tmp);
+            
+            //idTema
+            tmp = '<input type="hidden" name="idTema" value="' + idTema +'"/>';
+            $("form").html( $('form').html() + tmp);
+            
+            //idTema
+            tmp = '<input type="hidden" name="idTutoria" value="' + idTutoria +'"/>';
+            $("form").html( $('form').html() + tmp);
+
+            //crp indica quien subio el archivo: chat, recuros, producto
+            tmp = '<input type="hidden" name="crp" value="' + crp +'"/>';
+            $("form").html( $('form').html() + tmp);
+            
+            
+            // Por defecto ocultamos la subida de url 
+            // y mostramos la subida de archivo.
+            
+            switch(crp){
+                case ('recursos'):
+                    $('#divSubirUrl').hide();
+                    $('#divSubirArchivo').show();
+
+                    //eventos del tipo de archivo.
+                    $('input:radio[name=tipo]').click(function(){
+                        tipo = $(this).attr('value');
+                        if(tipo == "url"){
+                            $('#divSubirUrl').show();
+                            $('#divSubirArchivo').hide();
+                        }else{
+                            $('#divSubirArchivo').show();
+                            $('#divSubirUrl').hide();
+                        }
+                    });
+                    break;
+                default://El chat y los productos no puden ser urls
+                    $('#divSubirUrl').hide();
+                    $('#url').hide();
+                    break;
+            }
+        });
+        </script>
+    </head>
+    <body>
+        <form method="post" action="subirArchivo.php" enctype="multipart/form-data"> 
+            <table>
+                <tr>
+                    <td>Tipo: </td>
+                    <td>
+                        <label>Archivo</label><input type="radio" name="tipo" value="archivo" checked/>
+                    </td>
+                    <td>
+                        <div id="url"><label>URL</label><input type="radio" name="tipo" value="url"/></div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Descripcion</td>
+                    <td><input type="text" name="descripcion"/></td>
+                </tr>
+                
+                <tr>
+                    <td>Hint</td><td><input type="text" name="hint"/></td>
+                </tr>
+            </table>
+            <div id="divSubirArchivo">
+                <input type="file" name="archivo"  /> 
+                <input type="submit" value="Subir" />
+                <input type="reset" value="Cancelar" />        
+             </div>
+            <div id="divSubirUrl">
+                <label>URL</label><input type="text" name="url"/>
+                <input type="submit" value="Guardar"/>
+            </div>
+        </form>
+    </body>
+</html>
+

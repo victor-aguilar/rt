@@ -1,0 +1,23 @@
+
+#tutorias, #tutorados, #sinodales{
+  height: 700px;
+  width: 400px;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  overflow:auto;
+  float: left;
+  padding: 10px;
+}
+
+
+#titulo{
+    font-style:italic;
+    font-size: medium;
+}
+body{ 
+	font-family:Verdana, Geneva, sans-serif;
+	color: #36C;
+ 	background: transparent url(../../../../lib/img/bg1.jpg) no-repeat center top;
+	background-attachment: fixed;
+  }

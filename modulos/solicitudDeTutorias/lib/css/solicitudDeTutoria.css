@@ -1,0 +1,27 @@
+/* 
+    Document   : solicitudDeTutorias.css
+    Created on : 8/08/2012, 07:57:17 AM
+    Author     : jose.aguilar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body{
+}
+#lista1, #lista2, #enviarSolicitud,#buscarPor{
+    width:200px;
+    float:left;
+    margin-left:10px;
+    margin-top: 10px;
+}
+
+#buscarPor{
+    width:auto;
+}
+
+#lista1 select, #lista2 select{
+    width:100%;
+}
+#m{
+    margin-top:50px;
+}
+
