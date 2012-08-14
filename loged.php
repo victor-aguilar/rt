@@ -25,7 +25,7 @@ header('Content-Type: text/html; charset=UTF-8');
         <button id="botonMail" onclick="buscaNotificaciones()"><img src="lib/img/correo.jpg" /></button>
 
      
-          <p><a href="modulos/misTutorias/tutoriasOTutorados.html">
+          <p><a href="modulos/misTutorias/tutoriasOtutorados.html">
                   Mis tutorias
               </a></p>
         <p><a href="modulos/solicitudDeTutorias/solicitudDeTutoria.html">Solicitud de Tutorías</a></p>

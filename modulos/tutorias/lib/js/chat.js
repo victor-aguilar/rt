@@ -65,8 +65,8 @@ var h=1;
 var m=0; 
 var s=0; 
 
-var soportaHtml5 = false;
 var player = "";
+var rutaDelAudio = "lib/audio/mensaje_nuevo";
 
 /*
  * Carga Mensajes Previos (solo se usa una vez)
@@ -93,14 +93,14 @@ descargaMensajesPrevios = function(){
 actulizaConversacion = function(xml){
     
     var uv = $(xml).find("ultimaverificacion");
-    var tmp = 0;
+    var mensajes = $(xml).find("mensaje");
     
     ultimaVerificacion = uv.text();
     ultimoMili = uv.attr("ultimoMili");
     mensaje = "";
         
     //Agregra los mensajes a la ventana de conversacion.
-    $(xml).find("mensaje").each(function(){
+    mensajes.each(function(){
     var conversacion = $('#ventanaDeConversacion');
     var mAnteriores = conversacion.html(); // mensajesAnteriores
     var mNuevos = "";//mensajesNuevos
@@ -112,6 +112,11 @@ actulizaConversacion = function(xml){
     conversacion.html(mAnteriores + mNuevos);
     autoScroll("ventanaDeConversacion");
     });
+	
+	if(mensajes.length != 0){
+		$('#audio').html(player);
+	}
+	
     
     idEtapa = parseInt($(xml).find('ultimaetapa').text());
 
@@ -412,6 +417,46 @@ inicializaProductos = function(){
   });
 }
 
+cambiaADemostracion = function(){
+    
+    window.clearInterval(temporalizadores[TEMPO_CHAT]);
+    window.clearInterval(temporalizadores[TEMPO_SUBIR_ARCHIVO]);
+    window.clearInterval(temporalizadores[TEMPO_PENDIENTES]);
+   
+
+//var fun = function(){
+    var url= directorioRaiz;
+    switch(tipoDeUsuario){
+        case("tutor"):
+            tipoDeUsuario = "moderador";
+            break;
+        case("alumno"):
+            tipoDeUsuario = "demostrador";  
+            break;
+        case("observador"):
+            tipoDeUsuario = "sinodal";
+            break;
+    }
+    
+    url += "tutoria.php?";
+    url += "idUsuario=" + idUsuario + "&";
+    url += "tipoDeUsuario=" + tipoDeUsuario +"&";
+    url += "idTutoria=" + idTutoria;
+    window.location = url;
+//}
+//window.setInterval(fun, 3000);
+
+}
+
+buscaSinodales = function(){   
+    $.ajax({
+        type:"POST",
+        url: "buscaSinodales.php",
+        data:{idTutoria:idTutoria},
+        error: error
+    });
+}
+
 /*
  * Inicializa variables y eventos.
  */
@@ -425,9 +470,16 @@ $(document).ready(function(){
   idTutoria = getUrlVars()['idTutoria'];
   idUsuario = getUrlVars()['idUsuario'];
   
-	var html5 = '<audio controls preload="auto" autobuffer>  <source src="http://www.vorbis.com/music/Epoq-Lepidoptera.ogg" /><source src="http://users.skynet.be/fa046054/home/P22/track06.mp3" /> </audio>';
-
-	var flash = '<object type="application/x-shockwave-flash" data="http://www.alsacreations.fr/flashdir/dewplayer-mini.swf" width="160" height="20" id="dewplayermini" name="dewplayermini"><param name="movie" value="http://www.alsacreations.fr/flashdir/dewplayer-mini.swf" /><param name="flashvars" value="mp3=http://www.alsacreations.fr/mp3/everywhere.mp3" /></object>';
+  //inicializamos el reproductor de sonido segun el soporte que tenga el navegador
+	var html5 = '<audio controls preload="auto" autobuffer autoplay="autoplay">';
+		html5 += '<source src="' + rutaDelAudio + '.ogg"/>';
+		html5 += '<source src="' + rutaDelAudio + '.mp3"/>';
+		html5 += '</audio>';
+	var flash = '<object type="application/x-shockwave-flash" ';
+		flash += 'data="http://www.alsacreations.fr/flashdir/dewplayer-mini.swf" ';
+		flash += 'width="160" height="20" id="dewplayermini" name="dewplayermini">';
+		flash += '<param name="movie" value="http://www.alsacreations.fr/flashdir/dewplayer-mini.swf" />';
+		flash += '<param name="flashvars" value="mp3=' + rutaDelAudio +'" /></object>';
 
 	if (Modernizr.audio){
 		player = html5;
@@ -435,7 +487,7 @@ $(document).ready(function(){
 		player = flash;
 	}
 	
-	$('#audio').html(player);
+	$('#audio').hide();
   
   descargaMensajesPrevios();
   
@@ -493,43 +545,5 @@ $(document).ready(function(){
   reiniciaTemporalizador(TEMPO_CHAT,descargaMensajesNuevos,INTERVALO_CHAT);
 });
 
-cambiaADemostracion = function(){
-    
-    window.clearInterval(temporalizadores[TEMPO_CHAT]);
-    window.clearInterval(temporalizadores[TEMPO_SUBIR_ARCHIVO]);
-    window.clearInterval(temporalizadores[TEMPO_PENDIENTES]);
-   
 
-//var fun = function(){
-    var url= directorioRaiz;
-    switch(tipoDeUsuario){
-        case("tutor"):
-            tipoDeUsuario = "moderador";
-            break;
-        case("alumno"):
-            tipoDeUsuario = "demostrador";  
-            break;
-        case("observador"):
-            tipoDeUsuario = "sinodal";
-            break;
-    }
-    
-    url += "tutoria.php?";
-    url += "idUsuario=" + idUsuario + "&";
-    url += "tipoDeUsuario=" + tipoDeUsuario +"&";
-    url += "idTutoria=" + idTutoria;
-    window.location = url;
-//}
-//window.setInterval(fun, 3000);
-
-}
-
-buscaSinodales = function(){   
-    $.ajax({
-        type:"POST",
-        url: "buscaSinodales.php",
-        data:{idTutoria:idTutoria},
-        error: error
-    });
-}
 

@@ -3,7 +3,7 @@
 define("HOST_NAME","localhost");
 define("USER_DB", "liceo.com_rt");
 define("PASSWORD_DB","r2d2");
-define("DB_NAME","tutorias");
+define("DB_NAME","liceocom_tutorias");
 
 define(
         "DIRECTORIO_BASE", 
@@ -15,7 +15,9 @@ define("DIRECTORIO_BASE_WEB","x");
 date_default_timezone_set("America/Mexico_City");
 
 function dameConexion(){
-    return new mysqli(HOST_NAME,USER_DB,PASSWORD_DB,DB_NAME);
+	$db = new mysqli(HOST_NAME,USER_DB,PASSWORD_DB,DB_NAME);
+	echo $db->error;
+    return $db;
 }
 
 function administraSesion(){
