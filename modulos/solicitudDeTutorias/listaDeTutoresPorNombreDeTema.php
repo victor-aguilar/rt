@@ -22,7 +22,7 @@ foreach($idsTemas as $i){
 $ldt = substr($ldt,0, strlen($ldt)-4);
 
 $query = "select u.nick, t.idTema, t.idUsuario 
-            from Usuarios as u, Temas as t
+            from usuarios as u, temas as t
             where 
                 (" . $ldt . ")and
                 t.idUsuario = u.idUsuario;";
