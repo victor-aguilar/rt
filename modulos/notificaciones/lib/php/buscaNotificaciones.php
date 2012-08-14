@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: text/html; charset=UTF-8');
 
-include 'configuracion.php';
+include '../../../../configuracion.php';
 
 
 $idUsuario = $_SESSION['idUsuario'];
@@ -17,8 +17,8 @@ if($db->connect_errno){
   
 $buscaNotificaciones = sprintf("select
     * 
-    from mensajesprivados,usuarios where leido=0 
-    and idusuario=%d",$idUsuario); 
+    from mensajesPrivados,usuarios where leido=0 
+    and idUsuario=%d",$idUsuario); 
 $resultadoDeNotificaciones = $db->query($buscaNotificaciones);
 
 if($resultadoDeNotificaciones && $filaDeNotificaciones = $resultadoDeNotificaciones->fetch_assoc()){

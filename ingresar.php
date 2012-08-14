@@ -11,7 +11,7 @@ $idUsuario = "";
 $db = dameConexion();
 $db->set_charset('utf8');
 
-$buscaUsuario = sprintf("select idusuario from usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
+$buscaUsuario = sprintf("select idUsuario from usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
 $resultadoDeUsuario = $db->query($buscaUsuario);
 
 if(!$resultadoDeUsuario){
@@ -20,7 +20,7 @@ if(!$resultadoDeUsuario){
 }
 
 if($resultadoDeUsuario && $filaDeUsuario= $resultadoDeUsuario ->fetch_assoc()){
-    $idUsuario = $filaDeUsuario['idusuario'];
+    $idUsuario = $filaDeUsuario['idUsuario'];
 }
 
 $_SESSION['idUsuario'] = $idUsuario;
