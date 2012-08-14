@@ -20,7 +20,7 @@ switch($accion){
         $asunto = $_POST['asunto'];
         $mensaje = $_POST['mensaje'];
         
-        $query = sprintf('insert into MensajesPrivados 
+        $query = sprintf('insert into mensajesPrivados 
             (de,para,asunto,mensaje,fecha,leido) values(%d,%d,\'%s\',\'%s\',"%s",%s)',
         $de,$para,$asunto,$mensaje,$fecha,$leido);
         
@@ -51,9 +51,9 @@ switch($accion){
     case "lista":
         
         $para = $_SESSION['idUsuario'];
-        $query = sprintf('select MensajesPrivados.*, Usuarios.nick
-            from MensajesPrivados, Usuarios 
-            where MensajesPrivados.para = Usuarios.idUsuario and Usuarios.idUsuario = %d;',
+        $query = sprintf('select mensajesPrivados.*, usuarios.nick
+            from mensajesPrivados, usuarios 
+            where mensajesPrivados.para = usuarios.idUsuario and usuarios.idUsuario = %d;',
             $para);
         
         $result = $db -> query($query);
@@ -71,8 +71,8 @@ switch($accion){
         
         while($row = $result->fetch_assoc()){
             
-             $query = sprintf("select Usuarios.nick as deNick from Usuarios, MensajesPrivados
-                where Usuarios.idUsuario = %d;", $row['de']);
+             $query = sprintf("select usuarios.nick as deNick from usuarios, mensajesPrivados
+                where usuarios.idUsuario = %d;", $row['de']);
 
             $result2 = $db -> query($query);
 
@@ -105,7 +105,7 @@ switch($accion){
         
         $idMensajePrivado = $_POST['idMensajePrivado'];
         $query = sprintf('select mensaje 
-            from MensajesPrivados 
+            from mensajesPrivados 
             where idMensajePrivado = %d',$idMensajePrivado);
         
         $result = $db ->query($query);
