@@ -45,7 +45,7 @@ $db = dameConexion();
 if(!$db){die ("Error al conectarse a la base de datos.");}
 
 //Conseguimos el idTema de la tutoria.
-$query = sprintf("select idTema from Tutorias where idTutoria = %d;", $idTutoria);
+$query = sprintf("select idTema from tutorias where idTutoria = %d;", $idTutoria);
 
 $result = $db -> query($query);
 if($result && $row = $result -> fetch_assoc()){

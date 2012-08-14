@@ -9,7 +9,7 @@ if (!$db = dameConexion()){
     echo "error de conexion";
 }
 
-$query = sprintf("select * from Productos where idTutoria = %d", $idTutoria);
+$query = sprintf("select * from productos where idTutoria = %d", $idTutoria);
 //$query = "select * from Productos where idTutoria = ?";
 //$stmt = $db->stmt_init();
 //if(!$stmt->prepare($query)){

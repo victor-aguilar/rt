@@ -5,7 +5,6 @@ muestraMensaje = function(xml){
 actualizaBandejaDeEntrada = function(xml){
     
     var bde = "";
-    alert(xml.getElementsByTagName('mensajes').length);
     $(xml).find("mensaje").each(function(){
         
         var mensaje = "";

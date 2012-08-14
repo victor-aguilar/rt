@@ -41,13 +41,13 @@ $result -> free();
 //fin de busqueda de etapa
 
 $query = sprintf("select distinct h.idUsuario,h.fecha,h.mensaje,h.idEtapa, u.nick
-    from historial as h, Usuarios as u
+    from historial as h, usuarios as u
         where 
             h.idTutoria = %d and 
             h.idUsuario = u.idUsuario and 
             h.idEtapa = %d and
             h.autorizacion = true
-        order by FECHA;",$idTutoria,$idEtapa);
+        order by fecha;",$idTutoria,$idEtapa);
 $result = $db ->query($query);
 
 if(! $result){
