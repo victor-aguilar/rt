@@ -29,7 +29,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   Mis tutorias
               </a></p>
         <p><a href="modulos/solicitudDeTutorias/solicitudDeTutoria.html">Solicitud de Tutorías</a></p>
-    <a href="alta_en_arbol/index.php?uid=<?php echo $_SESSION['IdUserNum']; ?>">Mis temas de cat&aacute;logo</a>    <tr><td valign="top" height="20">
+    <a href="alta_en_arbol/index.php?uid=<?php echo $_SESSION['idUsuario']; ?>">Mis temas de cat&aacute;logo</a>    <tr><td valign="top" height="20">
 <p align="center" class="azul1" >
 Subsecretar&iacute;a de Educaci&oacute;n B&aacute;sica, Viaducto R&iacute;o Piedad 507, 4o piso. Granjas M&eacute;xico, Iztacalco 08400. M&eacute;xico D.F.
 </p>
