@@ -1,10 +1,11 @@
 <?php
+session_start();
 header('Content-Type: text/xml; charset=UTF-8');
 
-include 'configuracion.php';
+include '../../../../configuracion.php';
 
 
-$idUsuario = $_POST['idUsuario'];
+$idUsuario = $_SESSION['idUsuario'];
 
 
 $db = dameConexion();
@@ -15,16 +16,16 @@ if($db->connect_errno){
 }
 $buscaTutorados= sprintf("select 
         temas.nombre,
-        sinodales.idtutoria,
+        sinodales.idTutoria,
         usuarios.nick
         from 
         temas, sinodales, usuarios, tutorias
         where
-        tutorias.idtema=temas.idtema
+        tutorias.idTema=temas.idTema
         and
-        sinodales.idtutoria=tutorias.idtutoria
+        sinodales.idTutoria=tutorias.idTutoria
         and
-        tutorias.estudiante=usuarios.idusuario
+        tutorias.estudiante=usuarios.idUsuario
         and
         sinodales.idUsuario=%d;",$idUsuario);
 
@@ -38,7 +39,7 @@ $datos = '<?xml version="1.0" encoding="utf-8"?><tutorias>';
 while($resultadoDeTutorados && $filaDeTutorados = $resultadoDeTutorados->fetch_assoc()){
 
     $datos .= '<tutoria' .
-            ' idtutoria="' . $filaDeTutorados['idtutoria'] . '"'.
+            ' idtutoria="' . $filaDeTutorados['idTutoria'] . '"'.
             ' tutorado="' . $filaDeTutorados['nick'] . '">';
     $datos .= $filaDeTutorados['nombre'];
     $datos .= '</tutoria>';

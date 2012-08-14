@@ -16,11 +16,14 @@ if($db->connect_errno){
   exit();
 }
 
-  $consultaASinodales=sprintf("
-      select usuarios.nick,sinodales.dictamen 
-      from usuarios, sinodales 
-      where usuarios.idusuario=sinodales.idusuario and
-      idtutoria=%d;",
+  $consultaASinodales=sprintf("select 
+      usuarios.nick,sinodales.dictamen 
+      from 
+      usuarios, sinodales 
+      where 
+      usuarios.idUsuario=sinodales.idUsuario 
+      and
+      idTutoria=%d;",
             $idTutoria);
   
   $resultadoDeSinodales = $db->query($consultaASinodales);

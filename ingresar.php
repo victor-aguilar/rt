@@ -10,11 +10,11 @@ $contraseña = $_POST['contraseña'];
 $idUsuario = "";
 $db = dameConexion();
 
-$buscaUsuario = sprintf("select idusuario from usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
+$buscaUsuario = sprintf("select idUsuario from usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
 $resultadoDeUsuario = $db->query($buscaUsuario);
 
 if($resultadoDeUsuario && $filaDeUsuario= $resultadoDeUsuario ->fetch_assoc()){
-    $idUsuario = $filaDeUsuario['idusuario'];
+    $idUsuario = $filaDeUsuario['idUsuario'];
 }
 
 $_SESSION['idUsuario'] = $idUsuario;
