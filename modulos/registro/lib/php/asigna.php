@@ -6,7 +6,7 @@ function asigna($dato){
 	if(isset($_POST[$dato]))
 	{	$_SESSION[$dato]=$_POST[$dato];}
 	else
-	{	$_SESSION[$dato]="null";}
+	{	$_SESSION[$dato]="";}
 }
 function GenCampo($nombre){
 	$dato=$_SESSION[$nombre];

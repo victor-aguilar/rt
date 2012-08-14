@@ -6,7 +6,7 @@ function asigna($dato){
 	if(isset($_POST[$dato]))
 	{	$_SESSION[$dato]=$_POST[$dato];}
 	else
-	{	$_SESSION[$dato]="null";}
+	{	$_SESSION[$dato]="";}
 }
 asigna('nick');
 asigna('contraseña');
@@ -29,14 +29,45 @@ $email = $_SESSION['email'];
 $telefono = $_SESSION['telefono'];
 $contraseña = $_SESSION['contraseña'];
 $cct = $_SESSION['cct'];
-$idEntidad = $_SESSION['idEntidad'];
-$idMunicipio = $_SESSION['idMunicipio'];
-$idLocalidad = $_SESSION['idLocalidad'];
-$idNodo = $_SESSION['idNodo'];
-$idTurno = $_SESSION['idTurno'];
-$idNivel = $_SESSION['idNivel'];
-$idModalidad = $_SESSION['idModalidad'];
 
+$idEntidad = $_SESSION['idEntidad'];
+if($idEntidad == ""){
+    $idEntidad=1;
+    intval($idEntidad);
+    }
+$idMunicipio = $_SESSION['idMunicipio'];
+if($idMunicipio==""){
+    $idMunicipio =0;
+    intval($idMunicipio);
+}
+$idLocalidad = $_SESSION['idLocalidad'];
+if($idLocalidad==""){
+    $idLocalidad=0;
+    intval($idLocalidad);
+}
+$idNodo = $_SESSION['idNodo'];
+if($idNodo==""){
+    $idNodo=1;
+    intval($idNodo);
+}
+$idTurno = $_SESSION['idTurno'];
+if($idTurno==""){
+    $idTurno=1;
+    intval($idTurno);
+}
+if($idTurno==0){
+    $idTurno =1;
+}
+$idNivel = $_SESSION['idNivel'];
+if($idNivel==""){
+    $idNivel=1;
+    intval($idNivel);
+}
+$idModalidad = $_SESSION['idModalidad'];
+if($idModalidad==""){
+    $idModalidad=1;
+    intval($idModalidad);
+}
 $insertSQL=  sprintf("
 insert 
     into usuarios 
@@ -50,7 +81,6 @@ insert
         $email,$telefono,$contraseña,$cct,
         $idEntidad,$idMunicipio,$idLocalidad,
         $idNodo,$idTurno,$idNivel,$idModalidad);
-echo $insertSQL;
 
 //echo $qstr;
   mysql_select_db($database_esviap_conn, $esviap_conn);
