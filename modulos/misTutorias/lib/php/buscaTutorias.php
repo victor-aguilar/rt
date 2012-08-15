@@ -14,18 +14,19 @@ if($db->connect_errno){
   printf($db->connect_error);
   exit();
 }
-$buscaTutorias= sprintf("select 
-        Temas.nombre,
-        Tutorias.idTutoria,
-        Usuarios.nick
-        from 
-        Temas, Tutorias, Usuarios
+$buscaTutorias= sprintf(
+		"select
+			t.nombre,
+			tu.idTutoria,
+			u.nick
+		from 
+			Temas as t, Tutorias as tu, Usuarios as u
         where 
-        Temas.idTema=Tutorias.idTema
-        and
-        Usuarios.idUsuario=Temas.idUsuario
-        and
-        tu.estudiante = %d;",$idUsuario);
+			t.idTema = tu.idTema
+			and
+			u.idUsuario = t.idUsuario
+			and	
+			tu.estudiante = %d;",$idUsuario);
 
 
 
