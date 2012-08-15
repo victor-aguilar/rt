@@ -70,7 +70,7 @@ if($idModalidad==""){
 }
 $insertSQL=  sprintf("
 insert 
-    into usuarios 
+    into Usuarios 
     (nick,nombre,apellidos,sexo,
     email,telefono,contraseña,
     cct,idEntidad,idMunicipio,

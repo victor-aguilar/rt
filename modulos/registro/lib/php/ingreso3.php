@@ -79,13 +79,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
 }
 
 mysql_select_db($database_esviap_conn, $esviap_conn);
-$query_Recordset1 = "SELECT * FROM entidades";
+$query_Recordset1 = "SELECT * FROM Entidades";
 $Recordset1 = mysql_query($query_Recordset1, $esviap_conn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
 mysql_select_db($database_esviap_conn, $esviap_conn);
-$query_rs_nodos = "SELECT * FROM nodos";
+$query_rs_nodos = "SELECT * FROM Nodos";
 $rs_nodos = mysql_query($query_rs_nodos, $esviap_conn) or die(mysql_error());
 $row_rs_nodos = mysql_fetch_assoc($rs_nodos);
 $totalRows_rs_nodos = mysql_num_rows($rs_nodos);
