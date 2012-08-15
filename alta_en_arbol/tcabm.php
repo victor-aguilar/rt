@@ -201,7 +201,7 @@ body {
 <body onload="carga()">
 <table width="100%" border="0" >
   <tr>
-    <th width="42%" scope="col"><img src="/esviap/alta_en_arbol/img/pmle.png" alt="" width="335" height="94" /></th>
+    <th width="42%" scope="col"><img src="/rt/alta_en_arbol/img/pmle.png" alt="" width="335" height="94" /></th>
     <th width="58%" scope="col"><h2 align="center">Espacio Virtual de Aprendizaje ESVIAP</h2>
       <h3 align="center">M&oacute;dulo:
         <?php 
