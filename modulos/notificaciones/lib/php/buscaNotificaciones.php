@@ -15,10 +15,14 @@ if($db->connect_errno){
   exit();
 }
   
-$buscaNotificaciones = sprintf("
-	select * 
-    from MensajesPrivados,Usuarios where leido=0 
-    and Usuarios.idUsuario = %d",$idUsuario); 
+$buscaNotificaciones = sprintf("select
+    * 
+    from 
+    MensajesPrivados 
+    where 
+    leido=0 
+    and 
+    para=%d",$idUsuario); 
 $resultadoDeNotificaciones = $db->query($buscaNotificaciones);
 
 if($resultadoDeNotificaciones && $filaDeNotificaciones = $resultadoDeNotificaciones->fetch_assoc()){

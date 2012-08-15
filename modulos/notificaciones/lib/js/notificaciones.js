@@ -18,7 +18,7 @@ function buscaNotificaciones(){
 function hayNotificaciones(text){
 
     if (text == ""){
-  	$('#botonMail').html('<img src="lib/img/Correo.jpg" />');  
+  	$('#botonMail').html('<img src="lib/img/correo.jpg" />');  
 }else{
 	$('#botonMail').html('<img src="lib/img/hayCorreo.jpg" />');
 }

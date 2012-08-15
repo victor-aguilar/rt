@@ -9,7 +9,7 @@ if($db->connect_errno){
 }
 $nick  =$_POST['nick'];
 
-$buscaNick = sprintf("select * from usuarios where nick = '%s';",$nick);
+$buscaNick = sprintf("select * from Usuarios where nick = '%s';",$nick);
 $resultadoDeNick = $db->query($buscaNick);
 if($resultadoDeNick && $filaDeNick = $resultadoDeNick->fetch_assoc()){
     echo "ya exite";

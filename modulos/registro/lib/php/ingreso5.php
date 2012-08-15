@@ -6,7 +6,7 @@ function asigna($dato){
 	if(isset($_POST[$dato]))
 	{	$_SESSION[$dato]=$_POST[$dato];}
 	else
-	{	$_SESSION[$dato]="null";}
+	{	$_SESSION[$dato]="";}
 }
 asigna('cct');
 asigna('idTurno');
@@ -26,6 +26,7 @@ asigna('idTurno');
 <p align="center"><img src="../img/esviap_logo.png" width="523" height="74" alt="logo ESVIAP" /></p>
 <div id="up">
 </div>
+<script type="text/javascript" src="../js/jquery.js"></script>
 <!-- InstanceBeginEditable name="Region1" -->
 <script language="JavaScript">
 function validapwd(cad) {
@@ -54,6 +55,30 @@ else{
 	 return false;
 	 }
 }
+
+ $(document).ready(function(){
+     
+     
+     $('#IdUser').focusout(function(){
+         var nick = $(this).val()
+         $.ajax({
+             type: "POST",
+             url: "existeusuario.php",
+             data: {
+                 nick: nick
+             },
+             dataType: "Text",
+             success: function(text){
+                 if(text != ""){
+                      alert("El nick ya esta en uso, por favor elije otro");
+					  $('#IdUser').val("");
+                 }
+             }
+         })
+     })
+ });
+
+
 
 </script>
 

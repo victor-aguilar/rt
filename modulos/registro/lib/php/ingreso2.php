@@ -5,7 +5,7 @@ function asigna($dato){
 	if(isset($_POST[$dato]))
 	{	$_SESSION[$dato]=$_POST[$dato];}
 	else
-	{	$_SESSION[$dato]="null";}
+	{	$_SESSION[$dato]="";}
 }
 asigna('nombre');
 asigna('apellidos');
@@ -18,6 +18,8 @@ asigna('sexo');
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
 <link rel="stylesheet" type="text/css" href="../css/esviap.css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+
 <!-- InstanceParam name="id" type="text" value="center" -->
 <script type="text/javascript">
 function MM_validateForm() { //v4.0
@@ -36,6 +38,20 @@ function MM_validateForm() { //v4.0
     } if (errors) alert('The following error(s) occurred:\n'+errors);
     document.MM_returnValue = (errors == '');
 } }
+
+function isInteger(s) {
+  return (s.toString().search(/^-?[0-9]+$/) == 0);
+}
+
+$(document).ready(function(){
+    $('[name="telefono"]').change(function(){
+        if(!isInteger($(this).val())){
+            alert("El numero de telefono no esta bien escrito.")
+            $(this).val("");
+        }
+    })
+})
+
 </script>
 </head>
 
