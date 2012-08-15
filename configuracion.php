@@ -15,7 +15,10 @@ define("DIRECTORIO_BASE_WEB","x");
 date_default_timezone_set("America/Mexico_City");
 
 function dameConexion(){
+	
 	$db = new mysqli(HOST_NAME,USER_DB,PASSWORD_DB,DB_NAME);
+	$db ->set_charset('utf8');
+	
 	if(!$db){
 		echo $db -> error;
 	}
