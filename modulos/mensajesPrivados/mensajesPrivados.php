@@ -20,7 +20,7 @@ switch($accion){
         $asunto = $_POST['asunto'];
         $mensaje = $_POST['mensaje'];
         
-        $query = sprintf('insert into mensajesPrivados 
+        $query = sprintf('insert into MensajesPrivados 
             (de,para,asunto,mensaje,fecha,leido) values(%d,%d,\'%s\',\'%s\',"%s",%s)',
         $de,$para,$asunto,$mensaje,$fecha,$leido);
         
@@ -37,7 +37,7 @@ switch($accion){
         
         //Aqui enviamos el e-mail.
         
-        $query = sprintf('select email from usuarios where idUsuario = %d',$para);
+        $query = sprintf('select email from Usuarios where idUsuario = %d',$para);
         $result = $db->query($query);
         
         if ($result->num_rows != 0){
@@ -51,9 +51,9 @@ switch($accion){
     case "lista":
         
         $para = $_SESSION['idUsuario'];
-        $query = sprintf('select mensajesPrivados.*, usuarios.nick
-            from mensajesPrivados, usuarios 
-            where mensajesPrivados.para = usuarios.idUsuario and usuarios.idUsuario = %d;',
+        $query = sprintf('select mp.*, u.nick
+            from MensajesPrivados as mp, Usuarios as u
+            where mp.para = u.idUsuario and u.idUsuario = %d;',
             $para);
         
         $result = $db -> query($query);
@@ -71,8 +71,8 @@ switch($accion){
         
         while($row = $result->fetch_assoc()){
             
-             $query = sprintf("select usuarios.nick as deNick from usuarios, mensajesPrivados
-                where usuarios.idUsuario = %d;", $row['de']);
+             $query = sprintf("select u.nick as deNick from Usuarios as u
+                where u.idUsuario = %d;", $row['de']);
 
             $result2 = $db -> query($query);
 
@@ -105,7 +105,7 @@ switch($accion){
         
         $idMensajePrivado = $_POST['idMensajePrivado'];
         $query = sprintf('select mensaje 
-            from mensajesPrivados 
+            from MensajesPrivados 
             where idMensajePrivado = %d',$idMensajePrivado);
         
         $result = $db ->query($query);

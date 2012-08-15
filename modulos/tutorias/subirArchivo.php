@@ -45,7 +45,7 @@ $db = dameConexion();
 if(!$db){die ("Error al conectarse a la base de datos.");}
 
 //Conseguimos el idTema de la tutoria.
-$query = sprintf("select idTema from tutorias where idTutoria = %d;", $idTutoria);
+$query = sprintf("select idTema from Tutorias where idTutoria = %d;", $idTutoria);
 
 $result = $db -> query($query);
 if($result && $row = $result -> fetch_assoc()){
@@ -85,7 +85,7 @@ switch($crp){
             $tmp = DIRECTORIO_BASE . $directorio;
             $url = $directorio . $nombreReal;
             
-            $query = sprintf("insert into recursos values(%d,%s,%s,%s)", 
+            $query = sprintf("insert into Recursos values(%d,%s,%s,%s)", 
                     $idTema, '"' . $url . '"','"' . $descripcion .'"','"' .$hint . '"');
             
             if (!$db -> query($query)){
@@ -115,7 +115,7 @@ switch($crp){
             
             $url = (strpos($nombreReal,"http://") !== FALSE)? $nombreReal: "http://" . $nombreReal;
             
-            $query = sprintf("insert into recursos values(%d,%s,%s,%s)", 
+            $query = sprintf("insert into Recursos values(%d,%s,%s,%s)", 
                     $idTema, '"' . $url . '"','"' . $descripcion .'"','"' .$hint . '"');
             
             if (!$db -> query($query)){
@@ -136,7 +136,7 @@ switch($crp){
         $directorio = "productos/". $idTutoria . "/";
         $tmp = DIRECTORIO_BASE . $directorio;
         $url = $directorio . $nombreReal;
-        $query = sprintf("insert into productos values(%d,%s,%s,%s)", 
+        $query = sprintf("insert into Productos values(%d,%s,%s,%s)", 
                     $idTutoria, '"' . $url . '"','"' . $descripcion .'"','"' .$hint . '"');
         
         if (!$db -> query($query)){

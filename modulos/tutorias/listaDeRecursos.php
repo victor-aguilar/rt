@@ -5,8 +5,8 @@ header('Content-Type: text/html; charset=UTF-8');
 
 $idTutoria = $_POST['idTutoria'];
 
-$query = sprintf("select * from recursos 
-    natural join tutorias 
+$query = sprintf("select * from Recursos 
+    natural join Tutorias 
     where idTutoria = %d;",$idTutoria);
 
 $db = dameConexion();

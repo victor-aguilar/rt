@@ -30,12 +30,12 @@ if($db->connect_errno){
 
 $buscaTema= sprintf("
     select 
-    temas.nombre, 
-    temas.idtema,
-    tutorias.estudiante
-    from    tutorias 
-    natural join temas 
-    where tutorias.idtutoria=%d;", $idTutoria);
+    Temas.nombre, 
+    Temas.idtema,
+    Tutorias.estudiante
+    from    Tutorias 
+    natural join Temas 
+    where Tutorias.idtutoria=%d;", $idTutoria);
 
 $resultadoDeTema =  $db->query($buscaTema);
 $filaDeTema = $resultadoDeTema->fetch_assoc();
@@ -43,7 +43,7 @@ $nombreDelTema = $filaDeTema['nombre'];
 $idTema=$filaDeTema ['idtema'];
 $mensaje .= "<br><br> Del tema ".$nombreDelTema.". <br><br>";
 $mensaje .= "Que inpacta a los siguientes términos: <br><br><br>";
-$buscaEstandar = sprintf("select from estandaresdetema where idtema=%d", $idTema);
+$buscaEstandar = sprintf("select from EstandaresDeTema where idtema=%d", $idTema);
 
 $resultadoDeEstandaresDeTema = $db->query($buscaEstandar);
 
@@ -57,20 +57,20 @@ while ( $resultadoDeEstandaresDeTema && $filaDeEstandaresDeTema -> fetch_assoc()
 $buscaInpacto = sprintf("
 select
     
-    asignaturas.nombre                    as asignatura, 
-    componenteEjeCategoria.nombre         as componente, 
-    periodos.nombre                       as periodo,
-    estandares.descripcion                as estandar
+    Asignaturas.nombre                    as asignatura, 
+    ComponenteEjeCategoria.nombre         as componente, 
+    Periodos.nombre                       as periodo,
+    Estandares.descripcion                as estandar
     
 from     
     
-    asignaturas, componenteejecategoria,estandares,periodos
+    Asignaturas, ComponenteEjeCategoria,Estandares,Periodos
     
 where 
-    asignaturas.idasignatura=estandares.idasignatura and 
-    componenteejecategoria.idComponenteEjeCategoria=estandares.idComponenteEjeCategoria and 
-    periodos.idperiodo=estandares.idperiodo and
-    estandares.idEstandar=%d;", $idEstandar);
+    Asignaturas.idAsignatura = Estandares.idAsignatura and 
+    ComponenteEjeCategoria.idComponenteEjeCategoria = Estandares.idComponenteEjeCategoria and 
+    Periodos.idPeriodo = Estandares.idPeriodo and
+    Estandares.idEstandar = %d;", $idEstandar);
 
 $resultadoDeInpacto = $db->query($buscaInpacto);
 
@@ -98,11 +98,11 @@ $mensaje .= "2012-08-23 18:00 <br>";
 $mensaje .= "Favor de consultar los siguientes productos de la tutoria:<br><br>";
 
 $buscaProductos=  sprintf("select 
-    productos.url           as producto 
-    productos.descripcion   as descripcion
-    from                    productos 
-    natural join            tutorias 
-    where                   tutorias.idtutoria=%d;",$idTutoria);
+    Productos.url           as producto 
+    Productos.descripcion   as descripcion
+    from                    Productos 
+    natural join            Tutorias 
+    where                   Tutorias.idTutoria=%d;",$idTutoria);
 
 $resultadoDeProductos = $db->query($buscaProductos);
 
@@ -119,12 +119,12 @@ $mensaje .= $producto."<br><br>";
 
 $buscaAlumno = sprintf("
     select 
-    usuarios.nick, usuarios.email, usuarios.idUsuario
+    u.nick, u.email, u.idUsuario
     from 
-    usuarios, tutorias 
+    Usuarios as u, Tutorias as u
     where 
-    usuarios.idusuario=tutorias.estudiante 
-    and idtutoria=1;",$idTutoria);
+    u.idUsuario = t.estudiante 
+    and t.idTutoria = %d;",$idTutoria);
 
 $resultadoDeAlumno= $db->query($buscaAlumno);
 $filaDeAlumno=$resultadoDeAlumno->fetch_assoc();
@@ -141,7 +141,7 @@ $mensaje .= "
                  
 </html>";
 
-$buscaSinodales= sprintf("select * from usuarios order by rand() limit 3;");
+$buscaSinodales= sprintf("select * from Usuarios order by rand() limit 3;");
 
 $resultadoDeSinodales = $db->query($buscaSinodales);
 
@@ -151,7 +151,7 @@ $idSinodal=$filaDeSinodales['idUsuario'];
 $correoDeSinodal= $filaDeSinodales['email'];
 
 
-    $query = "insert into sinodales values (?,?,0) ;";
+    $query = "insert into Sinodales values (?,?,0) ;";
     $stmt = $db ->stmt_init(); 
     if(!$stmt->prepare($query)) {echo "error prepared";}
     if(!$stmt->bind_param("dd",$idTutoria,$idSinodal)){ echo "errro bind";};

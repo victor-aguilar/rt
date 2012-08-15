@@ -74,7 +74,7 @@ if($mensaje != ""){
 
 //Borramos mensajes viejos.
 $query = sprintf('
-    delete from mensajes 
+    delete from Mensajes 
         where idtutoria=%d and fecha < DATE_SUB("%s", INTERVAL %d MINUTE);'
         ,$idTutoria,$fecha, $borrar);
 
@@ -86,7 +86,7 @@ if(! $db -> query($query)){
 //(la condicion anterior) tambien se recupera esta ultima insercion.
 if ($idEtapa < $etapaDemostracion ){
     $query = sprintf('select m.*, u.nick 
-                    from mensajes as m, usuarios as u
+                    from Mensajes as m, Usuarios as u
                         where 
                             m.idTutoria = %1$d and 
                             u.idUsuario = m.idUsuario and
@@ -96,7 +96,7 @@ if ($idEtapa < $etapaDemostracion ){
     $error .= $query;
 }else{ //la etapa
     $query = sprintf('select m.*, u.nick 
-                    from mensajes as m, usuarios as u
+                    from Mensajes as m, Usuarios as u
                         where 
                             m.idTutoria = %1$d and 
                             autorizacion = true and

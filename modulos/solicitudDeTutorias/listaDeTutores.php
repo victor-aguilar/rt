@@ -8,10 +8,10 @@ $html = "";
 $db = dameConexion();
 
 $query = sprintf('
-    select temas.idUsuario, usuarios.nick
-        from temas, usuarios
-        where usuarios.idUsuario = temas.idUsuario
-        group by usuarios.nick order by usuarios.nick asc;'); //ordenar por nick
+    select t.idUsuario, u.nick
+        from Temas as t, Usuarios as u
+        where u.idUsuario = t.idUsuario
+        group by u.nick order by u.nick asc;'); //ordenar por nick
 
 $result = $db->query($query);
 

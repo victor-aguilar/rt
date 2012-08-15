@@ -14,7 +14,7 @@ $db = dameConexion();// Regresa un objeto
 
 if(!$db) die ("Error al conectarse a la base de datos.");
 
-$query = sprintf("insert into tutorias (estudiante,idTema) values(%d,%d);",
+$query = sprintf("insert into Tutorias (estudiante,idTema) values(%d,%d);",
         $_GET['idTutorado'],$_GET['idTema']);
 
 if(! $db->query($query) ){

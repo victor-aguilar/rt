@@ -15,7 +15,7 @@ if(!$db) die ("Error al conectarse a la base de datos.");
 $n = "";
 $v = "";
 
-$query = "select idTema, nombre from temas;";
+$query = "select idTema, nombre from Temas;";
 
 $result = $db -> query($query);
 

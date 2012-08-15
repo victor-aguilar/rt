@@ -18,7 +18,7 @@ if(!$db){die ($db->connect_error);}
 
 //buscamos la ultima etapa
 $query = sprintf('select Max(idEtapa) as ultimaEtapa 
-    from historial where idTutoria = %d',$idTutoria);
+    from Historial where idTutoria = %d',$idTutoria);
 
 $result = $db -> query($query);
 
@@ -41,7 +41,7 @@ $result -> free();
 //fin de busqueda de etapa
 
 $query = sprintf("select distinct h.idUsuario,h.fecha,h.mensaje,h.idEtapa, u.nick
-    from historial as h, usuarios as u
+    from Historial as h, Usuarios as u
         where 
             h.idTutoria = %d and 
             h.idUsuario = u.idUsuario and 

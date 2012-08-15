@@ -8,8 +8,8 @@ $html = "";
 $db = dameConexion();
 
 $query = sprintf('
-        select temas.idTema, temas.nombre from temas 
-            where temas.idUsuario = %d;',$_POST['idTutor']); //ordenar por nick
+        select idTema, nombre from Temas 
+            where idUsuario = %d;',$_POST['idTutor']); //ordenar por nick
 $result = $db->query($query);
 
 if(! $result){
