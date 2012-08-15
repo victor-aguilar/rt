@@ -74,6 +74,7 @@ switch($crp){
         }else{
             echo "<p>Error al mover el archivo.</p>";
             echo "de " . $nombreTemporal . " a " . $tmp;
+			exit();
         }
         echo "Archivo subido con exito. Cerrando...";
         break;
@@ -159,7 +160,7 @@ switch($crp){
         }else{
             echo "<p>Error al mover el archivo.</p>";
             echo "de " . $nombreTemporal . " a " . $tmp;
-            return false;
+            exit();
         }
         echo "Archivo subido con exito. Cerrando...";
         break;       

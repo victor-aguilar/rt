@@ -41,11 +41,6 @@ var tempoChat;
 var tempoSubirArchivo;
 var tempoPendientes;
 
-//Variables que se usan para subir archivos.
-var directorioRaiz = dameDirectorioBase(window.location.toString());
-var directorioSubirArchivos = directorioRaiz + "archivosSubidos/";
-var directorioBase = "modulos/demostracion/";
-
 var winSubir = null // referencia a la ventana subir archivos. 
 var winSubirArchivo = null;
 var nombreDelArchivo = "";
@@ -215,7 +210,7 @@ inicializaChat = function(){
 
             //todo conseguir nombre del urlDelArchivo
             // En el chat solo se puden eviar archivos. Urls no.
-            mensaje = '<a href="' + directorioSubirArchivos + urlDelArchivo+ '" target="_blank">';
+            mensaje = '<a href="../../' + urlDelArchivo+ '" target="_blank">';
             mensaje += urlDelArchivo + "</a>";
 
             nombreDelArchivo = "";
@@ -291,7 +286,7 @@ actualizaListaDeRecursos = function(){
                         '<a href="' + url + '" target="_blank">' + url + '</a>';
                 }else{
                     mensaje = "Por favor revisa el siguiente archivo: " +
-                        '<a href="' + directorioSubirArchivos + url +'" target="_blank">' + url + '</a>';
+                        '<a href="../../' + url +'" target="_blank">' + url + '</a>';
                 }
                 $('#mensaje').val(mensaje);
                 $('#enviarMensaje').click();
@@ -402,7 +397,7 @@ inicializaProductos = function(){
             //todo conseguir nombre del urlDelArchivo
             mensaje = "Por favor revisa el siguiente archivo: ";
             //mensaje += '<a href="' + directorioSubirArchivos + urlDelArchivo+ '">';
-            mensaje += '<a href="' + directorioSubirArchivos + urlDelArchivo+ '" target="_blank">';
+            mensaje += '<a href="../../'+ urlDelArchivo+ '" target="_blank">';
             mensaje += dameNombreDelArchivo(urlDelArchivo) + "</a>";
             
             actualizaListaDeProductos();
@@ -425,7 +420,6 @@ cambiaADemostracion = function(){
    
 
 //var fun = function(){
-    var url= directorioRaiz;
     switch(tipoDeUsuario){
         case("tutor"):
             tipoDeUsuario = "moderador";
