@@ -8,7 +8,7 @@ administraSesion();
 
 $db = dameConexion();
 
-$query = sprintf("select nick from usuarios where idUsuario = %s" ,$_SESSION['idUsuario']);
+$query = sprintf("select nick from usuarios where idUsuario = %d" ,$_SESSION['idUsuario']);
 
 $result = $db -> query($query);
 
