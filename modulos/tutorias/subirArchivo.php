@@ -58,22 +58,20 @@ $query = "";
 switch($crp){
     case ("chat"):
         
-        $directorio = "chat/". $idTutoria . "/" . $idUsuario . "/";
-        $tmp = DIRECTORIO_BASE . $directorio;
+        $directorio = "../../archivosSubidos/chat/". $idTutoria . "/" . $idUsuario . "/";		
         $url = $directorio . $nombreReal;
         
-        if(!file_exists($tmp)){
-            mkdir($tmp,0777,true);
+        if(!file_exists($directorio)){
+            mkdir($directorio,0777,true);
         }
         
-        $tmp .= $nombreReal;
-        if (move_uploaded_file($nombreTemporal, $tmp)){
+        if (move_uploaded_file($nombreTemporal, $directorio . $nombreReal)){
             echo '<span id="info"';
             echo ' value="' .$url .'">';
             echo '</span>';
         }else{
             echo "<p>Error al mover el archivo.</p>";
-            echo "de " . $nombreTemporal . " a " . $tmp;
+            echo "de " . $nombreTemporal . " a " . $directorio;
 			exit();
         }
         echo "Archivo subido con exito. Cerrando...";
@@ -82,12 +80,11 @@ switch($crp){
         
         if($esArchivo){
             
-            $directorio = "recursos/". $idTema . "/";
-            $tmp = DIRECTORIO_BASE . $directorio;
+            $directorio = "../../archivosSubidos/recursos/". $idTema . "/";
             $url = $directorio . $nombreReal;
             
-            $query = sprintf("insert into Recursos values(%d,%s,%s,%s)", 
-                    $idTema, '"' . $url . '"','"' . $descripcion .'"','"' .$hint . '"');
+            $query = sprintf('insert into Recursos values(%d,"%s","%s","%s")', 
+                    $idTema, $url,$descripcion ,$hint);
             
             if (!$db -> query($query)){
                 echo "Error en al insertar.<br>";
@@ -97,13 +94,11 @@ switch($crp){
                 
             }
             
-            if(!file_exists($tmp)){
-                mkdir($tmp,0777,true);
+            if(!file_exists($directorio)){
+                mkdir($directorio,0777,true);
             }
             
-            $tmp .= $nombreReal;
-            
-            if (move_uploaded_file($nombreTemporal, $tmp)){
+            if (move_uploaded_file($nombreTemporal, $directorio . $nombreReal)){
                 echo '<span id="info"';
                 echo ' value="' . $url . '">';
                 echo '</span>';
@@ -116,8 +111,8 @@ switch($crp){
             
             $url = (strpos($nombreReal,"http://") !== FALSE)? $nombreReal: "http://" . $nombreReal;
             
-            $query = sprintf("insert into Recursos values(%d,%s,%s,%s)", 
-                    $idTema, '"' . $url . '"','"' . $descripcion .'"','"' .$hint . '"');
+            $query = sprintf('insert into Recursos values(%d,"%s","%s","%s")', 
+                    $idTema, $url,$descripcion ,$hint);
             
             if (!$db -> query($query)){
                 echo "Error en al insertar.<br>";
@@ -134,11 +129,10 @@ switch($crp){
         break;
     case ("productos"):
         
-        $directorio = "productos/". $idTutoria . "/";
-        $tmp = DIRECTORIO_BASE . $directorio;
+        $directorio = "../../archivosSubidos/productos/". $idTutoria . "/";
         $url = $directorio . $nombreReal;
-        $query = sprintf("insert into Productos values(%d,%s,%s,%s)", 
-                    $idTutoria, '"' . $url . '"','"' . $descripcion .'"','"' .$hint . '"');
+        $query = sprintf('insert into Productos values(%d,"%s","%s","%s")', 
+                    $idTutoria, $url , $descripcion ,$hint );
         
         if (!$db -> query($query)){
             echo "Error en al insertar.<br>";
@@ -147,19 +141,17 @@ switch($crp){
             exit();
         }
         
-        if(!file_exists($tmp)){
-            mkdir($tmp,0777,true);
+        if(!file_exists($directorio)){
+            mkdir($directorio,0777,true);
         }
-
-        $tmp .= $nombreReal;
         
-        if (move_uploaded_file($nombreTemporal, $tmp)){
+        if (move_uploaded_file($nombreTemporal, $directorio . $nombreReal)){
             echo '<span id="info"';
             echo ' value="' . $url . '"';
             echo '</span>';
         }else{
             echo "<p>Error al mover el archivo.</p>";
-            echo "de " . $nombreTemporal . " a " . $tmp;
+            echo "de " . $nombreTemporal . " a " . $directorio . $nombreReal;
             exit();
         }
         echo "Archivo subido con exito. Cerrando...";
