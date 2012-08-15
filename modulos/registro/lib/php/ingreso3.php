@@ -141,6 +141,8 @@ if (document.form.Nodo.selectedIndex == 4) {
             <td nowrap="nowrap" align="right">Entidad:</td>
             <td><label for="IdEntidad"></label>
               <select name="idEntidad" id="IdEntidad">
+                                      <option value=""></option>
+
                 <?php
 				do {  
 				?>
@@ -159,6 +161,7 @@ if (document.form.Nodo.selectedIndex == 4) {
           <tr valign="baseline">
             <td nowrap="nowrap" align="right">Nodo:</td>
             <td><select name="idNodo" id="Nodo" onchange="validanodo()">
+                    <option value=""></option>
               <?php
 			  do {  
 			  ?>

@@ -2,12 +2,10 @@ var idUsuario = 0;
 var ruta="../tutorias/tutoria.php"
 
 $(document).ready(function(){
-	
-	idUsuario = dameIdUsuario();
-
-	buscaTutorias();
-	buscaTutorados();
-	buscaDondeSoySinodal();
+   
+            buscaTutorias();
+            buscaTutorados();
+            buscaDondeSoySinodal();  
 });
 
 
@@ -19,8 +17,7 @@ function buscaTutorias(){
                     idUsuario:idUsuario
         },
         dataType:   "xml",
-        success:    escribeTutorias,
-        error:      error
+        success:    escribeTutorias
     })
 }
 
@@ -32,8 +29,7 @@ function buscaTutorados(){
                     idUsuario:idUsuario
         },
         dataType:   "xml",
-        success:    escribeTutorados,
-        error:      error
+        success:    escribeTutorados
     })
 }
 
@@ -46,7 +42,6 @@ function buscaDondeSoySinodal(){
         },
         dataType:   "xml",
         success:    escribeDondeSoySinodal,
-        error:      error
     })
 }
 
