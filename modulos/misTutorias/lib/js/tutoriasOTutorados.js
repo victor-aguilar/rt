@@ -2,23 +2,12 @@ var idUsuario = 0;
 var ruta="../tutorias/tutoria.php"
 
 $(document).ready(function(){
-   
-   $.ajax({
-        type:"POST",
-        url: "lib/php/cosigueIdUsuario.php",
-        datatype:"text",
-        success: function(text){
-            idUsuario= parseInt(text);
-            buscaTutorias();
-            buscaTutorados();
-            buscaDondeSoySinodal();
-        }
-        
-   })
-    
+	
+	idUsuario = dameIdUsuario();
 
-   
-   
+	buscaTutorias();
+	buscaTutorados();
+	buscaDondeSoySinodal();
 });
 
 
