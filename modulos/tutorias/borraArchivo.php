@@ -7,11 +7,13 @@ $db = dameConexion();
 
 if($_POST['tipo'] == "producto"){
     $col = "idTutoria";
+	$tabla = "Productos";
 }else{
+	$tabla = "Recursos";
     $col = "idTema";
 }
 
-$query = sprintf('delete from ' .$_POST['tipo'] . "s" . 
+$query = sprintf('delete from ' . $tabla .
         ' where ' . $col . ' = %d and url = "%s"',
                 $_POST[$col],$_POST['url']);
 

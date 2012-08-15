@@ -41,12 +41,15 @@ $(document).ready(function(){
         mensaje += idTema+"&idTutorado="+idUsuario+'">';
         mensaje += "Aceptar Tutoria</a> </p>";
         mensaje += "<p>En caso contrario da click en: ";
-        mensaje += '<a href="';
-        mensaje += '../../modulos/solicitudDeTutorias/rechasaTutoria.php?de';
-        mensaje += '='+ idTutor + "&para=" + idUsuario + '"';
-        mensaje += '&nombreDeltema=' + nombreDelTema;
-        mensaje += "&nombreDelTutor=" + nombreDelTutor;
-        mensaje += '>No aceptar</a>';
+        mensaje += '<a href=';
+        mensaje += '../../modulos/solicitudDeTutorias/rechasaTutoria.php?';
+		mensaje += 'de='+ idTutor;
+		mensaje += '&nombreDelTema=' + nombreDelTema;
+        mensaje += '&nombreDelTutor=' + nombreDelTutor;
+        mensaje += '&para=' + idUsuario;
+
+		mensaje += '>';
+        mensaje += 'No aceptar</a>';
         mensaje += '</p>'
         
         

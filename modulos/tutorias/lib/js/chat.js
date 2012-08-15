@@ -210,7 +210,7 @@ inicializaChat = function(){
 
             //todo conseguir nombre del urlDelArchivo
             // En el chat solo se puden eviar archivos. Urls no.
-            mensaje = '<a href="../../' + urlDelArchivo+ '" target="_blank">';
+            mensaje = '<a href=' + urlDelArchivo+ ' target=_blank>';
             mensaje += urlDelArchivo + "</a>";
 
             nombreDelArchivo = "";
@@ -283,10 +283,10 @@ actualizaListaDeRecursos = function(){
                 
                 if (esUrl){
                     mensaje = "Por favor revisa la siguiente direccion: "+
-                        '<a href="' + url + '" target="_blank">' + url + '</a>';
+                        '<a href=' + url + ' target=_blank>' + url + '</a>';
                 }else{
                     mensaje = "Por favor revisa el siguiente archivo: " +
-                        '<a href="../../' + url +'" target="_blank">' + url + '</a>';
+                        '<a href=' + url +' target=_blank>' + url + '</a>';
                 }
                 $('#mensaje').val(mensaje);
                 $('#enviarMensaje').click();
@@ -336,6 +336,15 @@ actualizaListaDeProductos = function(){
             
             $('#listaDeProductos').html(html);
             producto = $('div[name="producto"]');
+			
+			producto.children('span').click(function(){
+                var url = $(this).html();
+                
+				mensaje = "Por favor revisa el siguiente archivo: " +
+					'<a href=' + url +' target=_blank>' + url + '</a>';
+                $('#mensaje').val(mensaje);
+                $('#enviarMensaje').click();
+            });
             
             //borrar
             producto.children('img').click(function(){
@@ -396,8 +405,7 @@ inicializaProductos = function(){
             
             //todo conseguir nombre del urlDelArchivo
             mensaje = "Por favor revisa el siguiente archivo: ";
-            //mensaje += '<a href="' + directorioSubirArchivos + urlDelArchivo+ '">';
-            mensaje += '<a href="../../'+ urlDelArchivo+ '" target="_blank">';
+            mensaje += '<a href=' + urlDelArchivo + ' target=_blank>';
             mensaje += dameNombreDelArchivo(urlDelArchivo) + "</a>";
             
             actualizaListaDeProductos();
@@ -420,6 +428,7 @@ cambiaADemostracion = function(){
    
 
 //var fun = function(){
+	var url = "";
     switch(tipoDeUsuario){
         case("tutor"):
             tipoDeUsuario = "moderador";
