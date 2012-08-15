@@ -15,19 +15,19 @@ if($db->connect_errno){
   exit();
 }
 $buscaTutorados= sprintf("select 
-        temas.nombre,
-        sinodales.idTutoria,
-        usuarios.nick
+        Temas.nombre,
+        Sinodales.idTutoria,
+        Usuarios.nick
         from 
-        temas, sinodales, usuarios, tutorias
+        Temas, Sinodales, Usuarios, Tutorias
         where
-        tutorias.idTema=temas.idTema
+        Tutorias.idTema=Temas.idTema
         and
-        sinodales.idTutoria=tutorias.idTutoria
+        Sinodales.idTutoria=Tutorias.idTutoria
         and
-        tutorias.estudiante=usuarios.idUsuario
+        Tutorias.estudiante=Usuarios.idUsuario
         and
-        sinodales.idUsuario=%d;",$idUsuario);
+        Sinodales.idUsuario=%d;",$idUsuario);
 
 
 
