@@ -39,7 +39,7 @@ if (mysql_num_rows($re)<1) {
 <head>
 <!---meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /--->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="../css/esviap.css" >
+<link rel="stylesheet" type="text/css" href="css/esviap.css" >
 <title>ESVIAP, alta de temas de cat&aacute;logo</title>
 <style type="text/css">
 /*body {
@@ -256,7 +256,7 @@ function respuestaAjaxdeltema(){
 <body>
 <table width="100%" border="0" >
   <tr>
-    <th width="42%" scope="col"><img src="../img/esviap_logo.png" width="521" height="80" /></th>
+    <th width="42%" scope="col"><img src="img/esviap_logo.png" width="521" height="80" /></th>
   </tr>
   <tr>
     <th width="58%" scope="col">
@@ -333,7 +333,7 @@ else
     </select>
     </label>
     <!---a href="javascript:alert(&quot;Seleccione el t&iacute;tulo de la experiencia de aprendizaje, si no cuenta con temas de cat&aacute;logo cargados, empiece creando su grupo de los mismos&quot;);"><img src="/esviap/alta_en_arbol/img/hlp.bmp" title="ayuda" border="0" /></a---> 
-    <a href="javascript:alert(&quot;Seleccione el t&iacute;tulo de la experiencia de aprendizaje, si no cuenta con temas de cat&aacute;logo cargados, empiece creando su grupo de los mismos&quot;);"><img src="/esviap/alta_en_arbol/img/hlp.bmp" title="ayuda" border="0" /></a> 
+    <a href="javascript:alert(&quot;Seleccione el t&iacute;tulo de la experiencia de aprendizaje, si no cuenta con temas de cat&aacute;logo cargados, empiece creando su grupo de los mismos&quot;);"><img src="img/hlp.bmp" title="ayuda" border="0" /></a> 
     (<?php echo $totalRows_tc; ?>) temas de cat&aacute;logo, <a href="tcabm.php"><img src="img/edit.jpg" alt="Administrar mis temas de cat&aacute;logo" width="24" height="24" border="0" /></a></h4>
   <h4>Seleccione asignatura, periodo y est&aacute;ndar:
     <!---a href="http://dof.gob.mx/nota_detalle.php?codigo=5205518&amp;fecha=19/08/2011" target="_blank"><img src="/esviap/alta_en_arbol/img/hlp.bmp" alt="link al acuerdo 592" border="0" /></a---><br />
@@ -393,7 +393,7 @@ else
 
 <h4><input name="idu" type="hidden" id="idu" value="<?php echo $usr;  ?>" />
   <br />
-  Seleccione est&aacute;ndar: <a href="javascript:alert(&quot;Seleccione un est&aacute;ndard&quot;);"><img src="/esviap/alta_en_arbol/img/hlp.bmp" alt="ayuda" border="0" /></a></h4>
+  Seleccione est&aacute;ndar: <a href="javascript:alert(&quot;Seleccione un est&aacute;ndard&quot;);"><img src="img/hlp.bmp" alt="ayuda" border="0" /></a></h4>
 <div id="ude_div" style="width:250px">
   <select name="ude" disabled="disabled" id="ude">
    <option value="-1">---</option>
