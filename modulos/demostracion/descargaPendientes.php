@@ -19,10 +19,21 @@ if($db->connect_errno){
   exit();
 }
 //selecciona todo de mensajes
-$consultaAMensajes=sprintf("select usuarios.nick, mensajes.idUsuario,
-    mensajes.fecha, mensajes.mensaje, mensajes.mili from usuarios,
-    mensajes where mensajes.idUsuario=usuarios.idUsuario and
-    idTutoria=%d and autorizacion=0 and (fecha>%s or (fecha=%s and mili>%d));",
+$consultaAMensajes=sprintf(
+		"select 
+			u.nick, 
+			m.idUsuario,
+			m.fecha, 
+			m.mensaje, 
+			m.mili 
+		from 
+			Usuarios as u,
+			Mensajes as m
+		where 
+			m.idUsuario = u.idUsuario and
+			m.idTutoria = %d and 
+			m.autorizacion = 0 and 
+			(m.fecha>%s or (m.fecha=%s and m.mili>%d));",
         $idTutoria,  
         '"'.$ultimaVerificacionDePendientes.'"',
         '"'.$ultimaVerificacionDePendientes.'"', 

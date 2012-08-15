@@ -17,7 +17,7 @@ if($db->connect_errno){
   exit();
 }
 
-    $query = "delete from mensajes where idUsuario=? and idTutoria=? and fecha=?";
+    $query = "delete from Mensajes where idUsuario=? and idTutoria=? and fecha=?";
     $stmt = $db ->stmt_init(); 
     $stmt->prepare($query);
     $stmt->bind_param("dss",$idUsuario, $idTutoria, $fecha);

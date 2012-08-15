@@ -17,7 +17,7 @@ if($db->connect_errno){
   exit();
 }
 
-    $query = "update sinodales set dictamen=1 where idUsuario=? and idTutoria=?";
+    $query = "update Sinodales set dictamen=1 where idUsuario=? and idTutoria=?";
     $stmt = $db ->stmt_init(); 
     $stmt->prepare($query);
     $stmt->bind_param("ss",$idUsuario, $idTutoria);
