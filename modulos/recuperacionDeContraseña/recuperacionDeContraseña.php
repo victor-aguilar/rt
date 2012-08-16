@@ -24,7 +24,7 @@ if ($result -> num_rows > 0){
 			
 	mail( $_POST['email'] , $asunto, $mensaje );
 	
-	echo "Correo enviado. En algunos segundos resiviras un correo con tu";
+	echo "Correo enviado. En algunos segundos recibiras un correo con tu";
 	echo " usuario y contraseña.";
 }else{
 	echo "Lo sieto, no hay ningun usuario con esta cuenta de correo";
