@@ -36,7 +36,7 @@ header('Content-Type: text/html; charset=UTF-8');
 				<li value="bandejaDeEntrada.html"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
 				<li value="misTutorias.html"><img src="../../lib/img/chat.png"/> Mis Tutorías </li>
 				<li value="solicitudDeTutoria.html"><img src="../../lib/img/buscar.png"/> Solicitud de Tutoría</li>
-				<li value="misTemasDeCatalogo.html"> <img src="../../lib/img/temasDeCatalogo.png"/>Mis temas de catalogo </li>
+				<li value="index.php?uid=<?php echo $_SESSION['idUsuario']; ?>"> <img src="../../lib/img/temasDeCatalogo.png"/>Mis temas de catalogo </li>
 			</ul>
 		</div>
 		<div id="descripcion"></div>

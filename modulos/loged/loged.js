@@ -12,7 +12,11 @@ $(document).ready(function(){
 				nd = 'mensajesPrivados';
 				break;
 			default:
-				nd = v.substr(0, v.length-5 );
+				
+				if (v.substr(0,5) == 'index')
+					nd = '../alta_en_arbol';
+				else
+					nd = v.substr(0, v.length-5 );
 		}
 		window.location = '../' + nd + '/' + v;
 	});
