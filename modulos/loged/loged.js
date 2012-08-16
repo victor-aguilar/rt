@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+	creaPieDePagina();
+	
 	$('#descripcion').hide();
 	
 	$('ul li').click(function(){

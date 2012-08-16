@@ -4,6 +4,8 @@ var ruta="../tutorias/tutoria.php"
 $(document).ready(function(){
    
 	creaBarraDeNavegacion();
+	creaPieDePagina();
+	
 	//todo esto se puede mejorar con un $.load
 	$('ul li').click(function(){
 		var c = $('#contenido');
@@ -60,7 +62,7 @@ function buscaDondeSoySinodal(){
                     idUsuario:idUsuario
         },
         dataType:   "xml",
-        success:    escribeDondeSoySinodal,
+        success:    escribeDondeSoySinodal
     })
 }
 
