@@ -48,6 +48,9 @@
       <tr>
         <td colspan="2" align="right"><a href="modulos/registro/index.php" title="Alta en ESVIAP">No estoy registrado</a></td>
       </tr>
+	  <tr>
+		  <td colspan="2" align="right"><a href="modulos/recuperacionDeContraseña.html" title="Recuperar Correo">Recuperar Contraseña</a></td>
+	  </tr>
     </table>
 </form>
     <p>&nbsp;</p>
