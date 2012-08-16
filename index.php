@@ -24,7 +24,7 @@
     <p class="azul1_0">EIMLE es una Plataforma de apoyo a la tutorías a distancia, ofreciendo herramientas de comunicación a tutores e interesados en adquirir conocimientos por medio de tutorías</p>
     <p></p>
     <p></p>
-<form id="form1" name="form1" method="POST" action="<?php echo $loginFormAction; ?>">
+<form id="form1">
     <table width="352" border="0" cellspacing="0" align="center" class="azul1">
       <tr>
         <td colspan="2" align="center"><p><strong>Ingreso a la plataforma</strong></p>
@@ -39,11 +39,11 @@
     </td>
       </tr>
       <tr>
-        <td>Contrase&ntilde;a</td>
+        <td>Contraseña</td>
         <td><input type="password" name="password" id="contraseña" /></td>
       </tr>
       <tr>
-        <td height="55">&nbsp;</td>
+        <td height="55"></td>
         <td><input type="button" name="ingreso" id="ingreso" value="ingresar" /></td>
       </tr>
       <tr>
@@ -54,8 +54,8 @@
 	  </tr>
     </table>
 </form>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <p></p>
+    <p></p>
     <p><strong><a href="Privacidad.html">Política  de privacidad y manejo de datos personales</a></strong></p>
     <tr><td valign="top" height="20">
 <p align="center" class="azul1" >
