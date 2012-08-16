@@ -17,6 +17,8 @@ var directorioBase = "";
 
 $(document).ready(function(){
 
+	creaBarraDeNavegacion();
+	
     //conseguimos el id del usuario
     idUsuario = dameIdUsuario();
     nombreDelAlumno = dameNickDeUsuario();

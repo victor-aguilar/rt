@@ -3,9 +3,10 @@ var ruta="../tutorias/tutoria.php"
 
 $(document).ready(function(){
    
-            buscaTutorias();
-            buscaTutorados();
-            buscaDondeSoySinodal();  
+    creaBarraDeNavegacion();
+	buscaTutorias();
+	buscaTutorados();
+	buscaDondeSoySinodal();  
 });
 
 

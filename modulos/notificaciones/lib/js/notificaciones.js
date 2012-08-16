@@ -18,9 +18,9 @@ function buscaNotificaciones(){
 function hayNotificaciones(text){
 
     if (text == ""){
-  	$('#botonMail').html('<img src="lib/img/correo.jpg" />');  
+  	$('#misDatos img').attr('src','../../lib/img/correo.png');  
 }else{
-	$('#botonMail').html('<img src="lib/img/hayCorreo.jpg" />');
+	$('#misDatos img').attr('src','../../lib/img/hayCorreo.png');  
 }
 }
 

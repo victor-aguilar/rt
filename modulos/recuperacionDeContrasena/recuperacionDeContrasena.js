@@ -4,6 +4,6 @@ $(document).ready(function(){
 		
 		var email = $(':input').val();
 
-		$('#m').load('recuperacionDeContraseña.php',{email:email});
+		$('#m').load('recuperacionDeContrasena.php',{email:email});
 	});
 });

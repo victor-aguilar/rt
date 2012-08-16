@@ -1,3 +1,4 @@
+<?php header('Content-Type: text/html; charset=UTF-8'); ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,16 +14,16 @@
 </head>
 
 <body>
-<p align="center"><img src="lib/img/esviap_logo.png" width="523" height="74" alt="logo ESVIAP" /></p>
+<p align="center"><img src="lib/img/eimle.png"alt="logo ESVIAP" /></p>
 
 <table height="800" align="center" width="600px">
   <tr>
     <td valign="top" align="center">
 
-    <p>&nbsp;</p>
-    <p class="azul1_0">ESVIAP es una Plataforma de apoyo a la tutor&iacute;as a distancia, ofreciendo herramientas de comunicaci&oacute;n a tutores e interesados en adquirir conocimientos por medio de tutor&iacute;as</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <p></p>
+    <p class="azul1_0">EIMLE es una Plataforma de apoyo a la tutorías a distancia, ofreciendo herramientas de comunicación a tutores e interesados en adquirir conocimientos por medio de tutorías</p>
+    <p></p>
+    <p></p>
 <form id="form1" name="form1" method="POST" action="<?php echo $loginFormAction; ?>">
     <table width="352" border="0" cellspacing="0" align="center" class="azul1">
       <tr>
@@ -49,7 +50,7 @@
         <td colspan="2" align="right"><a href="modulos/registro/index.php" title="Alta en ESVIAP">No estoy registrado</a></td>
       </tr>
 	  <tr>
-		  <td colspan="2" align="right"><a href="modulos/recuperacionDeContraseña.html" title="Recuperar Correo">Recuperar Contraseña</a></td>
+		  <td colspan="2" align="right"><a href="modulos/recuperacionDeContrasena/recuperacionDeContrasena.html" title="Recuperar Correo">Recuperar Contraseña</a></td>
 	  </tr>
     </table>
 </form>

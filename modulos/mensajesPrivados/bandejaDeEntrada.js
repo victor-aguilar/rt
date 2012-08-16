@@ -61,6 +61,9 @@ $(document).ready(function(){
     });
     
     $('#actualizar').click();
+	
+	//funciones.js
+	creaBarraDeNavegacion();
     
 })
 

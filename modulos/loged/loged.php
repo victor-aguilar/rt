@@ -1,0 +1,53 @@
+<?php 
+session_start();
+header('Content-Type: text/html; charset=UTF-8');
+?>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../lib/css/esviap.css"></link>
+<link rel="stylesheet" type="text/css" href="loged.css"></link>
+
+<script type="text/javascript" src="../../lib/js/jquery.js"></script>
+<script type="text/javascript" src="../../lib/js/funciones.js"></script>
+<script type="text/javascript" src="loged.js"></script>
+<script type="text/javascript" src="../modulos/notificaciones/lib/js/notificaciones.js"></script>
+
+</head>
+
+<body>
+
+	<div id="encabezado">
+	<p align="center"><img src="../../lib/img/eimle.png" alt="logo EIMLE" /></p>
+	<center><h3></h3></center>	
+	</div>
+
+	<div id="cuerpo">
+		<div id="misDatos">
+			<img src="../../avatares/default.png"/>
+			<p><?php echo $_SESSION['nick']; ?></p>
+			</div>
+		<div id="menu">
+			<ul>
+				<li value="bandejaDeEntrada.html"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
+				<li value="misTutorias.html"><img src="../../lib/img/chat.png"/> Mis Tutorías </li>
+				<li value="solicitudDeTutoria.html"><img src="../../lib/img/buscar.png"/> Solicitud de Tutoría</li>
+				<li value="misTemasDeCatalogo"> <img src="../../lib/img/temasDeCatalogo.png"/>Mis temas de catalogo </li>
+			</ul>
+		</div>
+		<div id="descripcion"></div>
+		<div id="contenido">
+		</div>
+	</div>
+	<div class="limpiador"></div>
+	<div id="pieDePagina">
+		<p align="center" class="azul1" >
+		Subsecretar&iacute;a de Educaci&oacute;n B&aacute;sica, Viaducto R&iacute;o Piedad 507, 4o piso. Granjas M&eacute;xico, Iztacalco 08400. M&eacute;xico D.F.
+		</p>
+	</div>
+</body>
+</html>
