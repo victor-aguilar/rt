@@ -3,10 +3,28 @@ var ruta="../tutorias/tutoria.php"
 
 $(document).ready(function(){
    
-    creaBarraDeNavegacion();
-	buscaTutorias();
-	buscaTutorados();
-	buscaDondeSoySinodal();  
+	creaBarraDeNavegacion();
+	//todo esto se puede mejorar con un $.load
+	$('ul li').click(function(){
+		var c = $('#contenido');
+		var v = $(this).attr('title')
+		
+		switch(v){
+			case ('buscaTutorias'):
+				c.html("<h1>Soy Tutor en:</h1>");
+				buscaTutorias();
+				break;
+			case('buscaTutorados'):
+				c.html("<h1>Soy Tutorado en:");
+				buscaTutorados();
+				break;
+			case('buscaDondeSoySinodal'):
+				c.html("<h1>Soy Sinodal en:");
+				buscaDondeSoySinodal();
+				break;
+		}
+		
+	});
 });
 
 
@@ -46,14 +64,14 @@ function buscaDondeSoySinodal(){
     })
 }
 
-function escribeTutorias(xml){
+function escribeTutorias(xml){	
     $(xml).find("tutoria").each(function(){
-    var tutorias = $('#tutorias');
+    var tutorias = $('#contenido');
     var mensajeAnterior = tutorias.html(); // tutorias anteriores
     var tutor=$(this).attr("tutor");
     var idTutoria=$(this).attr("idtutoria");
     var nombre=$(this).text();//nombre de la tutoria
-    var mensajeNuevo = "Recibiendo tutoria: <br/><a href="+ruta+"?idUsuario="+idUsuario+
+    var mensajeNuevo = "<a href="+ruta+"?idUsuario="+idUsuario+
                        "&idTutoria="+idTutoria+"&tipoDeUsuario=alumno><br>"+
                        nombre+"</a> <br/><span id=titulo>Tutor:</span>"+tutor+"<br><br><br>";//mensajesNuevos
     
@@ -65,12 +83,12 @@ function escribeTutorias(xml){
 
 function escribeTutorados(xml){
     $(xml).find("tutoria").each(function(){
-    var tutorados = $('#tutorados');
+    var tutorados = $('#contenido');
     var mensajeAnterior = tutorados.html(); // tutorias anteriores
     var alumno=$(this).attr("tutorado");
     var idTutoria=$(this).attr("idtutoria");
     var nombre=$(this).text();//nombre de la tutoria
-    var mensajeNuevo = "Tutorando: <br/><a href="+ruta+"?idUsuario="+idUsuario+
+    var mensajeNuevo = "<a href="+ruta+"?idUsuario="+idUsuario+
                        "&idTutoria="+idTutoria+"&tipoDeUsuario=tutor><br>"+
                        nombre+"</a> <br/><span id=titulo>Alumno:</span>"+alumno+"<br><br><br>";//mensajesNuevos
     
@@ -83,12 +101,12 @@ function escribeTutorados(xml){
 
 function escribeDondeSoySinodal(xml){
     $(xml).find("tutoria").each(function(){
-    var tutorados = $('#sinodales');
+    var tutorados = $('#contenido');
     var mensajeAnterior = tutorados.html(); // tutorias anteriores
     var alumno=$(this).attr("tutorado");
     var idTutoria=$(this).attr("idtutoria");
     var nombre=$(this).text();//nombre de la tutoria
-    var mensajeNuevo = "Sinodal En: <br/><a href="+ruta+"?idUsuario="+idUsuario+
+    var mensajeNuevo = "<a href="+ruta+"?idUsuario="+idUsuario+
                        "&idTutoria="+idTutoria+"&tipoDeUsuario=sinodal><br>"+
                        nombre+"</a> <br/><span id=titulo>Alumno:</span>"+alumno+"<br><br><br>";//mensajesNuevos
     

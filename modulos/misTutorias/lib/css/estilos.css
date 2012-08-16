@@ -1,13 +1,11 @@
 
-#tutorias, #tutorados, #sinodales{
-  height: 700px;
+#contenido{
+  min-height: 500px;
   width: 400px;
-  border-width: 2px;
-  border-color: black;
-  border-style: solid;
-  overflow:auto;
+  border: purple solid thin;
   float: left;
   padding: 10px;
+  margin-left:70px;
 }
 
 
@@ -15,9 +13,7 @@
     font-style:italic;
     font-size: medium;
 }
-body{ 
-	font-family:Verdana, Geneva, sans-serif;
-	color: #36C;
- 	background: transparent url(../../../../lib/img/bg1.jpg) no-repeat center top;
-	background-attachment: fixed;
-  }
+
+h1{
+	color: chocolate;
+}

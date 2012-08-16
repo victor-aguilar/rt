@@ -23,7 +23,8 @@ header('Content-Type: text/html; charset=UTF-8');
 
   </head>
   <body>
-    <button name="home" onclick="window.location='../../loged.php'">HOME</button>
+    <button name="home" onclick="window.location='../../modulos/loged/loged.php'">
+		<img src="../../lib/img/escritorio.png"/>HOME</button>
     <div>
         <div id="chat">
 			<div id="audio"></div>
