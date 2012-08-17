@@ -4,7 +4,7 @@ include "../../configuracion.php";
 include "../../lib/php/utils.php";
 
 header('Content-Type: text/html; charset=UTF-8');
-header('refresh:3; url="../../loged.php"'); 
+header('refresh:3; url="../../modulos/loged/loged.php"'); 
 
 administraSesion();
 

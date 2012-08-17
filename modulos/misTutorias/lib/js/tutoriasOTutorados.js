@@ -77,7 +77,6 @@ function escribeTutorias(xml){
                        nombre+"</a> <br/><span id=titulo>Tutor:</span>"+tutor+"<br><br><br>";//mensajesNuevos
     
     tutorias.html(mensajeAnterior + mensajeNuevo);
-    autoScroll("tutorias");
     });
         
 }
@@ -94,7 +93,6 @@ function escribeTutorados(xml){
                        nombre+"</a> <br/><span id=titulo>Alumno:</span>"+alumno+"<br><br><br>";//mensajesNuevos
     
     tutorados.html(mensajeAnterior + mensajeNuevo);
-    autoScroll("tutorados");
     });
         
 }
@@ -112,7 +110,6 @@ function escribeDondeSoySinodal(xml){
                        nombre+"</a> <br/><span id=titulo>Alumno:</span>"+alumno+"<br><br><br>";//mensajesNuevos
     
     tutorados.html(mensajeAnterior + mensajeNuevo);
-    autoScroll("sinodales");
     });
         
 }

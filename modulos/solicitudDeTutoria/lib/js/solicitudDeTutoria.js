@@ -39,16 +39,17 @@ $(document).ready(function(){
         mensaje += "<b>" + nombreDelTema +"</b>?</p>";
         mensaje += "<p>Si la respuesta es afirmativa, has click:";
         mensaje += '<a href="';
-        mensaje += "../../modulos/solicitudDeTutorias/creaTutoria.php?idTema=";
+        mensaje += "../../modulos/solicitudDeTutoria/creaTutoria.php?idTema=";
         mensaje += idTema+"&idTutorado="+idUsuario+'">';
         mensaje += "Aceptar Tutoria</a> </p>";
         mensaje += "<p>En caso contrario da click en: ";
         mensaje += '<a href=';
-        mensaje += '../../modulos/solicitudDeTutorias/rechasaTutoria.php?';
-		mensaje += 'de='+ idTutor;
-		mensaje += '&nombreDelTema=' + nombreDelTema;
-        mensaje += '&nombreDelTutor=' + nombreDelTutor;
-        mensaje += '&para=' + idUsuario;
+        mensaje += '../../modulos/solicitudDeTutoria/rechasaTutoria.php?';
+	   mensaje += 'de='+ idTutor;
+	   mensaje += '&para=' + idUsuario;
+	   mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
+	   mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
+        
 
 		mensaje += '>';
         mensaje += 'No aceptar</a>';

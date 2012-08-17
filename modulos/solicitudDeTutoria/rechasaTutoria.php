@@ -13,7 +13,6 @@
             mensaje = "<p>El tutor <b>" + decodeURIComponent(getUrlVars()['nombreDelTutor']) + "</b>";
             mensaje += " no te acepto tutorarte en el tema <b>" + decodeURIComponent(getUrlVars()['nombreDelTema']);
             mensaje += "</b></p><p>Puedes probar con otro tutor </p>";
-            alert(getUrlVars()['de'] +"+" +getUrlVars()['para'] +"+"+getUrlVars()['nombreDelTema']);
             $.ajax({
                 type: "POST",
                 url: "../../modulos/mensajesPrivados/mensajesPrivados.php",
@@ -28,11 +27,11 @@
                 success: function(){
                 	window.setTimeout(
                         function(){
-                            window.location = "../../modulos/mensajesPrivados/bandejaDeEntrada.html"
+                            window.location = "../../modulos/mensajesPrivados/bandejaDeEntrada.php"
                         }, 3000);
             	}
             });
-         });   
+         }); 
         </script>
     </head>
     <body>
