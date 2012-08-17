@@ -121,7 +121,7 @@ $buscaAlumno = sprintf("
     select 
     u.nick, u.email, u.idUsuario
     from 
-    Usuarios as u, Tutorias as u
+    Usuarios as u, Tutorias as t
     where 
     u.idUsuario = t.estudiante 
     and t.idTutoria = %d;",$idTutoria);

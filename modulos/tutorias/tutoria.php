@@ -15,6 +15,8 @@ header('Content-Type: text/html; charset=UTF-8');
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="cache-control" content="no-cahce"/>
     <link rel="StyleSheet" href="lib/css/estilos.css" type="text/css"/>
+    <link rel="StyleSheet" href="../../lib/css/esviap.css" type="text/css"/>
+    
     <script type="text/javascript" src="../../lib/js/jquery.js"></script>
     <script type="text/javascript" src="../../lib/js/funciones.js"></script>
     <script type="text/javascript" src="../../lib/js/modernizr.js"></script>
@@ -23,6 +25,7 @@ header('Content-Type: text/html; charset=UTF-8');
 
   </head>
   <body>
+	 <?php include "../../lib/php/encabezado.php" ?>
     <button name="home" onclick="window.location='../../modulos/loged/loged.php'">
 		<img src="../../lib/img/escritorio.png"/>HOME</button>
     <div>
@@ -106,5 +109,7 @@ header('Content-Type: text/html; charset=UTF-8');
       <div id="m"></div>
 
     </div>
+	 <div style="clear:both"></div>
+	 <?php include "../../lib/php/pieDePagina.php" ?>
   </body>
 </html>
