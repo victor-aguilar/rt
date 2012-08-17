@@ -4,17 +4,18 @@ $(document).ready(function(){
 	
 	$('ul li').click(function(){
 		var v = this.getAttribute('value');
-		var nd = ""; //nombre del modulo
+		var nd = v; //nombre del modulo
 		switch(v){
-			case ('bandejaDeEntrada.html'):
+			case ('bandejaDeEntrada'):
 				nd = 'mensajesPrivados';
+				v += ".php";
 				break;
 			default:
-				
-				if (v.substr(0,5) == 'index')
+				if (v.substr(0,5) == 'index'){
 					nd = '../alta_en_arbol';
-				else
-					nd = v.substr(0, v.length-5 );
+				}else{
+				    v = v + ".php";
+				}
 		}
 		window.location = '../' + nd + '/' + v;
 	});
@@ -22,7 +23,11 @@ $(document).ready(function(){
 	$('#menu li').mouseenter(function(){
 		//bug de jquery
 		//$('#descripcion').html( $(this).attr('value') );
-		$('#descripcion').load('descripciones/' + this.getAttribute('value'));
+		var v = this.getAttribute('value');
+		if (v.substr(0,5) == 'index'){
+		  v = "misTemasDeCatalogo";
+	     }
+		$('#descripcion').load('descripciones/' + v + ".html");
 		$('#descripcion').show('fast');
 	});
 	

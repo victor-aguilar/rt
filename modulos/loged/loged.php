@@ -30,9 +30,9 @@ header('Content-Type: text/html; charset=UTF-8');
 			</div>
 		<div id="menu">
 			<ul>
-				<li value="bandejaDeEntrada.php"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
-				<li value="misTutorias.php"><img src="../../lib/img/chat.png"/> Mis Tutorías </li>
-				<li value="solicitudDeTutoria.php"><img src="../../lib/img/buscar.png"/> Solicitud de Tutoría</li>
+				<li value="bandejaDeEntrada"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
+				<li value="misTutorias"><img src="../../lib/img/chat.png"/> Mis Tutorías </li>
+				<li value="solicitudDeTutoria"><img src="../../lib/img/buscar.png"/> Solicitud de Tutoría</li>
 				<li value="index.php?uid=<?php echo $_SESSION['idUsuario']; ?>"> <img src="../../lib/img/temasDeCatalogo.png"/>Mis temas de catalogo </li>
 			</ul>
 		</div>
