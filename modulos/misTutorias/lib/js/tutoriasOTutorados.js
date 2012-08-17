@@ -13,11 +13,11 @@ $(document).ready(function(){
 		switch(v){
 			case ('buscaTutorias'):
 				c.html("<h1>Soy Tutor en:</h1>");
-				buscaTutorias();
+				buscaTutorados();
 				break;
 			case('buscaTutorados'):
 				c.html("<h1>Soy Tutorado en:");
-				buscaTutorados();
+				buscaTutorias();
 				break;
 			case('buscaDondeSoySinodal'):
 				c.html("<h1>Soy Sinodal en:");
