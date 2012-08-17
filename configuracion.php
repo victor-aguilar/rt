@@ -1,9 +1,9 @@
 <?php
 
 define("HOST_NAME","localhost");
-define("USER_DB", "liceocom_rt");
+define("USER_DB", "rt");
 define("PASSWORD_DB","r2d2");
-define("DB_NAME","liceocom_tutorias");
+define("DB_NAME","tutorias");
 
 define(
         "DIRECTORIO_BASE", 

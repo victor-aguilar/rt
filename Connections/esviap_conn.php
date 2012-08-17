@@ -2,7 +2,7 @@
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
 # HTTP="true"
-$ubicacion="otro";
+$ubicacion="local";
 if ($ubicacion=="local"){
 	$database_esviap_conn = "tutorias";
 	$username_esviap_conn = "rt";}

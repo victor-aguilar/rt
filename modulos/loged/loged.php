@@ -15,7 +15,7 @@ header('Content-Type: text/html; charset=UTF-8');
 <script type="text/javascript" src="../../lib/js/jquery.js"></script>
 <script type="text/javascript" src="../../lib/js/funciones.js"></script>
 <script type="text/javascript" src="loged.js"></script>
-<script type="text/javascript" src="../notificaciones/lib/js/notificaciones.js"></script>
+<script type="text/javascript" src="../../notificaciones/lib/js/notificaciones.js"></script>
 
 </head>
 

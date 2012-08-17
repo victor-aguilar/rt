@@ -12,12 +12,13 @@
     </head>
     <body>
 	   <?php include "../../lib/php/encabezado.php" ?>
+	   
         <p id="barraDeNavegacion"></p>
         <div id="actualizar"><img src="../../lib/img/actualizar.png"/></div>
         <div id="bandejaDeEntrada"></div>
         <div id="mensaje"></div>
 	   <div style="clear:both;"></div>
 		
-		<?php include "../../lib/php/pieDePagina"?>
+		<?php include "../../lib/php/pieDePagina.php"?>
     </body>
 </html>

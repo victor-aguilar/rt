@@ -31,19 +31,6 @@ $(document).ready(function(){
          var url="modulos/mensajesPrivados/bandejaDeEntrada.html"
         window.location=url;
     })
-    
-    
-//   $.ajax({
-//        type:"POST",
-//        url: "modulos/notificaciones/lib/php/consigueIdUsuario.php",
-//        dataType:"text",
-//        success: function(text){
-//            idUsuario= parseInt(text);
-//        },
-//        error: function(error){
-//            alert(error);
-//        }
-//   })
 	
 	buscaNotificaciones();
 
