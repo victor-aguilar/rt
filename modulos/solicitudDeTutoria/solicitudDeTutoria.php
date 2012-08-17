@@ -11,7 +11,9 @@
         <script type="text/javascript" src="lib/js/solicitudDeTutoria.js"></script>
     </head>
     <body>
-		<p align="center"><img src="../../lib/img/eimle.png" alt="logo EIMLE" /></p>
+	
+	   <?php include "../../lib/php/encabezado.php"?>
+	   
         <p id="barraDeNavegacion"></p>
         <div id="buscarPor">
             <select size="2">
@@ -32,7 +34,7 @@
         </div>
         <div style="clear:both"></div>
         <div id="m"></div>
-		<p id="pieDePagina"></p>
+	   <?php include "../../lib/php/pieDePagina.php"?>
     </body>
 </html>
 

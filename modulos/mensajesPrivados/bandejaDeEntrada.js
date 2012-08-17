@@ -64,7 +64,6 @@ $(document).ready(function(){
 	
 	//funciones.js
 	creaBarraDeNavegacion();
-	creaPieDePagina();
     
 })
 

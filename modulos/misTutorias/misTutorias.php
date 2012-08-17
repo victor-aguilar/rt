@@ -15,17 +15,17 @@ and open the template in the editor.
         <script type="text/javascript" src="lib/js/tutoriasOTutorados.js"></script>
     </head>
     <body>
-        <p align="center"><img src="../../lib/img/eimle.png" alt="logo EIMLE" /></p>
-		<p id="barraDeNavegacion"></p>
-		<div id="menu">
-			<ul>
-				<li title="buscaTutorias">Mis Tutorías</li>
-				<li title="buscaTutorados">¿Donde soy tutorado?</li>
-				<li title="buscaDondeSoySinodal">¿Donde soy sinodal </li>
-			</ul>
-		</div>
-		<div id="contenido"></div>
-		<div style="clear:both"></div>
-		<div id="pieDePagina"></div>
+	   <?php include "../../lib/php/encabezado.php"?>
+	   <p id="barraDeNavegacion"></p>
+	   <div id="menu">
+		  <ul>
+			 <li title="buscaTutorias">Mis Tutorías</li>
+			 <li title="buscaTutorados">¿Donde soy tutorado?</li>
+			 <li title="buscaDondeSoySinodal">¿Donde soy sinodal </li>
+		  </ul>
+	   </div>
+	   <div id="contenido"></div>
+	   <div style="clear:both"></div>
+	   <?php include "../../lib/php/pieDePagina.php" ?>
     </body>
 </html>

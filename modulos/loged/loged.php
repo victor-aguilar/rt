@@ -20,11 +20,8 @@ header('Content-Type: text/html; charset=UTF-8');
 </head>
 
 <body>
-
-	<div id="encabezado">
-	<p align="center"><img src="../../lib/img/eimle.png" alt="logo EIMLE" /></p>
-	<center><h3></h3></center>	
-	</div>
+    
+    <?php include "../../lib/php/encabezado.php" ?>
 
 	<div id="cuerpo">
 		<div id="misDatos">
@@ -33,9 +30,9 @@ header('Content-Type: text/html; charset=UTF-8');
 			</div>
 		<div id="menu">
 			<ul>
-				<li value="bandejaDeEntrada.html"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
-				<li value="misTutorias.html"><img src="../../lib/img/chat.png"/> Mis Tutorías </li>
-				<li value="solicitudDeTutoria.html"><img src="../../lib/img/buscar.png"/> Solicitud de Tutoría</li>
+				<li value="bandejaDeEntrada.php"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
+				<li value="misTutorias.php"><img src="../../lib/img/chat.png"/> Mis Tutorías </li>
+				<li value="solicitudDeTutoria.php"><img src="../../lib/img/buscar.png"/> Solicitud de Tutoría</li>
 				<li value="index.php?uid=<?php echo $_SESSION['idUsuario']; ?>"> <img src="../../lib/img/temasDeCatalogo.png"/>Mis temas de catalogo </li>
 			</ul>
 		</div>
@@ -44,7 +41,8 @@ header('Content-Type: text/html; charset=UTF-8');
 		</div>
 	</div>
 	<div class="limpiador"></div>
-	<div id="pieDePagina">
-	</div>
+	
+	<?php include "../../lib/php/pieDePagina.php" ?>
+	
 </body>
 </html>

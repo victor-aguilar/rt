@@ -4,7 +4,6 @@ var ruta="../tutorias/tutoria.php"
 $(document).ready(function(){
    
 	creaBarraDeNavegacion();
-	creaPieDePagina();
 	
 	//todo esto se puede mejorar con un $.load
 	$('ul li').click(function(){

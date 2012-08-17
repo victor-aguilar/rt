@@ -11,12 +11,13 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/esviap.css"/>
     </head>
     <body>
-		<p align="center"><img src="../../lib/img/eimle.png" alt="logo EIMLE" /></p>
+	   <?php include "../../lib/php/encabezado.php" ?>
         <p id="barraDeNavegacion"></p>
         <div id="actualizar"><img src="../../lib/img/actualizar.png"/></div>
         <div id="bandejaDeEntrada"></div>
         <div id="mensaje"></div>
-		<div style="clear:both;"></div>
-		<p id="pieDePagina"></p>
+	   <div style="clear:both;"></div>
+		
+		<?php include "../../lib/php/pieDePagina"?>
     </body>
 </html>
