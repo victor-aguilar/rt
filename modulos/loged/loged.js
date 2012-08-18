@@ -1,3 +1,14 @@
+var iws = null // id del intervalo para la ventana subir 
+var ws = null //id de la ventana.
+
+recargaAvatar = function(){
+    if (ws.closed){
+	   alert("cambiando avatar");
+	   $('#misDatos img').attr('src', 'src="../../avatares/' + dameIdUsuario() +' .png"')
+	   window.clearInterval(iws);
+    }
+}
+
 $(document).ready(function(){
 	
 	$('#descripcion').hide();
@@ -34,4 +45,12 @@ $(document).ready(function(){
 	$('ul li').mouseleave(function(){
 		$('#descripcion').hide('fast');
 	});
+	
+	//subir avatar;
+	$('#misDatos div').click(function(){
+	    
+	    ws = window.open("subirArchivo.html", "subirAvatar");
+	    iws = window.setInterval(recargaAvatar, 1000);
+	});
+
 })

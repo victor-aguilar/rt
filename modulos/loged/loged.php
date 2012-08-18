@@ -25,7 +25,9 @@ header('Content-Type: text/html; charset=UTF-8');
 
 	<div id="cuerpo">
 		<div id="misDatos">
-			<img src="../../avatares/default.png"/>
+		    <img src="../../avatares/default.png"/>
+<!--			<img src="../../avatares/<?php $_SESSION['idUsuario'] ?> .png"/>-->
+<!--			<div> Subir imagen </div>-->
 			<p><?php echo $_SESSION['nick']; ?></p>
 			</div>
 		<div id="menu">

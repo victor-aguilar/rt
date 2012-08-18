@@ -13,8 +13,6 @@ $idEtapa =$_POST['idEtapa'];
 $db = new mysqli;
 
 
-
-
 $db = dameConexion();
 
 if($db->connect_errno){
