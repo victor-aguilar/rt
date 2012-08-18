@@ -71,7 +71,7 @@ header('Content-Type: text/html; charset=UTF-8');
     <div id="listaDeProductos"></div>
     
     <div id="subirProductos">
-    <input type="button" name="producto" value="Registro De Tutoria"/>
+    <input type="button" name="producto" value="Registro de Tutoria"/>
     </div>
 </div>
         </div>
@@ -93,8 +93,8 @@ header('Content-Type: text/html; charset=UTF-8');
     <div id="listaDeProductos"></div>
     
     <div id="subirProductos">
-        <input type="button" name="producto" value="Registro De Proceso De Estudio"/>
-        <input type="button" name="producto" value="Guion De Tutoria"/>
+        <input type="button" name="producto" value="Registro de Proceso de Estudio"/>
+        <input type="button" name="producto" value="Guion de Tutoria"/>
         <input type="button" name="producto" value="Demostracion Publica"/>
     </div>
 </div>
