@@ -97,20 +97,6 @@
     cursor: pointer;
 }
 
-#subirRecurso{
-    width:100px;
-    border: black 1px solid;
-    
-    margin-top: 5px;
-    margin-bottom:5px;
-/*    background-image: url("../../img/botones/botonSubir.png");*/
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-color: cadetblue;
-    cursor: pointer;
-    float:left;
-}
-
 #botonActualizar{
     width:100px;
     
@@ -127,5 +113,6 @@
 }
 
 
-
-
+.columna div{
+    float:left;
+}

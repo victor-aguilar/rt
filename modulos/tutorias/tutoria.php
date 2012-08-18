@@ -56,11 +56,11 @@ header('Content-Type: text/html; charset=UTF-8');
       switch ( $tipoDeUsuario){
       case ("tutor"):
           ?>
-        
+        <div class="columna">        
 <div id="recursos"> 
-    <h3>Lista de Recursos</h3> 
+    <h3>Recursos</h3> 
     <div id="listaDeRecursos"></div>
-    <div id="subirRecurso">Subir Nuevo Archivo</div>
+    <button id="subirRecurso">Subir Nuevo Archivo</button>
     <div style="clear:left"></div>
 </div>
           
@@ -74,6 +74,7 @@ header('Content-Type: text/html; charset=UTF-8');
     <input type="button" name="producto" value="Registro De Tutoria"/>
     </div>
 </div>
+        </div>
         
           <?php
           break;
