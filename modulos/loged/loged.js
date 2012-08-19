@@ -1,6 +1,14 @@
 var iws = null // id del intervalo para la ventana subir 
 var ws = null //id de la ventana.
 
+/**
+ * Esta variable es usada para tomar la pista de un temporalizador que se
+ * encarga de solucionar un pequeño error con cuando se pasa el mouse
+ * demaciado rapido por los cuatro botones de la pantalla loged.php
+ */
+var tempo;
+var time = 500;
+
 recargaAvatar = function(){
     if (ws.closed){
 	   alert("cambiando avatar");
@@ -38,12 +46,18 @@ $(document).ready(function(){
 		if (v.substr(0,5) == 'index'){
 		  v = "misTemasDeCatalogo";
 	     }
+                window.clearInterval(tempo);
+                $('#descripcion').hide();
 		$('#descripcion').load('descripciones/' + v + ".html");
 		$('#descripcion').show('fast');
 	});
 	
 	$('ul li').mouseleave(function(){
-		$('#descripcion').hide('fast');
+            window.clearInterval(tempo);
+            tempo = window.setInterval(function(){
+                $('#descripcion').hide();
+            },time);
+		
 	});
 	
 	//subir avatar;
