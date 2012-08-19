@@ -3,14 +3,14 @@
 # Type="MYSQL"
 # HTTP="true"
 $ubicacion="local";
-if ($ubicacion=="local"){
-	$database_esviap_conn = "tutorias";
-	$username_esviap_conn = "rt";}
-	
-else {	
+//if ($ubicacion=="local"){
+//	$database_esviap_conn = "tutorias";
+//	$username_esviap_conn = "rt";}
+//	
+//else {	
 	$database_esviap_conn = "liceocom_tutorias";
 	$username_esviap_conn = "liceocom_rt";
-}
+//}
 $hostname_esviap_conn = "localhost";
 $password_esviap_conn = "r2d2";
 $esviap_conn = mysql_pconnect($hostname_esviap_conn, $username_esviap_conn, $password_esviap_conn) or trigger_error(
