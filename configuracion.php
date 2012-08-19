@@ -1,20 +1,23 @@
 <?php
 
-define("HOST_NAME","localhost");
-define("USER_DB", "rt");
-define("PASSWORD_DB","r2d2");
-define("DB_NAME","tutorias");
+define("HOST","localhost");
+define("USER", "liceocom_rt");
+define("PASSWORD","r2d2");
+define("DB","liceocom_tutorias");
 
 date_default_timezone_set("America/Mexico_City");
 
 function dameConexion(){
-	
-	$db = new mysqli(HOST_NAME,USER_DB,PASSWORD_DB,DB_NAME);
-	$db ->set_charset('utf8');
+
+	$db = new mysqli(HOST,USER,PASSWORD,DB);
 	
 	if(!$db){
+                echo "error";
 		echo $db -> error;
+                $db ->set_charset('utf8');
+                exit();
 	}
+        
 	return $db;
 }
 

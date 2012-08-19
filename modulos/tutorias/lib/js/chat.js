@@ -524,6 +524,7 @@ $(document).ready(function(){
      case "observador":
            $('#enviarMensaje').prop('disabled',true);
            $('#mensaje').prop('disabled',true);
+           $('#enviarArchivo').prop('disabled',true);
           break;
      case "sinodal":
           autorizacion = 0;

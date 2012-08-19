@@ -102,7 +102,7 @@ header('Content-Type: text/html; charset=UTF-8');
           <?php
           break;
           case ("sinodal"):
-              printf("<div id=%s> </div>", "listaDePendientes");
+              printf("<div id=%s><h3>Lista de Pendientes</h3> </div>", "listaDePendientes");
               break;
       }
       ?>

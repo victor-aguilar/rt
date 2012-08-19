@@ -20,8 +20,8 @@ and open the template in the editor.
 	   <div id="menu">
 		  <ul>
 			 <li title="buscaTutorias">Mis Tutorías</li>
-			 <li title="buscaTutorados">¿Donde soy tutorado?</li>
-			 <li title="buscaDondeSoySinodal">¿Donde soy sinodal </li>
+			 <li title="buscaTutorados">¿Donde soy Tutorado?</li>
+			 <li title="buscaDondeSoyObservador">¿Donde soy Obsevador? </li>
 		  </ul>
 	   </div>
 	   <div id="contenido"></div>
