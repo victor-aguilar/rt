@@ -8,12 +8,14 @@ var ws = null //id de la ventana.
  */
 var tempo;
 var time = 500;
+var exito = false;
 
 recargaAvatar = function(){
     if (ws.closed){
-	   alert("cambiando avatar");
-	   $('#misDatos img').attr('src', 'src="../../avatares/' + dameIdUsuario() +' .png"')
-	   window.clearInterval(iws);
+        if(exito){
+            window.location = window.location;
+        }
+        window.clearInterval(iws);
     }
 }
 
@@ -61,10 +63,14 @@ $(document).ready(function(){
 	});
 	
 	//subir avatar;
-	$('#misDatos div').click(function(){
-	    
-	    ws = window.open("subirArchivo.html", "subirAvatar");
-	    iws = window.setInterval(recargaAvatar, 1000);
+	$('#misDatos img').click(function(){
+        var params = "directories=no,height=150px,";
+        params += "width=500px,location=no,menubar=no,resizable=no,";
+        params += "titlebar=no,toolbar=no";
+        
+	    ws = window.open("subirArchivo.html", "subirAvatar",params);
+        window.clearInterval(iws);
+	    iws = window.setInterval(recargaAvatar, 500);
 	});
 
 })

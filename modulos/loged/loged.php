@@ -25,9 +25,16 @@ header('Content-Type: text/html; charset=UTF-8');
 
 	<div id="cuerpo">
 		<div id="misDatos">
-		    <img src="../../avatares/default.png"/>
-<!--			<img src="../../avatares/<?php $_SESSION['idUsuario'] ?> .png"/>-->
-<!--			<div> Subir imagen </div>-->
+            <?php 
+            $imagen = $_SESSION['idUsuario'] . ".jpg";
+            
+            if( !file_exists("../../avatares/".$imagen)){
+                $imagen = "default.png";
+            }
+            
+            echo '<img src="../../avatares/' .$imagen .'"';
+            echo 'alt="Click para subir un nuevo avatar." />';
+            ?>
 			<p><?php echo $_SESSION['nick']; ?></p>
 			</div>
 		<div id="menu">

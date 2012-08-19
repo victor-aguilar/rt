@@ -28,12 +28,7 @@
 	margin:auto;
 	max-height:170px;
 	max-width:230px;
-}
-
-#misDatos div{
-    text-align:center;
     cursor:pointer;
-    margin:auto;
 }
 
 #misDatos p{
