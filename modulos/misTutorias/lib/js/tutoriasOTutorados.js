@@ -41,7 +41,7 @@ function buscaDondeSoySinodal(){
                     idUsuario:idUsuario
         },
         dataType:   "xml",
-        success:    escribeDondeSoySinodal,
+        success:    escribeDondeSoySinodal
     })
 }
 

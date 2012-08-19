@@ -25,10 +25,10 @@ function creaBotones(){
         mensajeAceptado = mensajeAceptado.html();
         mensajeAceptado+="<br> <b> Has Aceptado el Mensaje Previo"
         $(this).siblings('[name="mensaje"]').html(mensajeAceptado);
-        enviaMensaje(aceptado);
-        
         var fechaDeMensajeAnterior= $(this).siblings('[name="fecha"]').html();
         var idUsuarioAnterior=$(this).siblings('[name="idUsuarioMensaje"]').html();
+        
+        enviaMensaje(aceptado, idUsuarioAnterior);
         borraMensaje(idUsuarioAnterior,fechaDeMensajeAnterior);
         $(this).hide();                     
         });
@@ -41,7 +41,7 @@ function acabaDemostracion(){
     if(tipoDeUsuario!="moderador"){
         autorizacion=0;        
     }else{
-        enviaMensaje("Concluye la Tutoria");
+        enviaMensaje("Concluye la Tutoria",idUsuario);
     }
 }
 function empiezaDemostracion(){
@@ -49,7 +49,7 @@ function empiezaDemostracion(){
 
   
     if (s<1 && m<1 && h<1){
-        enviaMensaje("Se Acabo El tiempo");
+        enviaMensaje("Se Acabo El tiempo",idUsuario);
          window.clearInterval(t);
     }else if (s < 1 && m < 1){
         s=59;
@@ -95,7 +95,7 @@ function actualizaListaDePendientes(xml){
     var fecha=$(this).attr("fecha");
     var mensaje=$(this).text();
     var idUsuarioMensaje=$(this).attr("idUsuario");
-    var mensajeNuevo = "<span name=fecha>"+fecha+
+    var mensajeNuevo = "<hr><span name=fecha>"+fecha+
         "</span> : <span name=usuario>"+usuario +
         "</span>: <span name=mensaje>"+mensaje+
         "</span> <span name=idUsuarioMensaje style=\"display:none\">"+idUsuarioMensaje+
@@ -115,7 +115,7 @@ function actualizaListaDePendientes(xml){
 
 
 
-    function enviaMensaje(aceptado){
+    function enviaMensaje(aceptado, idUsuarioA){
 
         var mensajeAReenviar=aceptado;
             $.ajax({
@@ -123,7 +123,7 @@ function actualizaListaDePendientes(xml){
     url: "../demostracion/guardaMensaje.php",
     data: 
         {idTutoria : idTutoria, 
-        idUsuario : idUsuario,
+        idUsuario : idUsuarioA,
         idEtapa: idEtapa,
         mensaje: mensajeAReenviar
         },
@@ -229,7 +229,7 @@ function obtenDictamen(){
 function escribeDictamen(xml){
     $(xml).find("dictamen").each(function(){
     var dictamen=$(this).text();
-    enviaMensaje(dictamen);
+    enviaMensaje(dictamen,idUsuario);
     });}
 
 function obtenMensajesDeEtapa(){

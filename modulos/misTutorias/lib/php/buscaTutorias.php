@@ -25,7 +25,7 @@ $buscaTutorias= sprintf("select
         and
         Usuarios.idUsuario=Temas.idUsuario
         and
-        tu.estudiante = %d;",$idUsuario);
+        Tutorias.estudiante = %d;",$idUsuario);
 
 
 
