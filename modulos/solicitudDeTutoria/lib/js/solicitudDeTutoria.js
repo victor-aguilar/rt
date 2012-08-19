@@ -44,7 +44,9 @@ $(document).ready(function(){
         mensaje += '<a href=';
         mensaje += '../../modulos/solicitudDeTutoria/rechasaTutoria.php?';
 	    mensaje += 'de='+ idTutor;
-	    mensaje += '&para=' + idUsuario;
+        //bug de internet explorer.
+	    //mensaje += '&para=' + idUsuario;
+        mensaje += '&from=' + idUsuario;
 	    mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
 	    mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
         
@@ -148,7 +150,7 @@ buscaTutoresPorNick = function()
             idTutor = $(this).val();
             nombreDelTutor = option.text();
 
-            buscaTemasPorTutor();
+            buscaTemasPorTutor(idTutor);
             
         });
         },
@@ -195,18 +197,18 @@ buscaTemasPorTutor = function(){
             data:{
             idTutor: idTutor
             },
-        success: function(html){
-            $('#lista2 select').html(html);
+            success: function(html){
+                $('#lista2 select').html(html);
 
-            $('#lista2 select').change(function(){
-                var option = $('#lista2 select>option:selected');
-                nombreDelTema = option.text();
-                idTema = $(this).val();
-                $('#enviarSolicitud button').prop('disabled',false);
-            })
+                $('#lista2 select').change(function(){
+                    var option = $('#lista2 select>option:selected');
+                    nombreDelTema = option.text();
+                    idTema = $(this).val();
+                    $('#enviarSolicitud button').prop('disabled',false);
+                })
 
-            $('#lista2').show("slow");
-        },
+                $('#lista2').show("slow");
+            },
         error:function(xhr,status,error){alert("Error: " + error)}
     });
 }

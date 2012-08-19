@@ -21,7 +21,9 @@
                 data:{
                     accion: "guarda",
                     de: getUrlVars()['de'],
-                    para: getUrlVars()['para'],
+                    //bug de internet explorer
+                    //para: getUrlVars()['para'],
+                    para: getUrlVars()['from'],
                     asunto: "Tutoria NO aceptada",
                     mensaje: mensaje
                 },
@@ -29,7 +31,7 @@
                 	window.setTimeout(
                         function(){
                             window.location = "../../modulos/mensajesPrivados/bandejaDeEntrada.php";
-                        }, 3000);
+                        }, 2000);
             	}
             });
          }); 

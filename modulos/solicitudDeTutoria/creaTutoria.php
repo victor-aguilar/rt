@@ -4,7 +4,7 @@ include "../../configuracion.php";
 include "../../lib/php/utils.php";
 
 header('Content-Type: text/html; charset=UTF-8');
-header('refresh:3; url="../../modulos/loged/loged.php"'); 
+header('refresh:2; url="../../modulos/loged/loged.php"'); 
 
 administraSesion();
 
@@ -22,7 +22,7 @@ if(! $db->query($query) ){
     $html .=$_GET['idTutorado'] . " -> Tema" .$_GET['idTema'] . "</p>";
 }
 
-$html = '<center><p style="margin-top:auto;margin-bottom">Tutoria creada. Direccionando en 3 seg...</p></center>'; 
+$html = '<center><p style="margin-top:auto;margin-bottom">Tutoria creada. Direccionando en 2 seg...</p></center>'; 
 
 $db->close();
 print($html);
