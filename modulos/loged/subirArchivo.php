@@ -18,7 +18,7 @@ $extension = $_FILES['archivo']['type'];
 $nombreReal = $_FILES['archivo']['name'];
 $nombreTemporal = $_FILES['archivo']['tmp_name'];
 
-if($extension != "image/jpeg" ||
+if($extension != "image/jpeg" and
         $extension != "image/pjpeg"){
     echo "Tu imagen debe estar en formato jpg.<br/>";
     echo $extension;
