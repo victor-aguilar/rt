@@ -19,8 +19,8 @@ $(document).ready(function(){
 				c.html("<h1>Soy Tutorado en:");
 				buscaTutorias();
 				break;
-			case('buscaDondeSoySinodal'):
-				c.html("<h1>Soy Sinodal en:");
+			case('buscaDondeSoyObservador'):
+				c.html("<h1>Soy Observador en:");
 				buscaDondeSoySinodal();
 				break;
 		}
@@ -56,7 +56,7 @@ function buscaTutorados(){
 function buscaDondeSoySinodal(){
         $.ajax({
         type:       "POST",
-        url:        "lib/php/buscaDondeSoySinodal.php",
+        url:        "lib/php/buscaDondeSoyObservador.php",
         data:{
                     idUsuario:idUsuario
         },

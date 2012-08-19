@@ -11,9 +11,7 @@ var mensaje ="";
 /* Datos usados para el mensaje */
 var nombreDelTutor = "";
 var nombreDelTema = "";
-var nobmreDelAlumno = "";
-
-var directorioBase = "";
+var nombreDelAlumno = "";
 
 $(document).ready(function(){
 
@@ -45,10 +43,10 @@ $(document).ready(function(){
         mensaje += "<p>En caso contrario da click en: ";
         mensaje += '<a href=';
         mensaje += '../../modulos/solicitudDeTutoria/rechasaTutoria.php?';
-	   mensaje += 'de='+ idTutor;
-	   mensaje += '&para=' + idUsuario;
-	   mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
-	   mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
+	    mensaje += 'de='+ idTutor;
+	    mensaje += '&para=' + idUsuario;
+	    mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
+	    mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
         
 
 		mensaje += '>';

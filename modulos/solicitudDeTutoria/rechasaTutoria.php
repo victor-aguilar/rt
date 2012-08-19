@@ -10,8 +10,9 @@
         
         $(document).ready(function(){
             
+            var mensaje;
             mensaje = "<p>El tutor <b>" + decodeURIComponent(getUrlVars()['nombreDelTutor']) + "</b>";
-            mensaje += " no te acepto tutorarte en el tema <b>" + decodeURIComponent(getUrlVars()['nombreDelTema']);
+            mensaje += " no acepto tutorarte en el tema <b>" + decodeURIComponent(getUrlVars()['nombreDelTema']);
             mensaje += "</b></p><p>Puedes probar con otro tutor </p>";
             $.ajax({
                 type: "POST",

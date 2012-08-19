@@ -12,7 +12,7 @@ and open the template in the editor.
 		<link rel="stylesheet" type="text/css" href="../../lib/css/esviap.css"/>
         <script type="text/javascript" src="../../lib/js/jquery.js"></script>
         <script type="text/javascript" src="../../lib/js/funciones.js"></script>
-        <script type="text/javascript" src="lib/js/tutoriasOTutorados.js"></script>
+        <script type="text/javascript" src="misTutorias.js"></script>
     </head>
     <body>
 	   <?php include "../../lib/php/encabezado.php"?>
