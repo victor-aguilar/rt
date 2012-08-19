@@ -5,7 +5,7 @@ function creaBotones(){
         var numero=numeroDeBoton;
 
         var texto='<div name="div'+numero+'">'+textoAnterior+'<br /><input type=button id="botonAceptarMensaje'+
-        numero+'" value="Permitir" class="botonAceptar" name="aceptar" ('+numero+')">'
+        numero+'" value="Permitir" class="botonAceptar" name="aceptar" ('+numero+')"><hr>'
 //        +
 //        '<input type=button id="botonRechazarMensaje'+
 //        numero+'" value="Rechazar" class="botonRechazar" name="rechazar" ('+numero+')"> <br />'+"</div>";
@@ -95,7 +95,7 @@ function actualizaListaDePendientes(xml){
     var fecha=$(this).attr("fecha");
     var mensaje=$(this).text();
     var idUsuarioMensaje=$(this).attr("idUsuario");
-    var mensajeNuevo = "<hr><span name=fecha>"+fecha+
+    var mensajeNuevo = "<span name=fecha>"+fecha+
         "</span> : <span name=usuario>"+usuario +
         "</span>: <span name=mensaje>"+mensaje+
         "</span> <span name=idUsuarioMensaje style=\"display:none\">"+idUsuarioMensaje+
@@ -168,9 +168,12 @@ function inicializaPendientes(){
 
 function inicializaComponentesDeSinodal(){
 
-$("#botonesDeSinodal").html(
-'<input type=button name="aprobado" value="Aprobado" onclick="aprueba()">'
-)
+//$("#botonesDeSinodal").html(
+//'<input type=button name="aprobado" value="Aprobado" onclick="aprueba()">'
+//)
+    window.clearInterval(tempoPendientes);
+    tempoPendientes = window.setInterval("descargaListaDePendientes()",intervaloPendientes);
+  
 
 }
 
