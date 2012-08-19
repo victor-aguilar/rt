@@ -109,18 +109,18 @@ buscaTemasPorNombre = function()
 		typeData: "html",
 		success: function(html){
 		
-		$('#lista1 select').html(html);
-		
-		$('#lista1 select option').click(function(){
-		    
-			$('#enviarSolicitud button').prop('disabled',true);
-		    
-		    idsTemas = $(this).attr("value");
-		    nombreDelTema = $(this).text();
+            $('#lista1 select').html(html);
 
-		    buscaTutoresPorTema(idsTemas, nombreDelTema);
-		    
-		})
+            $('#lista1 select').change(function(){
+                var option = $('#lista1 select>option:selected');
+                $('#enviarSolicitud button').prop('disabled',true);
+
+                idsTemas = $(this).val();
+                nombreDelTema = option.text();
+
+                buscaTutoresPorTema(idsTemas, nombreDelTema);
+
+            })
 		},
 		error: function(xhr,status,error){alert("Error: " + error);}
 	});
@@ -129,7 +129,6 @@ buscaTemasPorNombre = function()
  * Descarga un html con etiquetas option para ser incluido dentro de una 
  * etiqueta select.
  */
-
 
 buscaTutoresPorNick = function()
 {
@@ -141,35 +140,17 @@ buscaTutoresPorNick = function()
             
         $('#lista1 select').html(html);
         
-        $('#lista1 select option').click(function(){
-
+        $('#lista1 select').change(function(){
+            
+            var option = $('#lista1 select>option:selected');
             $('#enviarSolicitud button').prop('disabled',true);
             
-            idTutor = $(this).attr("value");
-            nombreDelTutor = $(this).text();
+            idTutor = $(this).val();
+            nombreDelTutor = option.text();
 
-            //Cargamos los temas asociados a un tutor
-            $.ajax({
-                type: "POST",
-                url: "listaDeTemasPorTutor.php",
-                typeData: "html",
-                data:{
-                    idTutor: idTutor
-                },
-                success: function(html){
-                    $('#lista2 select').html(html);
-
-                    $('#lista2 select option').click(function(){
-                        nombreDelTema = $(this).text();
-                        idTema = $(this).val();
-                        $('#enviarSolicitud button').prop('disabled',false);
-                    })
-
-                    $('#lista2').show("slow");
-                },
-                error:function(xhr,status,error){alert("Error: " + error)}
-            })
-        })
+            buscaTemasPorTutor();
+            
+        });
         },
         error: function(xhr,status,error){alert("Error: " + error);}
     })
@@ -188,13 +169,13 @@ buscaTutoresPorTema = function(idsTemas){
 
 		        $('#lista2 select').html(html);
 
-		        $('#lista2 select option').click(function(){
+		        $('#lista2 select').change(function(){
 		            //(idTema,idTutor)
-		            var x = $(this).attr('value').split(",");
-
+		            var x = $(this).val().split(",");
+                    var option = $('#lista2 select>option:selected');
 		            idTema = x[0];
 		            idTutor = x[1];
-		            nombreDelTutor = $(this).text();
+		            nombreDelTutor = option.text();
 
 		            $('#enviarSolicitud button').prop('disabled',false);
 		        });
@@ -205,3 +186,27 @@ buscaTutoresPorTema = function(idsTemas){
 		});
 }
 
+buscaTemasPorTutor = function(){
+        
+        $.ajax({
+            type: "POST",
+            url: "listaDeTemasPorTutor.php",
+            typeData: "html",
+            data:{
+            idTutor: idTutor
+            },
+        success: function(html){
+            $('#lista2 select').html(html);
+
+            $('#lista2 select').change(function(){
+                var option = $('#lista2 select>option:selected');
+                nombreDelTema = option.text();
+                idTema = $(this).val();
+                $('#enviarSolicitud button').prop('disabled',false);
+            })
+
+            $('#lista2').show("slow");
+        },
+        error:function(xhr,status,error){alert("Error: " + error)}
+    });
+}

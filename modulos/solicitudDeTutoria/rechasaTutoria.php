@@ -28,7 +28,7 @@
                 success: function(){
                 	window.setTimeout(
                         function(){
-                            window.location = "../../modulos/mensajesPrivados/bandejaDeEntrada.php"
+                            window.location = "../../modulos/mensajesPrivados/bandejaDeEntrada.php";
                         }, 3000);
             	}
             });
