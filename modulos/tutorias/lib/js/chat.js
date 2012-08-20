@@ -473,14 +473,15 @@ $(document).ready(function(){
   
   //inicializamos el reproductor de sonido segun el soporte que tenga el navegador
 	var html5 = '<audio controls preload="auto" autobuffer autoplay="autoplay">';
-		html5 += '<source src="' + rutaDelAudio + '.ogg"/>';
-		html5 += '<source src="' + rutaDelAudio + '.mp3"/>';
+		html5 += '<source src="' + rutaDelAudio + '.ogg" type="audio/ogg"/>';
+		html5 += '<source src="' + rutaDelAudio + '.mp3" type="audio/mpeg"/>';
+		html5 += '¬¬ tu navegador no soprota html. ¿porque no se cargo el flash?'
 		html5 += '</audio>';
 	var flash = '<object type="application/x-shockwave-flash" ';
-		flash += 'data="http://www.alsacreations.fr/flashdir/dewplayer-mini.swf" ';
+		flash += 'data="lib/flash/dewplayer-mini.swf" ';
 		flash += 'width="160" height="20" id="dewplayermini" name="dewplayermini">';
-		flash += '<param name="movie" value="http://www.alsacreations.fr/flashdir/dewplayer-mini.swf" />';
-		flash += '<param name="flashvars" value="mp3=' + rutaDelAudio +'" /></object>';
+		flash += '<param name="movie" value="lib/flash/dewplayer-mini.swf" />';
+		flash += '<param name="flashvars" value="mp3=' + rutaDelAudio +'.mp3&amp;autostart=1" /></object>';
 
 	if (Modernizr.audio){
 		player = html5;
