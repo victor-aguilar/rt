@@ -1,4 +1,4 @@
-<?php require_once('../Connections/esviap_conn.php'); ?>
+<?php require_once('../../Connections/esviap_conn.php'); ?>
 <?php
 $valor=$_GET['valor'];
   $re=mysql_query("select * from dbo_Asignaturas");

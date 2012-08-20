@@ -1,6 +1,7 @@
-<?php require_once('../Connections/esviap_conn.php'); ?>
+<?php require_once('../../Connections/esviap_conn.php'); ?>
 <?php 
 session_start();
+header('content-type=text/html; charset=utf-8"');
 if (!isset ($_SESSION['uname']) && !isset($_SESSION['idu'])) {
 	echo "<h3>Usuario inv&aacute;lido</h3>";
 	exit(1);
@@ -45,7 +46,7 @@ if ((isset($_GET['idtc'])) && ($_GET['idtc'] != "") && (isset($_GET['accion'])))
 	 break;
     case "add":
      //$SQL = "insert into temas values(default,".$_SESSION['idu'].",\"".$_GET['tcname']."\",\"".$_GET['kw']."\")";
-	 $SQL = "insert into temas values(default,\"".$_GET['tcname']."\",".$_SESSION['idu'].",null)";
+	 $SQL = "insert into temas (nombre,idUsuario) values(\"".$_GET['tcname']."\",".$_SESSION['idu'].")";
 	 break;
     case "edit":
      //$SQL = "update temas set nombre=\"".$_GET['tcname']."\", kw=\"".$_GET['kw']."\" where idTema=".$_GET['idtc'];
@@ -77,8 +78,8 @@ if ((isset($_GET['idtc'])) && ($_GET['idtc'] != "") && (isset($_GET['accion'])))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>ESVIAP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>EIMLE</title>
 
 <script>
 function carga(){
@@ -130,7 +131,8 @@ function add_tc(){
   if (document.getElementById("btn_add").innerHTML=="añadir"){
     document.getElementById("btn_add").innerHTML = "insertar";  
   }
-  else {document.forms["form1"].submit();
+  else {
+	 document.forms["form1"].submit();
   }
   document.getElementById("accion").value="add";
   document.getElementById("divtcname").style.display = "block";
@@ -272,7 +274,7 @@ body {
                   mysql_free_result($re);?>
             </select>
         </p></td>
-      <td width="195"><button type="button" id="btn_add"  onclick="add_tc()" >a&ntilde;adir</button></td>
+      <td width="195"><button type="button" id="btn_add"  onclick="add_tc()" >añadir</button></td>
         <td width="359" rowspan="4" valign="top">
         <div id="divtcname">
         <p>Nombre del tema de cat&aacute;logo:

@@ -1,4 +1,4 @@
-<?php require_once('../Connections/esviap_conn.php'); ?>
+<?php require_once('../../Connections/esviap_conn.php'); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 

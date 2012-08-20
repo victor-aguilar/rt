@@ -1,4 +1,4 @@
-<?php require_once('../Connections/esviap_conn.php'); ?>
+<?php require_once('../../Connections/esviap_conn.php'); ?>
 <?php
 session_start();
 $_SESSION['prev'] = htmlentities($_SERVER['REQUEST_URI']); 

@@ -1,4 +1,4 @@
-<?php require_once('../Connections/esviap_conn.php'); ?>
+<?php require_once('../../Connections/esviap_conn.php'); ?>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>

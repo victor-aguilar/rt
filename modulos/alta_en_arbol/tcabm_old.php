@@ -1,4 +1,4 @@
-<?php require_once('../Connections/esviap_conn.php'); ?>
+<?php require_once('../../Connections/esviap_conn.php'); ?>
 <?php 
 session_start();
 if (!isset ($_SESSION['uname']) && !isset($_SESSION['idu'])) {
@@ -118,14 +118,14 @@ function actualiza_tc(){
   document.getElementById("tcname").value  = sel_tc.options[selIndex].text;
   document.getElementById("kw").value  = sel_kw.options[selIndex].text;
   document.getElementById("idtc").value=sel_tc.options[selIndex].value;
-  document.getElementById("btn_add").innerHTML="añadir";
+  document.getElementById("btn_add").innerHTML="aï¿½adir";
   document.getElementById("btn_edit").innerHTML="editar";
   document.getElementById("divtcname").style.display = "none";
   document.getElementById("livesearch").innerHTML="";
 }
 
 function add_tc(){
-  if (document.getElementById("btn_add").innerHTML=="añadir"){
+  if (document.getElementById("btn_add").innerHTML=="aï¿½adir"){
     document.getElementById("btn_add").innerHTML = "insertar";  
   }
   else {document.forms["form1"].submit();
@@ -150,7 +150,7 @@ function edit_tc(){
   document.getElementById('idtc').value=sel_tc.options[selIndex].value;
   document.getElementById("divtcname").style.display = "block";
   document.getElementById("accion").value="edit";
-  document.getElementById("btn_add").innerHTML="añadir"
+  document.getElementById("btn_add").innerHTML="aï¿½adir"
 }
 
 function showResult(str){
@@ -185,8 +185,8 @@ function valid_delete(){
 	var selIndex = document.getElementById('sel_tc').selectedIndex;	
 	var ArrIndex = String(sel_tc.options[selIndex].value);
 	document.getElementById('idtc').value=sel_tc.options[selIndex].value;
-	if (tc_estandar[ArrIndex]== null) {if(confirm('¿Deseas borrar el registro seleccionado?')){document.forms["form1"].submit();};}
-	else {alert ("Debes eliminarlo primero del árbol de estándares");}
+	if (tc_estandar[ArrIndex]== null) {if(confirm('ï¿½Deseas borrar el registro seleccionado?')){document.forms["form1"].submit();};}
+	else {alert ("Debes eliminarlo primero del ï¿½rbol de estï¿½ndares");}
 }
 
 </script>

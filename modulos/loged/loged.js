@@ -33,7 +33,7 @@ $(document).ready(function(){
 				break;
 			default:
 				if (v.substr(0,5) == 'index'){
-					nd = '../alta_en_arbol';
+					nd = 'alta_en_arbol';
 				}else{
 				    v = v + ".php";
 				}
