@@ -30,6 +30,7 @@ header('Content-Type: text/html; charset=UTF-8');
 		<img src="../../lib/img/escritorio.png"/>HOME</button>
     <div>
         <div id="chat">
+			<h3>Rol: <?php echo $_GET['tipoDeUsuario']; ?> - Etapa: <span id="etapa"></span></h3>
 			<div id="audio"></div>
             <div id="ventanaDeConversacion"></div>
             <div id="controles">
@@ -56,53 +57,52 @@ header('Content-Type: text/html; charset=UTF-8');
       switch ( $tipoDeUsuario){
       case ("tutor"):
           ?>
-        <div class="columna">        
-<div id="recursos"> 
-    <h3>Recursos</h3> 
-    <div id="listaDeRecursos"></div>
-    <button id="subirRecurso">Subir Nuevo Archivo</button>
-    <div style="clear:left"></div>
-</div>
-          
-<div id="productos">
-    
-    <h3>Productos</h3>
-    
-    <div id="listaDeProductos"></div>
-    
-    <div id="subirProductos">
-    <input type="button" name="producto" value="Registro de Tutoria"/>
-    </div>
-</div>
-        </div>
+					<div class="columna">        
+			<div id="recursos"> 
+				<h3>Recursos</h3> 
+				<div id="listaDeRecursos"></div>
+				<br>
+				<button id="subirRecurso">Subir Recurso</button>
+			</div>
+			
+			<div style="clear:both;"></div>
+			
+			<div id="productos">
+				<h3>Productos</h3>
+				<div id="listaDeProductos"></div>
+				<br>
+				<div id="subirProductos">
+				<input type="button" name="producto" value="Registro de Tutoria"/>
+				</div>
+			</div>
+					</div>
         
           <?php
           break;
       case ("moderador"): // Es el tutor en etapa de demostracion
-          printf("<div id=%s> </div>", "listaDePendientes");
-//          printf("<div> <input type=%s name=%s value='Comenzar Demostracion'></div>", 
-//                  "button","botonDescargaPendientes");
-//          printf("<div> <input type=%s name=%s value='Termina Demostracion'></div>", 
-//                  "button","botonAcabaDemostracion");
+		  echo '<div id="pendientes">';
+		  echo '<h3>Pendientes </h3>';
+          echo '<div id="listaDePendientes"></div>';
+		  echo '</div>';
           break;
       case ("alumno"):?>
         
-<div id="productos">
-        <h3>Productos</h3>
-
-    <div id="listaDeProductos"></div>
-    
-    <div id="subirProductos">
-        <input type="button" name="producto" value="Registro de Proceso de Estudio"/>
-        <input type="button" name="producto" value="Guion de Tutoria"/>
-        <input type="button" name="producto" value="Demostracion Publica"/>
-    </div>
-</div>
-        
+			<div id="productos">
+				<h3>Productos</h3>
+				<div id="listaDeProductos"></div>
+				<div id="subirProductos">
+					<input type="button" name="producto" value="Registro de Proceso de Estudio"/>
+					<input type="button" name="producto" value="Guion de Tutoria"/>
+					<input type="button" name="producto" value="Demostracion Publica"/>
+				</div>
+			</div>
           <?php
           break;
-          case ("sinodal"):
-              printf("<div id=%s><h3>Lista de Pendientes</h3> </div>", "listaDePendientes");
+	  case ("sinodal"):
+			  echo '<div id="pendientes">';
+			  echo '<h3>Lista de Pendientes</h3>';
+              echo '<div id="listaDePendientes"></div>';
+			  echo '</div>';
               break;
       }
       ?>

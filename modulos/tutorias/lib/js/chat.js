@@ -3,7 +3,8 @@
 var idTutoria   = 0;
 var idUsuario   = 0;
 var tipoDeUsuario = "alumno";
-var idEtapa = 0;
+var idEtapa = -1;
+var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostracion");
 
 var autorizacion = 1;
 var mensaje = "";
@@ -115,10 +116,7 @@ actulizaConversacion = function(xml){
     
     idEtapa = parseInt($(xml).find('ultimaetapa').text());
 
-//    if( tmp > idEtapa ){
-//        idEtapa = tmp
-//    }
-    
+    $('#etapa').text(etapas[idEtapa]);
     switch(idEtapa){
         case (DEMOSTRACION):
             if(tipoDeUsuario != "moderador" &&
@@ -495,7 +493,6 @@ $(document).ready(function(){
   descargaMensajesPrevios();
   
   inicializaChat();
-  
   
   //Particularidades para cada tipo de usuario.
   switch(tipoDeUsuario){

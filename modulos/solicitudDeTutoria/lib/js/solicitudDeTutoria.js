@@ -108,7 +108,7 @@ $(document).ready(function(){
  * etiqueta select.
  */
 buscaTemasPorNombre = function()
-{alert("buscaTemasPorNombre");
+{
 	$.ajax({
 		type: "POST",
 		url: "listaDeTemasPorNombre.php",
@@ -137,7 +137,7 @@ buscaTemasPorNombre = function()
  */
 
 buscaTutoresPorNick = function()
-{alert("buscaTutoresPorNick");
+{
     $.ajax({
         type: "POST",
         url: "listaDeTutores.php",
@@ -163,7 +163,7 @@ buscaTutoresPorNick = function()
 }
 
 buscaTutoresPorTema = function(idsTemas){
-alert("buscaTutoresPorTemas")
+
 	$.ajax({
 		    type: "POST",
 		    url: "listaDeTutoresPorNombreDeTema.php",
@@ -193,7 +193,7 @@ alert("buscaTutoresPorTemas")
 }
 
 buscaTemasPorTutor = function(){
-alert("buscaTemasPorTutor");
+
         $.ajax({
             type: "POST",
             url: "listaDeTemasPorTutor.php",
