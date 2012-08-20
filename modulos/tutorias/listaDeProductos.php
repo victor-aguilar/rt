@@ -29,7 +29,7 @@ $query = sprintf("select * from Productos where idTutoria = %d", $idTutoria);
 $result = $db ->query($query);
 
 while($result && $row = $result->fetch_assoc()){
-    echo '<div name="producto">';
+	echo '<div>';
     echo '<span value="' . $row['url'] . '" alt="">';
     echo $row['url'].'</span>';
     echo '<img src="../../lib/img/cancel.png"/>';

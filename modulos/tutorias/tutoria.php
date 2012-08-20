@@ -83,6 +83,8 @@ header('Content-Type: text/html; charset=UTF-8');
 		  echo '<div id="pendientes">';
 		  echo '<h3>Pendientes </h3>';
           echo '<div id="listaDePendientes"></div>';
+		  echo '<div style="clear:left"></div>';
+		  echo '<button id="aprobar"><img src="../../lib/img/ok.png"> Aprobar</button>';
 		  echo '</div>';
           break;
       case ("alumno"):?>

@@ -331,10 +331,11 @@ actualizaListaDeProductos = function(){
         dataType: "html",
         data: {idTutoria: idTutoria},
         success: function(html){
-            
-            $('#listaDeProductos').html(html);
-            producto = $('div[name="producto"]');
 			
+            $('#listaDeProductos').html(html);
+            var producto = $('#listaDeProductos div');
+			
+			//manda el producto por el chat
 			producto.children('span').click(function(){
                 var url = $(this).html();
                 
@@ -344,9 +345,9 @@ actualizaListaDeProductos = function(){
                 $('#enviarMensaje').click();
             });
             
-            //borrar
+            //borrar el producto
             producto.children('img').click(function(){
-                
+
                 url = $(this).siblings().attr('value');
                 
                 $.ajax({
