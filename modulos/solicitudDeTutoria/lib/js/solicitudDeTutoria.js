@@ -28,33 +28,34 @@ $(document).ready(function(){
     $('#enviarSolicitud button').click(function(){
         
         $('#lista1,#lista2').hide("slow");
+		$('#lista1 select').unbind('change');
+		$('#lista2 select').unbind('change');
         
         $(this).prop('disabled',true);
         
-        mensaje += "<h1>Solicitud de tutoria</h1>";
-        mensaje += "<p> Hola <b>" + nombreDelTutor + "</b></p>";
-        mensaje += "<p>¿Te gustaría ser tutor de " + nombreDelAlumno + " en el tema: ";
-        mensaje += "<b>" + nombreDelTema +"</b>?</p>";
-        mensaje += "<p>Si la respuesta es afirmativa, has click:";
-        mensaje += '<a href="';
-        mensaje += "../../modulos/solicitudDeTutoria/creaTutoria.php?idTema=";
-        mensaje += idTema+"&idTutorado="+idUsuario+'">';
-        mensaje += "Aceptar Tutoria</a> </p>";
-        mensaje += "<p>En caso contrario da click en: ";
-        mensaje += '<a href=';
-        mensaje += '../../modulos/solicitudDeTutoria/rechasaTutoria.php?';
-	    mensaje += 'de='+ idTutor;
-        //bug de internet explorer.
-	    //mensaje += '&para=' + idUsuario;
-        mensaje += '&from=' + idUsuario;
-	    mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
-	    mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
-        
+	   mensaje += "<h1>Solicitud de tutoria</h1>";
+	   mensaje += "<p> Hola <b>" + nombreDelTutor + "</b></p>";
+	   mensaje += "<p>¿Te gustaría ser tutor de " + nombreDelAlumno + " en el tema: ";
+	   mensaje += "<b>" + nombreDelTema +"</b>?</p>";
+	   mensaje += "<p>Si la respuesta es afirmativa, has click:";
+	   mensaje += '<a href="';
+	   mensaje += "../../modulos/solicitudDeTutoria/creaTutoria.php?idTema=";
+	   mensaje += idTema+"&idTutorado="+idUsuario+'">';
+	   mensaje += "Aceptar Tutoria</a> </p>";
+	   mensaje += "<p>En caso contrario da click en: ";
+	   mensaje += '<a href=';
+	   mensaje += '../../modulos/solicitudDeTutoria/rechasaTutoria.php?';
+	   mensaje += 'de='+ idTutor;
+	   //bug de internet explorer.
+	   //mensaje += '&para=' + idUsuario;
+	   mensaje += '&from=' + idUsuario;
+	   mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
+	   mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
 
-		mensaje += '>';
-        mensaje += 'No aceptar</a>';
-        mensaje += '</p>'
-        
+
+	   mensaje += '>';
+	   mensaje += 'No aceptar</a>';
+	   mensaje += '</p>'
         
         $.ajax({
             type: "POST",
@@ -73,11 +74,14 @@ $(document).ready(function(){
                 mensaje = "";
             }
         });
+		
     });
 
     $('#buscarPor select').change(function(){
 
         $('#lista1,#lista2').hide();
+		$('#lista1 select').unbind('change');
+		$('#lista2 select').unbind('change');
       
         $('#enviarSolicitud button').prop("disabled",true); 
 
@@ -104,7 +108,7 @@ $(document).ready(function(){
  * etiqueta select.
  */
 buscaTemasPorNombre = function()
-{
+{alert("buscaTemasPorNombre");
 	$.ajax({
 		type: "POST",
 		url: "listaDeTemasPorNombre.php",
@@ -133,7 +137,7 @@ buscaTemasPorNombre = function()
  */
 
 buscaTutoresPorNick = function()
-{
+{alert("buscaTutoresPorNick");
     $.ajax({
         type: "POST",
         url: "listaDeTutores.php",
@@ -159,7 +163,7 @@ buscaTutoresPorNick = function()
 }
 
 buscaTutoresPorTema = function(idsTemas){
-
+alert("buscaTutoresPorTemas")
 	$.ajax({
 		    type: "POST",
 		    url: "listaDeTutoresPorNombreDeTema.php",
@@ -174,7 +178,7 @@ buscaTutoresPorTema = function(idsTemas){
 		        $('#lista2 select').change(function(){
 		            //(idTema,idTutor)
 		            var x = $(this).val().split(",");
-                    var option = $('#lista2 select>option:selected');
+					var option = $('#lista2 select>option:selected');
 		            idTema = x[0];
 		            idTutor = x[1];
 		            nombreDelTutor = option.text();
@@ -189,7 +193,7 @@ buscaTutoresPorTema = function(idsTemas){
 }
 
 buscaTemasPorTutor = function(){
-        
+alert("buscaTemasPorTutor");
         $.ajax({
             type: "POST",
             url: "listaDeTemasPorTutor.php",
