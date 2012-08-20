@@ -58,9 +58,7 @@
     <p></p>
     <p><strong><a href="Privacidad.html">Política  de privacidad y manejo de datos personales</a></strong></p>
     <tr><td valign="top" height="20">
-<p align="center" class="azul1" >
-Subsecretaría de Educación Básica, Viaducto Río Piedad 507, 4o piso. Granjas México, Iztacalco 08400. México D.F.
-</p>
+<?php include "lib/php/pieDePagina.php" ?>
 </td></tr></table>
 </body>
 </html>
