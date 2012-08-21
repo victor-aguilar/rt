@@ -347,7 +347,7 @@ actualizaListaDeProductos = function(){
                 
 				mensaje = "Por favor revisa el siguiente archivo: " +
 					'<a href=' + url +' target=_blank alt="' 
-					+ descripcion +'">' + hint + '</a>';
+					+ descripcion +'" title="'+ descripcion+ '">' + hint + '</a>';
                 $('#mensaje').val(mensaje);
                 $('#enviarMensaje').click();
             });
@@ -478,7 +478,8 @@ $(document).ready(function(){
 		flash += 'width="160" height="20" id="dewplayermini" name="dewplayermini">';
 		flash += '<param name="movie" value="lib/flash/dewplayer-mini.swf" />';
 		flash += '<param name="flashvars" value="mp3=' + rutaDelAudio +'.mp3&amp;autostart=1" /></object>';
-
+	var embed = '<embed src="'+rutaDelAudio +'.mp3" type="audio/mpeg"';
+		embed += 'height="0" width="0"/>'	
 	if (Modernizr.audio){
 		player = html5;
 	}else{

@@ -14,8 +14,6 @@ function getActualDate(){
     return $fecha;
 }
 
-
-
 function codificacion($texto){
       
     $c = 0;
@@ -50,8 +48,7 @@ function codificacion($texto){
     return ($ascii) ? ASCII : UTF_8;
 }
 
-function utf8_encode_seguro($texto)
-{
+function utf8_encode_seguro($texto){
     return (codificacion($texto)==ISO_8859_1) ? utf8_encode($texto) : $texto;
 }
 ?>

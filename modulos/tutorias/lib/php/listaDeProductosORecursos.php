@@ -26,9 +26,9 @@ if ( ! $result){
 while($result && $row = $result->fetch_assoc()){
 	$visual = ($row['hint'] == "")? $row['url']: $row['hint'];
 	echo '<div>';
-	echo '<span value="' . $row['url'] . '" alt="' . $row['descripcion'] . '">';
+	echo '<span value="' . $row['url'] . '" title="' . $row['descripcion'] . '">';
 	echo $visual.'</span>';
-	echo '<img src="../../lib/img/cancel.png"/>';
+	echo '<img src="../../lib/img/cancel.png" title="Borrar Recurso"/>';
 	echo '</div>';
 }
 ?>

@@ -23,7 +23,7 @@ function dameConexion(){
 
 function administraSesion(){
     if(!isset($_SESSION['idUsuario'])){
-        header('Location: http://' . $_SERVER['SERVER_NAME']);
+        header('Location: http://' . $_SERVER['SERVER_NAME']. "/rt");
         exit();
     }
 }
