@@ -72,7 +72,7 @@ header('Content-Type: text/html; charset=UTF-8');
 				<div id="listaDeProductos"></div>
 				<br>
 				<div id="subirProductos">
-				<input type="button" name="producto" value="Registro de Tutoria"/>
+				<button>Registro de Tutoria</button>
 				</div>
 			</div>
 					</div>
@@ -93,9 +93,9 @@ header('Content-Type: text/html; charset=UTF-8');
 				<h3>Productos</h3>
 				<div id="listaDeProductos"></div>
 				<div id="subirProductos">
-					<input type="button" name="producto" value="Registro de Proceso de Estudio"/>
-					<input type="button" name="producto" value="Guion de Tutoria"/>
-					<input type="button" name="producto" value="Demostracion Publica"/>
+					<button>Registro de Proceso de Estudio</button>
+					<button>Guion de Tutoria</button>
+					<button>Demostracion Publica</button>
 				</div>
 			</div>
           <?php

@@ -265,27 +265,33 @@ actualizaListaDeRecursos = function(){
 
     $.ajax({
         type:"post",
-        url:"listaDeRecursos.php",
+        url: "lib/php/listaDeProductosORecursos.php",
         data: {
-            idTutoria: idTutoria},
+			r: "si",//Basca con poner cualquier cosa.
+			idTutoria:idTutoria},
         dataType: "html",
         success: function(html)
         {
             $('#listaDeRecursos').html(html);
             
-            var producto = $('div[name="recurso"]');
+            var producto = $('#listaDeRecursos div');
             
             producto.children('span').click(function(){
-                var esUrl = ($(this).html().indexOf('http://') == -1)? false: true;
-                var url = $(this).html();
+				var link = $(this);
+                var esUrl = (link.html().indexOf('http://') == -1)? false: true;
+                var hint = link.html();
+				var url = link.attr('value');
+				var descripcion = link.attr('alt');
                 
                 if (esUrl){
-                    mensaje = "Por favor revisa la siguiente direccion: "+
-                        '<a href=' + url + ' target=_blank>' + url + '</a>';
+                    tipo = "direccion";
                 }else{
-                    mensaje = "Por favor revisa el siguiente archivo: " +
-                        '<a href=' + url +' target=_blank>' + url + '</a>';
+					tipo = "archivo";
                 }
+				
+				mensaje = "Por favor revisa el siguiente "+ tipo + ": " +
+                        '<a href=' + url + ' target=_blank alt=' + descripcion +'>' + hint + '</a>';
+				
                 $('#mensaje').val(mensaje);
                 $('#enviarMensaje').click();
             });
@@ -294,7 +300,6 @@ actualizaListaDeRecursos = function(){
             producto.children('img').click(function(){
                     
                     var url = $(this).siblings().attr("value");
-                    var idTema = $(this).attr('value');
                     
                     $.ajax({
                         type:"POST",
@@ -303,7 +308,6 @@ actualizaListaDeRecursos = function(){
                         dataType: "text",
                         data:{
                             tipo : "recurso",
-                            idTema: idTema,
                             url : url
                         },
                         success: function(text){
@@ -327,20 +331,23 @@ actualizaListaDeRecursos = function(){
 actualizaListaDeProductos = function(){
     $.ajax({    
         type: "POST",
-        url: "listaDeProductos.php",
+        url: "lib/php/listaDeProductosORecursos.php",
         dataType: "html",
         data: {idTutoria: idTutoria},
         success: function(html){
-			
             $('#listaDeProductos').html(html);
             var producto = $('#listaDeProductos div');
 			
 			//manda el producto por el chat
 			producto.children('span').click(function(){
-                var url = $(this).html();
+				var link = $(this);
+                var hint = link.html();
+				var url = link.attr('value');
+				var descripcion = link.attr('alt');
                 
 				mensaje = "Por favor revisa el siguiente archivo: " +
-					'<a href=' + url +' target=_blank>' + url + '</a>';
+					'<a href=' + url +' target=_blank alt="' 
+					+ descripcion +'">' + hint + '</a>';
                 $('#mensaje').val(mensaje);
                 $('#enviarMensaje').click();
             });
@@ -357,7 +364,6 @@ actualizaListaDeProductos = function(){
                     dataType: "text",
                     data:{
                         tipo : "producto",
-                        idTutoria: idTutoria,
                         url : url
                     },
                     success: function(text){
@@ -382,7 +388,7 @@ inicializaProductos = function(){
   
   actualizaListaDeProductos();
   
-  $('#subirProductos input:[name=producto]').click(function(){
+  $('#subirProductos button').click(function(){
       
     var params = "directories=no,height=150px,";
     params += "width=500px,location=no,menubar=yes,resizable=no,";
@@ -401,18 +407,7 @@ inicializaProductos = function(){
             // Una vez que la ventana ah sido cerrada, ya no necesitamos
             // el temporalizador para subir archivos.
             window.clearInterval(temporalizadores[TEMPO_SUBIR_ARCHIVO]);
-            
-            //todo conseguir nombre del urlDelArchivo
-            mensaje = "Por favor revisa el siguiente archivo: ";
-            mensaje += '<a href=' + urlDelArchivo + ' target=_blank>';
-            mensaje += dameNombreDelArchivo(urlDelArchivo) + "</a>";
-            
-            actualizaListaDeProductos();
-            nombreDelArchivo = "";
-            urlDelArchivo = "";
-            
-            $('#mensaje').attr("value",mensaje);
-            $('#enviarMensaje').click();
+			actualizaListaDeProductos();
         }
     }, 
     intervaloSubirArchivo);
