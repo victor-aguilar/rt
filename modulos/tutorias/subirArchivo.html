@@ -67,6 +67,13 @@ and open the template in the editor.
                     $('#url').hide();
                     break;
             }
+			
+			$('#divSubirArchivo input[type="file"]').change(function(){
+				if($(this).val().indexOf(" ") != -1){
+					alert("El nombre del archivo tiene espacios en blanco.");
+					$(this).val("");
+				}
+			});
         });
         </script>
     </head>

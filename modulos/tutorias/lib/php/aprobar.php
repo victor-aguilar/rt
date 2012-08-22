@@ -9,7 +9,7 @@ $query = sprintf("call autorizaTema(%d);", $_POST['idTutoria']);
 $db -> query($query);
 
 if($db -> errno != 0){
-	echo "Error al autorizar tema. ";$query  . $db-> error;
+	echo "Error al autorizar tema. " .$query  . $db-> error;
 	$db->close();
 	exit();
 }

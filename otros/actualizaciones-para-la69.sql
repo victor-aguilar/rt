@@ -1,5 +1,6 @@
 start transaction;
     alter table Temas add column temaPadre integer references Temas (idTema);
+    alter table Temas add column autorizar boolean default false;
     
     drop procedure if exists guardaTemaDeCatalogo;
     delimiter //

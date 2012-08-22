@@ -31,6 +31,11 @@ $idUsuario = $_POST['idUsuario'];
 $tipo       = $_POST['tipo'];
 $crp        = $_POST['crp']; // = recursos|chat|productos
 
+if ( $_FILES['archivo']['name'] == ""){
+	echo "Nombre del archivo invalido";
+	exit();
+}
+
 if( $_POST['url'] != ""){
     $nombreReal = $_POST['url'];
 }else{
