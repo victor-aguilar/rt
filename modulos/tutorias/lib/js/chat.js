@@ -125,7 +125,6 @@ actulizaConversacion = function(xml){
                 cambiaADemostracion();
             }
             break;
-            
     }
     
     
@@ -454,6 +453,38 @@ buscaSinodales = function(){
     });
 }
 
+inicializaAgregarTemaDeCatalogo = function(){
+	$('#añadirTemaDeCatalogo').show('slow');
+	$('#añadirTemaDeCatalogo button').click( function(){
+		$(this).siblings('div').toggle('slow').children('input').focus();
+	});
+	
+	$('#añadirTemaDeCatalogo div').hide();
+	
+	$('#añadirTemaDeCatalogo div button').click(function(){
+		//$(this).siblings('input').addClass("bordeRojo");
+		var nombreDelTema = $(this).siblings('input').val();
+		
+		if( nombreDelTema != ""){
+			$.ajax({
+				context:this,
+				url:'lib/php/agregarTemaDeCatalogo.php',
+				data:{
+				   idTutoria: idTutoria,
+				   nombre: nombreDelTema
+				},
+				type:'POST',
+				typeData:"text",
+				success:function(text){
+					$(this).siblings('input').val("");
+					alert(text);
+					$('#añadirTemasDeCatalogo button').click();
+				}
+			});
+		}
+	});
+}
+
 /*
  * Inicializa variables y eventos.
  */
@@ -497,6 +528,8 @@ $(document).ready(function(){
       case "tutor":
           inicializaRecursos();
           inicializaProductos();
+		  inicializaAgregarTemaDeCatalogo();
+
           $('#siguienteEtapa').click(function(){
               idEtapa++;
               switch(idEtapa){
@@ -512,9 +545,25 @@ $(document).ready(function(){
                 buscaSinodales();
               }
           })
+		  
           break;
      case "moderador":
           inicializaPendientes();
+		  $("#añadirTemaDeCatalogo").hide();
+		  
+		  $('#aprobar').click(function(){
+			  $.ajax({
+				  url:'lib/php/aprobar.php',
+				  type:'POST',
+				  data:{idTutoria:idTutoria},
+				  typeData:"text",
+				  success:function(text){
+					  idEtapa = 6;
+					  alert(text);
+				  }
+			  });
+		  });
+		  
           break;
      case "observador":
            $('#enviarMensaje').prop('disabled',true);

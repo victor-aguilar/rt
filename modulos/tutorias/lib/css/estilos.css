@@ -67,7 +67,7 @@
     Solo para la ventana del TUTOR 
 */
 
-#recursos,#productos,#pendientes{
+#recursos,#productos,#pendientes,#añadirTemaDeCatalogo{
     margin-left: 20px;
     float:left;
 }
@@ -110,4 +110,12 @@
 
 .columna{
 	float:left;
+}
+
+.bordeRojo{
+	border:red solid thin;
+}
+
+.bordeNegro{
+	border: black solid thin;
 }

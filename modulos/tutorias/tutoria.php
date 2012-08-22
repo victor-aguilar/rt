@@ -75,6 +75,17 @@ header('Content-Type: text/html; charset=UTF-8');
 				<button>Registro de Tutoria</button>
 				</div>
 			</div>
+			<div style="clear:both;"></div>
+			<div id="añadirTemaDeCatalogo">
+				<button>Añadir Tema de Catalogo</button>
+				<div>
+					<input class="bordeNegro" 
+						   type="text" 
+						   value="" 
+						   placeholder="Nombre del Tema"/>
+					<button>Guardar </button>
+				</div>
+			</div>
 					</div>
         
           <?php
