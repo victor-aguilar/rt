@@ -30,20 +30,25 @@ header('Content-Type: text/html; charset=UTF-8');
 		<img src="../../lib/img/escritorio.png"/>HOME</button>
     <div>
         <div id="chat">
-			<h3>Rol: <?php echo $_GET['tipoDeUsuario']; ?> - Etapa: <span id="etapa"></span></h3>
+			<h3> <?php echo ucfirst($_GET['tipoDeUsuario']) . ": " .$_SESSION['nombre']; ?></h3>
+			<h3>Etapa: <span id="etapa"></span></h3>
 			<div id="audio"></div>
             <div id="ventanaDeConversacion"></div>
             <div id="controles">
                 <input type="button" value="Enviar Archivo" id="enviarArchivo"/>
                 <div style="clear:both"></div>
-                <textarea id="mensaje" cols="40" rows="5" maxlength="255"></textarea>
+                <textarea id="mensaje" rows="5" maxlength="255"></textarea>
                 <div style="clear:both"></div>
                 <label id="caracteresRestantes" >255</label>
-                <input type="button" value="enviar" id="enviarMensaje"/>
+                <button id="enviarMensaje">Enviar</button>
                 
                 <?php 
                 if($_GET['tipoDeUsuario'] == 'tutor'){ 
-                    echo '<input type="button"id="siguienteEtapa" value="Cambiar a la Siguiente Etapa"/>';
+                    echo '<img id="siguienteEtapa"';
+					echo ' src="../../lib/img/ok.png"';
+					echo ' title="Preciona para cambiar a la Siguiente Etapa"';
+					echo ' alt="Click para cambiar a la Siguiente Etapa"';
+					echo ' class="boton"/>';
                 }
                 ?>
                 
@@ -75,9 +80,15 @@ header('Content-Type: text/html; charset=UTF-8');
 				<button>Registro de Tutoria</button>
 				</div>
 			</div>
+			
 			<div style="clear:both;"></div>
+			
 			<div id="añadirTemaDeCatalogo">
-				<button>Añadir Tema de Catalogo</button>
+				<br/>
+				<img class="boton" 
+					 src="../../lib/img/temasDeCatalogo.png"
+					 title="Añadir Tema de Catalogo al Tutorado"
+					 alt="Click para Añadir Tema de Catalogo al Tutorado"/>
 				<div>
 					<input class="bordeNegro" 
 						   type="text" 

@@ -14,6 +14,7 @@
 
 #mensaje{
     resize: vertical;
+	width:100%;
 }
 
 #subirArchivo{
@@ -93,22 +94,8 @@
     cursor: pointer;
 }
 
-#botonActualizar{
-    width:100px;
-    
-    margin-top: 5px;
-    margin-bottom:5px;
-    padding:2px;
-    border: black 1px solid;
-/*    background-image: url('../../img/botones/botonActualizar.png');*/
-    background-position: left top;
-    background-repeat: no-repeat;
-    background-color: greenyellow;
-    cursor:pointer;
-    float:left;
-}
-
 .columna{
+	margin-top:50px;
 	float:left;
 }
 
@@ -118,4 +105,21 @@
 
 .bordeNegro{
 	border: black solid thin;
+}
+
+.boton{
+	cursor:pointer;
+}
+
+#siguienteEtapa{
+	float:right;
+}
+
+#subirProductos button, #subirRecurso{
+	display:block;
+	width: 100%;
+}
+
+#añadirTemaDeCatalogo img,#añadirTemaDeCatalogo div{
+	display:inline;
 }

@@ -30,4 +30,17 @@ function dameNombreDelTutorDelTema($idTema,$db){
 	$row = $result->fetch_assoc();
 	return $row['nombre'];
 }
+
+function dameIdTemaIdAlumnoDeTutoria($idTutoria, $db){
+	
+	$query = sprintf("
+		select idTema,estudiante from Tutorias 
+		where idTutoria = %d;", $idTutoria);
+	
+	$result = $db -> query($query);
+	
+	if(!$result ) die("Error. dameIdTemaIdAlumnoDeTutoria. " . $query . $db->error);
+	
+	return $result->fetch_row();
+}
 ?>

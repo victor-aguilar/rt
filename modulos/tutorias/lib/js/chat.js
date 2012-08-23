@@ -455,8 +455,8 @@ buscaSinodales = function(){
 
 inicializaAgregarTemaDeCatalogo = function(){
 	$('#añadirTemaDeCatalogo').show('slow');
-	$('#añadirTemaDeCatalogo button').click( function(){
-		$(this).siblings('div').toggle('slow').children('input').focus();
+	$('#añadirTemaDeCatalogo img').click( function(){
+		$(this).siblings('div').toggle('fast').children('input');
 	});
 	
 	$('#añadirTemaDeCatalogo div').hide();
@@ -465,7 +465,10 @@ inicializaAgregarTemaDeCatalogo = function(){
 		//$(this).siblings('input').addClass("bordeRojo");
 		var nombreDelTema = $(this).siblings('input').val();
 		
-		if( nombreDelTema != ""){
+		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
+¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
+		
+		if( nombreDelTema != "" && conf){
 			$.ajax({
 				context:this,
 				url:'lib/php/agregarTemaDeCatalogo.php',
