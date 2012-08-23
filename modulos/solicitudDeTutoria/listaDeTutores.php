@@ -8,10 +8,10 @@ $html = "";
 $db = dameConexion();
 
 $query = sprintf('
-    select t.idUsuario, u.nick
+    select t.idUsuario, u.nombre
         from Temas as t, Usuarios as u
         where u.idUsuario = t.idUsuario
-        group by u.nick order by u.nick asc;'); //ordenar por nick
+        group by u.nombre order by u.nombre asc;'); //ordenar por nombre
 
 $result = $db->query($query);
 
@@ -23,7 +23,7 @@ if(! $result){
 
 while ( $row = $result -> fetch_assoc()){
     $html .= '<option value="' . $row['idUsuario'] . '">';
-    $html .= $row['nick'];
+    $html .= $row['nombre'];
     $html .= '</opction>';
 }
 

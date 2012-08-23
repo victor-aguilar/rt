@@ -11,12 +11,8 @@ function dameConexion(){
 
 	$db = new mysqli(HOST,USER,PASSWORD,DB);
 	
-	if(!$db){
-                echo "error";
-		echo $db -> error;
-                $db ->set_charset('utf8');
-                exit();
-	}
+	if(!$db) die ("Error al conectarse a la base de datos.");
+	$db ->set_charset('utf8');
         
 	return $db;
 }

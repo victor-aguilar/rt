@@ -10,8 +10,6 @@ $html = "";
 
 $db = dameConexion();// Regresa un objeto
 
-if(!$db) die ("Error al conectarse a la base de datos.");
-
 $n = "";
 $v = "";
 
