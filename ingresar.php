@@ -11,20 +11,22 @@ $idUsuario = "";
 $db = dameConexion();
 $db->set_charset('utf8');
 
-$buscaUsuario = sprintf("select idUsuario from Usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
-$resultadoDeUsuario = $db->query($buscaUsuario);
+$buscaUsuario = sprintf("select idUsuario,nombre 
+	from Usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
+$result = $db->query($buscaUsuario);
 
-if(!$resultadoDeUsuario){
+if(!$result){
 	echo $buscaUsuario;
 	echo $db->error;
 }
 
-if($resultadoDeUsuario && $filaDeUsuario= $resultadoDeUsuario ->fetch_assoc()){
-    $idUsuario = $filaDeUsuario['idUsuario'];
+if($result && $row= $result ->fetch_assoc()){
+    $idUsuario = $row['idUsuario'];
 }
 
 $_SESSION['idUsuario'] = $idUsuario;
 $_SESSION['nick'] = $nick;
+$_SESSION['nombre'] = $row['nombre'];
 print ($idUsuario);
 $db ->close();
 ?>

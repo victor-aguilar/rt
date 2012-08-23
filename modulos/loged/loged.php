@@ -37,7 +37,7 @@ administraSesion();
             echo '<img src="../../avatares/' .$imagen .'"';
             echo 'alt="Click para subir un nuevo avatar." />';
             ?>
-			<p><?php echo $_SESSION['nick']; ?></p>
+			<p><?php echo $_SESSION['nombre']; ?></p>
 			</div>
 		<div id="menu">
 			<ul>

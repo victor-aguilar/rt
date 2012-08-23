@@ -19,7 +19,7 @@ $(document).ready(function(){
 	
     //conseguimos el id del usuario
     idUsuario = dameIdUsuario();
-    nombreDelAlumno = dameNickDeUsuario();
+    nombreDelAlumno = dameNombreDeUsuario();
     
     $('#lista1,#lista2').hide();
     $('#enviarSolicitud button').prop('disabled',true);
