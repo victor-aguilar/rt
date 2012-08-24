@@ -131,7 +131,7 @@ actulizaConversacion = function(xml){
 
     //para errores.
     //$('#m').html($('#m').html() + $(xml).find('error').text() + "\n<br>");
-
+	actualizaListaDeProductos();
     reiniciaTemporalizador(TEMPO_CHAT,descargaMensajesNuevos,INTERVALO_CHAT);
 }
 

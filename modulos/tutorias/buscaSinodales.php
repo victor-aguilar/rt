@@ -159,7 +159,12 @@ $correoDeSinodal= $filaDeSinodales['email'];
         echo "Error al establecer sinodal: " . $query;
     }
     
-    //mail($correoDeSinodal,$asunto,$mensaje);
+	$headers = "MIME-Version: 1.0\r\n";
+	$headers .= "Content-type: text/html; charset=utf8\r\n";
+	$headers .= "From: Red de Tutorias (RT)\r\n";
+	$headers .= "Reply-To: no-reply\r\n";
+	
+    mail($correoDeSinodal,$asunto,$mensaje,$headers);
     $query = sprintf('insert into 
         MensajesPrivados (de,para,asunto,mensaje,fecha) values(%d,%d,"%s",\'%s\',"%s");',
             $idAlumno,$idSinodal,$asunto,$mensaje,$fecha);

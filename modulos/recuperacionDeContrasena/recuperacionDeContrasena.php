@@ -25,7 +25,7 @@ if ($result -> num_rows > 0){
 	
 	$row = $result -> fetch_assoc();
 	
-	$asunto = "<h1>Recuperacion de contraseña. RT</h1>";
+	$asunto = "Recuperacion de contraseña. RT";
 	$mensaje = "<p>Hola <b>" . $row['nombre'] . "</b>!";
 	$mensaje .= "<p>Tu usuario es: <b>" . $row['nick'] . "</b></p>";
 	$mensaje .= "<p> contraseña es: <b>" . $row['contraseña'] . "</b></p>";
