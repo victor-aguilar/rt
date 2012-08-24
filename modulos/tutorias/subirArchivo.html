@@ -16,7 +16,6 @@ and open the template in the editor.
         var tipo = "archivo";
         
         $(document).ready(function(){
-            var idUsuario = getUrlVars()['idUsuario'];
             var idTema = getUrlVars()['idTema'];
             var idTutoria = getUrlVars()['idTutoria'];
             //crp = chat.recuros.producto
@@ -25,21 +24,25 @@ and open the template in the editor.
             
             /* Datos ocultos a traves de inputs*/
             
-            //idUsuario
-            tmp = '<input type="hidden" name="idUsuario" value="' +idUsuario + '"/>';
-            $("form").html( $('form').html() + tmp);
             
             //idTema
             tmp = '<input type="hidden" name="idTema" value="' + idTema +'"/>';
             $("form").html( $('form').html() + tmp);
             
-            //idTema
+            //idTutoria
             tmp = '<input type="hidden" name="idTutoria" value="' + idTutoria +'"/>';
             $("form").html( $('form').html() + tmp);
 
             //crp indica quien subio el archivo: chat, recuros, producto
             tmp = '<input type="hidden" name="crp" value="' + crp +'"/>';
             $("form").html( $('form').html() + tmp);
+			
+			//Si se subio un producto,debemos detectar el id del boton
+			if ( crp == "productos"){
+				tmp = '<input type="hidden" name="idBoton" value="' + 
+					getUrlVars()['idBoton']+'"/>';
+				$("form").html( $('form').html() + tmp);
+			}
             
             
             // Por defecto ocultamos la subida de url 

@@ -11,6 +11,4 @@ echo "<br>" . $asignacion;
 
 
 }
-
-
 ?>

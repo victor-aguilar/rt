@@ -19,6 +19,7 @@ function dameConexion(){
 
 function administraSesion(){
     if(!isset($_SESSION['idUsuario'])){
+		echo "No has iniciado session.";
         header('Location: http://' . $_SERVER['SERVER_NAME']. "/rt");
         exit();
     }

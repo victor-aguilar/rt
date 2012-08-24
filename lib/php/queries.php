@@ -43,4 +43,18 @@ function dameIdTemaIdAlumnoDeTutoria($idTutoria, $db){
 	
 	return $result->fetch_row();
 }
+
+function dameNombreDelProducto($idProducto,$db){
+	$result = $db -> query ("
+		select nombre from nombreDeProducto 
+		where idProducto= " . $idProducto .";" );
+	
+	if(!$result) 
+		die ("Error al obtener el nombre del producto." .$query . $db->error);
+	
+	$row = $result -> fetch_assoc();
+	
+	return $row['nombre'];
+	
+}
 ?>

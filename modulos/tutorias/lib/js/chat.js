@@ -388,12 +388,15 @@ inicializaProductos = function(){
   actualizaListaDeProductos();
   
   $('#subirProductos button').click(function(){
-      
+    
+	var idBoton = $(this).attr('value');
+	
     var params = "directories=no,height=150px,";
     params += "width=500px,location=no,menubar=yes,resizable=no,";
     params += "titlebar=no,toolbar=no";
     
     var url = "subirArchivo.html?idTutoria=" + idTutoria+"&crp=productos" ;
+		url += "&idBoton="+idBoton;
 
     //Si el segundo parametro lleva espacios en blanco no funcionara en
     //internet explorer

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 header('Content-Type: text/html; charset=UTF-8');
 ?>
 <!DOCTYPE html>
@@ -19,13 +20,16 @@ header('Content-Type: text/html; charset=UTF-8');
 
 include "../../configuracion.php";
 include "../../lib/php/utils.php";
+include "../../lib/php/queries.php";
+
+administraSesion();
 
 $idTutoria  = $_POST['idTutoria'];
 $url        = "";
 $idTema     = "";
 $hint       = $_POST['hint'];
 $descripcion = $_POST['descripcion'];
-$idUsuario = $_POST['idUsuario'];
+$idUsuario = $_SESSION['idUsuario'];
 
 
 $tipo       = $_POST['tipo'];
@@ -132,12 +136,15 @@ switch($crp){
         }
         echo "Archivo subido con exito. Cerrando...";
         break;
-    case ("productos"):
-        
+    case ("productos"):       
+		
+		$nombreDelProducto = dameNombreDelProducto($_POST['idBoton'],$db);
+		$extension = dameExtension($nombreReal);
         $directorio = "../../archivosSubidos/productos/". $idTutoria . "/";
-        $url = $directorio . $nombreReal;
+        $url = $directorio . $nombreDelProducto . $extension;
         $query = sprintf('insert into Productos values(%d,"%s","%s","%s")', 
                     $idTutoria, $url , $descripcion ,$hint );
+		
         
         if (!$db -> query($query)){
             echo "Error en al insertar.<br>";
@@ -150,13 +157,13 @@ switch($crp){
             mkdir($directorio,0777,true);
         }
         
-        if (move_uploaded_file($nombreTemporal, $directorio . $nombreReal)){
+        if (move_uploaded_file($nombreTemporal, $url)){
             echo '<span id="info"';
             echo ' value="' . $url . '"';
             echo '</span>';
         }else{
             echo "<p>Error al mover el archivo.</p>";
-            echo "de " . $nombreTemporal . " a " . $directorio . $nombreReal;
+            echo "de " . $nombreTemporal . " a " . $url;
             exit();
         }
         echo "Archivo subido con exito. Cerrando...";

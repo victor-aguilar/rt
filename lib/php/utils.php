@@ -51,4 +51,8 @@ function codificacion($texto){
 function utf8_encode_seguro($texto){
     return (codificacion($texto)==ISO_8859_1) ? utf8_encode($texto) : $texto;
 }
+
+function dameExtension($fileName){
+	return "." .strrev(strstr(strrev($fileName),".",true));
+}
 ?>

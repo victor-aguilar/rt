@@ -77,7 +77,7 @@ header('Content-Type: text/html; charset=UTF-8');
 				<div id="listaDeProductos"></div>
 				<br>
 				<div id="subirProductos">
-				<button>Registro de Tutoria</button>
+				<button value="4">Registro de Tutoria</button>
 				</div>
 			</div>
 			
@@ -115,9 +115,9 @@ header('Content-Type: text/html; charset=UTF-8');
 				<h3>Productos</h3>
 				<div id="listaDeProductos"></div>
 				<div id="subirProductos">
-					<button>Registro de Proceso de Estudio</button>
-					<button>Guion de Tutoria</button>
-					<button>Demostracion Publica</button>
+					<button value="1">Registro de Proceso de Estudio</button>
+					<button value="2">Guion de Tutoria</button>
+					<button value="3">Demostracion Publica</button>
 				</div>
 			</div>
           <?php
