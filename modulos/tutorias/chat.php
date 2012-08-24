@@ -39,6 +39,7 @@ $borrar = "1"; //minutos
 $etapaDemostracion = 5;
 $autorizacion = ($tipoDeUsuario === "sinodal")? 0: 1;
 $error = "";
+$numeroDeProductos = $_POST['numeroDeProductos'];
 
 $db = dameConexion();
 
@@ -133,6 +134,17 @@ while($result && $row = $result->fetch_assoc()){
     }
     
 }
+
+ $result = $db->query('
+	 select count(*) as numPro 
+	 from Productos 
+	 where idTutoria = ' . $idTutoria . ';');
+
+ if (!$result) die ("Error: " .$db->error);
+ 
+ $row = $result->fetch_row();
+ 
+ $xml .= "<productosnuevos>" . $row[0] . "</productosnuevos>";
 
 $xml .= "<ultimaverificacion ultimoMili=\"" . $ultimoMili . "\">" ;
 $xml .= $ultimaVerificacion . "</ultimaverificacion>";

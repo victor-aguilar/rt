@@ -75,6 +75,17 @@ while ($row = $result -> fetch_assoc()){
     $idEtapa = $row['idEtapa'];
 }
 
+ $result = $db->query('
+	 select count(*) as numPro 
+	 from Productos 
+	 where idTutoria = ' . $idTutoria . ';');
+
+ if (!$result) die ("Error: " .$db->error);
+ 
+ $row = $result->fetch_row();
+
+ $xml .= "<productosnuevos>" . $row[0] . "</productosnuevos>";
+
 $xml .= '<ultimaverificacion ultimoMili="0">'.$fechaActual.'</ultimaverificacion>';
 $xml .= '<ultimaetapa>' . $idEtapa .'</ultimaetapa>' ;
 $xml .= '</mensajes>';

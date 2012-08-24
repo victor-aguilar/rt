@@ -54,6 +54,7 @@ var numeroDeBoton=0;
 var ultimaVerificacionDePendientes = "0"; 
 var ultimoMiliPendientes = "0"; // usada para distiguir fechas guardada en la misma fecha ( o segundo); 
 var intervaloPendientes = 2902; // intrevalo de actualizacion  
+var numeroDeProductos = 0;
 
 // Variables para el reloj. Posiblemente inutiles.
 var hora; 
@@ -63,6 +64,9 @@ var s=0;
 
 var player = "";
 var rutaDelAudio = "lib/audio/mensaje_nuevo";
+
+//controles.
+var sonidoOnOff = $('#sonidoOnOff');
 
 /*
  * Carga Mensajes Previos (solo se usa una vez)
@@ -88,8 +92,11 @@ descargaMensajesPrevios = function(){
 
 actulizaConversacion = function(xml){
     
+	var tmp;
+	
     var uv = $(xml).find("ultimaverificacion");
     var mensajes = $(xml).find("mensaje");
+	var pn = $(xml).find("productosnuevos");
     
     ultimaVerificacion = uv.text();
     ultimoMili = uv.attr("ultimoMili");
@@ -109,7 +116,8 @@ actulizaConversacion = function(xml){
     autoScroll("ventanaDeConversacion");
     });
 	
-	if(mensajes.length != 0){
+	if(mensajes.length != 0 && 
+		sonidoOnOff.attr('value') == "on"){
 		$('#audio').html(player);
 	}
 	
@@ -127,11 +135,12 @@ actulizaConversacion = function(xml){
             break;
     }
     
-    
-
-    //para errores.
-    //$('#m').html($('#m').html() + $(xml).find('error').text() + "\n<br>");
-	actualizaListaDeProductos();
+	tmp = parseInt(pn.text());
+	
+    if(  tmp != numeroDeProductos ){
+		numeroDeProductos = tmp;
+		actualizaListaDeProductos();
+	}
     reiniciaTemporalizador(TEMPO_CHAT,descargaMensajesNuevos,INTERVALO_CHAT);
 }
 
@@ -152,7 +161,8 @@ descargaMensajesNuevos= function(){
         ultimaVerificacion : ultimaVerificacion,
         ultimoMili: ultimoMili,
         idEtapa: idEtapa,
-        tipoDeUsuario : tipoDeUsuario},
+        tipoDeUsuario : tipoDeUsuario,
+		numeroDeProductos: numeroDeProductos},
     dataType: "xml",
     success: actulizaConversacion,
     error: error
@@ -401,18 +411,6 @@ inicializaProductos = function(){
     //Si el segundo parametro lleva espacios en blanco no funcionara en
     //internet explorer
     winSubirArchivo = window.open(url, "SubirArchivo", params);
-
-    reiniciaTemporalizador(
-    TEMPO_SUBIR_ARCHIVO,
-    function(){
-        if (winSubirArchivo.closed && urlDelArchivo != ""){
-            // Una vez que la ventana ah sido cerrada, ya no necesitamos
-            // el temporalizador para subir archivos.
-            window.clearInterval(temporalizadores[TEMPO_SUBIR_ARCHIVO]);
-			actualizaListaDeProductos();
-        }
-    }, 
-    intervaloSubirArchivo);
   });
 }
 
@@ -523,7 +521,7 @@ $(document).ready(function(){
 		player = flash;
 	}
 	
-	$('#audio').hide();
+	$('#sonido').hide();
   
   descargaMensajesPrevios();
   

@@ -1,6 +1,8 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=UTF-8');
+include "../../configuracion.php";
+administraSesion();
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +34,7 @@ header('Content-Type: text/html; charset=UTF-8');
         <div id="chat">
 			<h3> <?php echo ucfirst($_GET['tipoDeUsuario']) . ": " .$_SESSION['nombre']; ?></h3>
 			<h3>Etapa: <span id="etapa"></span></h3>
-			<div id="audio"></div>
+			<div id="sonido"></div>
             <div id="ventanaDeConversacion"></div>
             <div id="controles">
                 <input type="button" value="Enviar Archivo" id="enviarArchivo"/>
