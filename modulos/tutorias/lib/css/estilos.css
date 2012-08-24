@@ -7,7 +7,7 @@
 */
 
 #chat{
-    min-width:350px;
+    width: 450px;
     min-height:350px;
     float:left;
 }
@@ -24,7 +24,6 @@
 
 #ventanaDeConversacion { 
   height: 350px;
-  width: 450px;
   border-width: 2px;
   border-color: black;
   border-style: solid;
@@ -71,11 +70,12 @@
 #recursos,#productos,#pendientes,#añadirTemaDeCatalogo{
     margin-left: 20px;
     float:left;
+	/*width: 360px;*/
+	width:500px;
 }
 
 #listaDeRecursos,#listaDeProductos{
   height: 100px;
-  width: 360px;
   border-width: 2px;
   border-color: black;
   border-style: solid;
@@ -92,6 +92,7 @@
 #listaDeProductos span,
 #listaDeRecursos span{
     cursor: pointer;
+	float:left;
 }
 
 .columna{
