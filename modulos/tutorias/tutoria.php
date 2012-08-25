@@ -2,7 +2,11 @@
 session_start();
 header('Content-Type: text/html; charset=UTF-8');
 include "../../configuracion.php";
+include "../../lib/php/queries.php";
 administraSesion();
+
+$db = dameConexion();
+$nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,9 +35,11 @@ administraSesion();
     <button name="home" onclick="window.location='../../modulos/loged/loged.php'">
 		<img src="../../lib/img/escritorio.png"/>HOME</button>
     <div>
-        <div id="chat">
+        
+			<h3> Tema: <?php echo $nombreDelTema ?></h3>
 			<h3> <?php echo ucfirst($_GET['tipoDeUsuario']) . ": " .$_SESSION['nombre']; ?></h3>
 			<h3>Etapa: <span id="etapa"></span></h3>
+		<div id="chat">
 			<div id="sonido"></div>
             <div id="ventanaDeConversacion"></div>
             <div id="controles">
@@ -43,6 +49,12 @@ administraSesion();
                 <div style="clear:both"></div>
                 <label id="caracteresRestantes" >255</label>
                 <button id="enviarMensaje">Enviar</button>
+				<img class="boton" 
+					 src="../../lib/img/sonidoOn.png" 
+					 alt="Sonido: On"
+					 title="Enciende o Apaga el sonido"
+					 id="sonidoOnOff"
+					 value="on"/>
                 
                 <?php 
                 if($_GET['tipoDeUsuario'] == 'tutor'){ 
@@ -115,21 +127,25 @@ administraSesion();
         
 			<div id="productos">
 				<h3>Productos</h3>
-				<div id="listaDeProductos"></div>
-				<div id="subirProductos">
-					<button value="1">Registro de Proceso de Estudio</button>
-					<button value="2">Guion de Tutoria</button>
-					<button value="3">Demostracion Publica</button>
+				<div class="columna">
+					<div id="listaDeProductos"></div>
+					<div id="subirProductos">
+						<button value="1">Registro de Proceso de Estudio</button>
+						<button value="2">Guion de Tutoria</button>
+						<button value="3">Demostracion Publica</button>
+					</div>
 				</div>
 			</div>
           <?php
           break;
 	  case ("sinodal"):
-			  echo '<div id="pendientes">';
-			  echo '<h3>Lista de Pendientes</h3>';
-              echo '<div id="listaDePendientes"></div>';
-			  echo '</div>';
-              break;
+		    echo '<div class"columna">';
+			echo '<div id="pendientes">';
+			echo '<h3>Lista de Pendientes</h3>';
+			echo '<div id="listaDePendientes"></div>';
+			echo '</div>';
+			echo '</div>';
+			break;
       }
       ?>
       

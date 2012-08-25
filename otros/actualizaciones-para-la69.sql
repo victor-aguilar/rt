@@ -29,19 +29,18 @@ start transaction;
     end //
 
 -- Esto es lo mas nuevo.
-
 delimiter ;
-CREATE  TABLE IF NOT EXISTS `liceocom_tutorias`.`nombreDeProductos` (
+CREATE  TABLE IF NOT EXISTS `tutorias`.`NombreDeProducto` (
   `idProducto` INT UNSIGNED NOT NULL ,
   `nombre` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`idProducto`) ,
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) )
 ENGINE = InnoDB;
 
-INSERT INTO `liceocom_tutorias`.`nombreDeProductos` (`idProducto`, `nombre`) VALUES (1, 'registro_de_proceso_de_estudio');
-INSERT INTO `liceocom_tutorias`.`nombreDeProductos` (`idProducto`, `nombre`) VALUES (2, 'guion_de_tutoria');
-INSERT INTO `liceocom_tutorias`.`nombreDeProductos` (`idProducto`, `nombre`) VALUES (3, 'demostración_publica');
-INSERT INTO `liceocom_tutorias`.`nombreDeProductos` (`idProducto`, `nombre`) VALUES (4, 'registro_de_tutoria');
+INSERT INTO `tutorias`.`NombreDeProducto` (`idProducto`, `nombre`) VALUES (1, 'registro_de_proceso_de_estudio');
+INSERT INTO `tutorias`.`NombreDeProducto` (`idProducto`, `nombre`) VALUES (2, 'guion_de_tutoria');
+INSERT INTO `tutorias`.`NombreDeProducto` (`idProducto`, `nombre`) VALUES (3, 'demostración_publica');
+INSERT INTO `tutorias`.`NombreDeProducto` (`idProducto`, `nombre`) VALUES (4, 'registro_de_tutoria');
 
 commit;
 

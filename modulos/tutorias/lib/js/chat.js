@@ -65,9 +65,6 @@ var s=0;
 var player = "";
 var rutaDelAudio = "lib/audio/mensaje_nuevo";
 
-//controles.
-var sonidoOnOff = $('#sonidoOnOff');
-
 /*
  * Carga Mensajes Previos (solo se usa una vez)
  */
@@ -117,8 +114,8 @@ actulizaConversacion = function(xml){
     });
 	
 	if(mensajes.length != 0 && 
-		sonidoOnOff.attr('value') == "on"){
-		$('#audio').html(player);
+		$('#sonidoOnOff').attr('value') == "on"){
+		$('#sonido').html(player);
 	}
 	
     
@@ -228,7 +225,22 @@ inicializaChat = function(){
         }
     }, 
     intervaloSubirArchivo);
-    })
+    });
+	
+	$('#sonidoOnOff').click(function(){
+		var tmp = "on";
+		if( $(this).attr('value') == "off"){
+			tmp = "on";	
+			$('#sonido').html(player);
+		}else{
+			tmp = "off";
+		}
+
+		$(this).attr('src','../../lib/img/sonido' + tmp +'.png')
+				.attr('value',tmp)
+				.attr('alt','Sonido: ' + tmp);
+		
+	});
 }
 
 
@@ -345,10 +357,12 @@ actualizaListaDeProductos = function(){
         data: {idTutoria: idTutoria},
         success: function(html){
             $('#listaDeProductos').html(html);
-            var producto = $('#listaDeProductos div');
+			$('#listaDeProductos div:odd').addClass("filaImpar");
+			$('#listaDeProductos div:even').addClass("filaPar");
+            var productos = $('#listaDeProductos div');
 			
 			//manda el producto por el chat
-			producto.children('span').click(function(){
+			productos.children('span').click(function(){
 				var link = $(this);
                 var hint = link.html();
 				var url = link.attr('value');
@@ -362,7 +376,7 @@ actualizaListaDeProductos = function(){
             });
             
             //borrar el producto
-            producto.children('img').click(function(){
+            productos.children('img').click(function(){
 
                 url = $(this).siblings().attr('value');
                 
@@ -510,18 +524,19 @@ $(document).ready(function(){
 		html5 += '</audio>';
 	var flash = '<object type="application/x-shockwave-flash" ';
 		flash += 'data="lib/flash/dewplayer-mini.swf" ';
-		flash += 'width="160" height="20" id="dewplayermini" name="dewplayermini">';
+		flash += 'width="0" height="0" id="dewplayermini" name="dewplayermini">';
 		flash += '<param name="movie" value="lib/flash/dewplayer-mini.swf" />';
 		flash += '<param name="flashvars" value="mp3=' + rutaDelAudio +'.mp3&amp;autostart=1" /></object>';
 	var embed = '<embed src="'+rutaDelAudio +'.mp3" type="audio/mpeg"';
 		embed += 'height="0" width="0"/>'	
 	if (Modernizr.audio){
 		player = html5;
+		$('#sonido').hide();
 	}else{
 		player = flash;
 	}
 	
-	$('#sonido').hide();
+	
   
   descargaMensajesPrevios();
   
