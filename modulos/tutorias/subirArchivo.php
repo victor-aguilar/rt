@@ -78,6 +78,7 @@ switch($crp){
             echo '<span id="info"';
             echo ' value="' .$url .'">';
             echo '</span>';
+            echo $url;
         }else{
             echo "<p>Error al mover el archivo.</p>";
             echo "de " . $nombreTemporal . " a " . $directorio;
