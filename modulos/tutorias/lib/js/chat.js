@@ -243,12 +243,6 @@ inicializaChat = function(){
 	});
 }
 
-
-
-error = function(xhr,status,error){
-    $("#m").html( $("#m").html() + "<br> " + status +" <br> " + error);
-}
-
 inicializaRecursos = function (){
   
   actualizaListaDeRecursos();
@@ -311,7 +305,7 @@ actualizaListaDeRecursos = function(){
                 }
 				
 				mensaje = "Por favor revisa el siguiente "+ tipo + ": " +
-                        '<a href=' + url + ' target=_blank alt=' + descripcion +'>' + hint + '</a>';
+                        '<a href="' + url + '" target="_blank" alt="' + descripcion +'">' + hint + '</a>';
 				
                 $('#mensaje').val(mensaje);
                 $('#enviarMensaje').click();
@@ -335,12 +329,10 @@ actualizaListaDeRecursos = function(){
                         if(text == "exito"){
                             $(this).parent().hide('slow');
                         }else{
-                            alert(text);
+                            error(text);
                         }
                         },
-                        error: function(xhr,status,error){
-                            alert(status + " " + error);
-                        }
+                        error: error
                     });
             });
             autoScroll('listaDeRecursos');
@@ -369,7 +361,7 @@ actualizaListaDeProductos = function(){
 				var descripcion = link.attr('alt');
                 
 				mensaje = "Por favor revisa el siguiente archivo: " +
-					'<a href=' + url +' target=_blank alt="' 
+					'<a href="' + url +'" target="_blank" alt="' 
 					+ descripcion +'" title="'+ descripcion+ '">' + hint + '</a>';
                 $('#mensaje').val(mensaje);
                 $('#enviarMensaje').click();
@@ -393,12 +385,10 @@ actualizaListaDeProductos = function(){
                         if(text == "exito"){
                             $(this).parent().hide('slow');
                         }else{
-                            alert(text);
+                            error(text);
                         }
                     },
-                    error: function(xhr,status,error){
-                        alert(status + " " + error);
-                    }
+                    error: error
                 });
                 
             });
