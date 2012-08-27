@@ -43,7 +43,9 @@ if ( $_FILES['archivo']['name'] == ""){
 if( $_POST['url'] != ""){
     $nombreReal = $_POST['url'];
 }else{
-    $nombreReal = $_FILES['archivo']['name'];
+	//Esta linea no funciona en: Windows XP
+	//Esta linea funciona en: Windows 7	
+    $nombreReal = utf8_encode($_FILES['archivo']['name']);
     $nombreTemporal = $_FILES['archivo']['tmp_name'];
 }
 
@@ -66,7 +68,6 @@ $query = "";
 
 switch($crp){
     case ("chat"):
-        
         $directorio = "../../archivosSubidos/chat/". $idTutoria . "/" . $idUsuario . "/";		
         $url = $directorio . $nombreReal;
         
@@ -78,7 +79,6 @@ switch($crp){
             echo '<span id="info"';
             echo ' value="' .$url .'">';
             echo '</span>';
-            echo $url;
         }else{
             echo "<p>Error al mover el archivo.</p>";
             echo "de " . $nombreTemporal . " a " . $directorio;
@@ -174,4 +174,3 @@ switch($crp){
       
   </body>
 </html>
-
