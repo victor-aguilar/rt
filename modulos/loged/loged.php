@@ -26,6 +26,7 @@ administraSesion();
     <?php include "../../lib/php/encabezado.php" ?>
 
 	<div id="cuerpo">
+		
 		<div id="misDatos">
             <?php 
             $imagen = $_SESSION['idUsuario'] . ".jpg";
@@ -38,7 +39,8 @@ administraSesion();
             echo 'alt="Click para subir un nuevo avatar." />';
             ?>
 			<p><?php echo $_SESSION['nombre']; ?></p>
-			</div>
+		</div>
+		
 		<div id="menu">
 			<ul>
 				<li value="bandejaDeEntrada"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
