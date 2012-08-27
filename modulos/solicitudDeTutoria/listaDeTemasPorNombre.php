@@ -13,7 +13,7 @@ $db = dameConexion();// Regresa un objeto
 $n = "";
 $v = "";
 
-$query = "select idTema, nombre from Temas where autorizado = true;";
+$query = "select idTema, nombre from Temas where autorizado = true order by nombre;";
 
 $result = $db -> query($query);
 

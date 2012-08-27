@@ -13,14 +13,14 @@ $db = dameConexion();// Regresa un objeto
 $idsTemas = explode(",",$_POST['idsTemas']);
 
 foreach($idsTemas as $i){
-    $ldt .= "t.idTema = " . $i . " or ";
+    $ldt .= $i . ",";
 }
-$ldt = substr($ldt,0, strlen($ldt)-4);
+$ldt = substr($ldt,0, strlen($ldt)-1);
 
 $query = "select u.nombre, t.idTema, t.idUsuario 
             from Usuarios as u, Temas as t
             where 
-                (" . $ldt . ")and
+                t.idTema in (" . $ldt . ") and
                 t.idUsuario = u.idUsuario order by u.nombre asc;";
 
 $result = $db ->query($query);

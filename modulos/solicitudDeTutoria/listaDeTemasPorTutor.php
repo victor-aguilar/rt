@@ -9,7 +9,9 @@ $db = dameConexion();
 
 $query = sprintf('
         select idTema, nombre from Temas 
-            where idUsuario = %d;',$_POST['idTutor']); //ordenar por nick
+            where autorizado = true and 
+			idUsuario = %d
+			order by nombre asc;',$_POST['idTutor']); //ordenar por nick
 $result = $db->query($query);
 
 if(! $result){

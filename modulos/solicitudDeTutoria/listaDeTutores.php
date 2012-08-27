@@ -10,7 +10,8 @@ $db = dameConexion();
 $query = sprintf('
     select t.idUsuario, u.nombre
         from Temas as t, Usuarios as u
-        where u.idUsuario = t.idUsuario
+        where u.idUsuario = t.idUsuario and
+			t.autorizado = true
         group by u.nombre order by u.nombre asc;'); //ordenar por nombre
 
 $result = $db->query($query);
