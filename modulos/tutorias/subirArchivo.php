@@ -10,12 +10,6 @@ header('Content-Type: text/html; charset=UTF-8');
   </head>
   <body>
       <script type="text/javascript" src="../../lib/js/jquery.js"></script>
-      <script type="text/javascript">
-          $(document).ready(function(){
-            window.setTimeout(window.close, 3000);
-            window.opener.window.urlDelArchivo = $('#info').attr("value");
-          });
-      </script>
 <?php
 
 include "../../configuracion.php";
@@ -85,6 +79,11 @@ switch($crp){
 			exit();
         }
         echo "Archivo subido con exito. Cerrando...";
+		echo '<script type="text/javascript">
+				$(document).ready(function(){
+				window.setTimeout(window.close, 3000);
+				window.opener.window.urlDelArchivo = $("#info").attr("value");
+				});</script>';
         break;
     case ("recursos"):
         
@@ -125,9 +124,7 @@ switch($crp){
                     $idTema, $url,$descripcion ,$hint);
             
             if (!$db -> query($query)){
-                echo "Error en al insertar.<br>";
-                echo $query . "<br>";
-                echo $db -> error;
+                echo "<p>Error en al insertar.</p>";
                 exit();
             }
             
@@ -136,6 +133,11 @@ switch($crp){
             echo '</span>';
         }
         echo "Archivo subido con exito. Cerrando...";
+		echo '<script type="text/javascript">
+				$(document).ready(function(){
+				window.setTimeout(window.close, 3000);
+				window.opener.window.urlDelArchivo = $("#info").attr("value");
+				});</script>';
         break;
     case ("productos"):       
 		
@@ -148,9 +150,9 @@ switch($crp){
 		
         
         if (!$db -> query($query)){
-            echo "Error en al insertar.<br>";
-            echo $query . "<br>";
-            echo $db -> error;
+            echo "Error al insertar.<br>";
+            echo "<p>Posiblemente, ya subiste este producto.";
+			echo " Para actualizarlo, borralo y despues subelo.</p>";
             exit();
         }
         
@@ -168,6 +170,11 @@ switch($crp){
             exit();
         }
         echo "Archivo subido con exito. Cerrando...";
+		echo '<script type="text/javascript">
+				$(document).ready(function(){
+				window.setTimeout(window.close, 3000);
+				window.opener.window.urlDelArchivo = $("#info").attr("value");
+				});</script>';
         break;       
 }
 ?>

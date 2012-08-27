@@ -1,0 +1,13 @@
+set FECHA=%date%_%time%
+ 
+set FECHA=%FECHA:/=%
+ 
+set FECHA=%FECHA: =%
+ 
+set FECHA=%FECHA::=%
+ 
+set FECHA=%FECHA:,=%
+ 
+set FILE=D:\backups\Backup_%FECHA%.sql
+ 
+mysqldump.exe --user=root --password=acceso --max_allowed_packet=1G --host=localhost --port=3306 --default-character-set=utf8 --single-transaction=TRUE --routines "tutorias" "estandaresdetema" "tutorias" "asignaturas" "etapas" "nivel" "sinodales" "mensajes" "periodos" "recursos" "localidades" "usuarios" "nodos" "productos" "demostraciones" "modalidad" "entidades" "historial" "temas" "estandares" "componenteejecategoria" "mensajesprivados" "turno" "nombredeproducto" "municipios" -r %FILE%

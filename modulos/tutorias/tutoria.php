@@ -125,6 +125,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
           break;
       case ("alumno"):?>
         
+			<div class="columna">
 			<div id="productos">
 				<h3>Productos</h3>
 				<div class="columna">
@@ -135,6 +136,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
 						<button value="3">Demostracion Publica</button>
 					</div>
 				</div>
+			</div>
 			</div>
           <?php
           break;

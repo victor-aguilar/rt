@@ -85,16 +85,21 @@
 
 #listaDeRecursos img,
 #listaDeProductos img{
-	display:inline;
+	display:block;
     cursor: pointer;
     float:right;
 }
 
 #listaDeProductos span,
 #listaDeRecursos span{
-	
+	display:block;
     cursor: pointer;
 	float:left;
+}
+
+#listaDeProductos div,
+#listaDeRecursos div{
+	width:100%;
 }
 
 .columna{
