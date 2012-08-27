@@ -128,7 +128,7 @@ buscaTemasPorNombre = function()
 
             })
 		},
-		error: function(xhr,status,error){alert("Error: " + error);}
+		error: error
 	});
 }
 /**
@@ -158,7 +158,7 @@ buscaTutoresPorNick = function()
             
         });
         },
-        error: function(xhr,status,error){alert("Error: " + error);}
+        error: error
     })
 }
 
@@ -172,7 +172,7 @@ buscaTutoresPorTema = function(idsTemas){
 		        idsTemas: idsTemas
 		    },
 		    success: function(html){
-
+				alert(html);
 		        $('#lista2 select').html(html);
 
 		        $('#lista2 select').change(function(){
@@ -188,7 +188,7 @@ buscaTutoresPorTema = function(idsTemas){
 
 		        $('#lista2').show("slow");
 		    },
-		    error:function(xhr,status,error){alert("Error: " + error)}
+		    error:error
 		});
 }
 
@@ -213,6 +213,6 @@ buscaTemasPorTutor = function(){
 
                 $('#lista2').show("slow");
             },
-        error:function(xhr,status,error){alert("Error: " + error)}
+        error:error
     });
 }

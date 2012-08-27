@@ -12,6 +12,7 @@ $db = dameConexion();// Regresa un objeto
 
 $idsTemas = explode(",",$_POST['idsTemas']);
 
+$ldt = "";
 foreach($idsTemas as $i){
     $ldt .= $i . ",";
 }
