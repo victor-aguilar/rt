@@ -3,19 +3,19 @@ header('Content-Type: text/html; charset=UTF-8');
 include "../../configuracion.php";
 include "../../lib/php/utils.php";
 
-//$idTutoria = $_POST['idTutoria'];
 $idTutoria = $_POST['idTutoria'];
-$asunto = "Solicitud de Sinodal";
+$asunto = "Solicitud de Observador";
 $mensaje = "
 <html>
     <head>
         <title></title> 
         <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">
     </head>
-    <body>
-        <p>";
-$mensaje .= "Nos complace el anunciarte, que has sido seleccionado 
-	por la red de tutoría EIMLE como sinodal.</p>";
+    <body>";
+
+$mensaje .= "<h3> Solicitud De Observador</h3>";
+$mensaje .= "<p>Nos complace el anunciarte, que has sido seleccionado 
+	por la red de tutoría EIMLE como Observador";
 
 $fecha = getActualDate();
 
@@ -29,19 +29,39 @@ if($db->connect_errno){
 
 $buscaTema= sprintf("
     select 
-    Temas.nombre, 
-    Temas.idTema,
-    Tutorias.estudiante
-    from    Tutorias 
-    natural join Temas 
-    where Tutorias.idTutoria=%d;", $idTutoria);
+		Temas.nombre, 
+		Temas.idTema,
+		Temas.idUsuario as idTutor,
+		Tutorias.estudiante as idEstudiante,
+		Usuarios.nombre as nombreDelTutor
+		from Tutorias, Temas, Usuarios
+	where 
+		Tutorias.idTutoria = %d and
+		Usuarios.idUsuario = Temas.idUsuario and
+		Temas.idTema = Tutorias.idTema;", $idTutoria);
 
-$resultadoDeTema =  $db->query($buscaTema);
-$filaDeTema = $resultadoDeTema->fetch_assoc();
-$nombreDelTema = $filaDeTema['nombre'];
-$idTema=$filaDeTema ['idTema'];
-$mensaje .= "<p> Del tema <b>".$nombreDelTema.".</b> </p>";
-$mensaje .= "<p>Que inpacta a los siguientes términos: </p>";
+$result =  $db->query($buscaTema);
+$row = $result->fetch_assoc();
+
+$nombreDelTema = $row['nombre'];
+$idTema=$row ['idTema'];
+$idAlumno = $row['idEstudiante'];
+$idTutor = $row['idTutor'];
+$nombreDelTutor = $row['nombreDelTutor'];
+
+$query = sprintf("select nombre,email from Usuarios where idUsuario = %d;", $idAlumno);
+$result = $db->query($query);
+$row = $result -> fetch_assoc();
+
+$nombreDelAlumno = $row['nombre'];
+$emailDelAlumno = $row['email'];
+
+$result->free();
+
+$mensaje .= " para la demostración de <b>" .$nombreDelAlumno ."</b>"; 
+$mensaje .= " en el tema <b>".$nombreDelTema."</b>";
+$mensaje .= " que es impartido por <b>" .$nombreDelTutor ."</b>";
+$mensaje .= " e inpacta a los siguientes términos: </p>";
 
 $buscaEstandar = sprintf("
 	select * from EstandaresDeTema 
@@ -119,44 +139,32 @@ while ($row = $result -> fetch_assoc()){
 	$mensaje .= "<br><br>";
 }
 
-$buscaAlumno = sprintf("
-    select 
-    u.nombre, u.email, u.idUsuario
-    from 
-    Usuarios as u, Tutorias as t
-    where 
-    u.idUsuario = t.estudiante 
-    and t.idTutoria = %d;",$idTutoria);
-
-$resultadoDeAlumno= $db->query($buscaAlumno);
-$filaDeAlumno=$resultadoDeAlumno->fetch_assoc();
-$alumno = $filaDeAlumno['nombre'];
-$emailAlumno = $filaDeAlumno['email'];
-$idAlumno = $filaDeAlumno['idUsuario'];
-
-$mensaje .= "<p>Favor de contactar al estudiante <b>".$alumno;
-$mensaje .= "</b> en el correo: <b>".$emailAlumno . '</b></p>';
+$mensaje .= "<p>Favor de contactar al estudiante <b>".$nombreDelAlumno;
+$mensaje .= "</b> en el correo: <b>".$emailDelAlumno . '</b></p>';
 $mensaje .= "<p>Gracias.</p>";
 $mensaje .= " </body></html>";
 
-$buscaSinodales= sprintf("select * from Usuarios order by rand() limit 3;");
 
-$resultadoDeSinodales = $db->query($buscaSinodales);
+$ldo = "<ul>";
 
-if(!$resultadoDeSinodales) die("Error." . $query . $db->error);
+$buscaObservadores= sprintf("select * from Usuarios order by rand() limit 3;");
 
-while( $filaDeSinodales = $resultadoDeSinodales->fetch_assoc()){
+$result = $db->query($buscaObservadores);
+
+if(!$result) die("Error." . $query . $db->error);
+
+while( $row = $result->fetch_assoc()){
+	
+	$idObservador = $row['idUsuario'];
+	$nombre = $row['nombre'];
+	$correo = $row['email'];
     
-$idSinodal=$filaDeSinodales['idUsuario'];
-$correoDeSinodal= $filaDeSinodales['email'];
+	$ldo .= "<li>".$nombre ." : <b>" . $correo . "</b></li>";
 
-
-	$query = sprintf("insert into Sinodales 
-		values (%d,%d,false);",$idTutoria,$idAlumno);
+	$query = sprintf("insert into Sinodales (idTutoria,idUsuario)
+		values (%d,%d);",$idTutoria,$idObservador);
 	
 	if(! $db->query($query) ) die("Error." . $query . $db->error);
-	
-	echo $mensaje;
     
 	$headers = "MIME-Version: 1.0\r\n";
 	$headers .= "Content-type: text/html; charset=utf8\r\n";
@@ -166,8 +174,46 @@ $correoDeSinodal= $filaDeSinodales['email'];
     //mail($correoDeSinodal,$asunto,$mensaje,$headers);
     $query = sprintf('insert into 
         MensajesPrivados (de,para,asunto,mensaje,fecha) values(%d,%d,"%s",\'%s\',"%s");',
-            $idAlumno,$idSinodal,$asunto,$mensaje,$fecha);
+            $idAlumno,$idObservador,$asunto,$mensaje,$fecha);
+	
+	$db -> query($query);
+	
+	if(!$db)die("Error. " . $query . $db->error);	
 }
+
+$ldo .= "</ul>";
+
+//Mensaje para el futuro Demostrador
+$asunto = "Asignación de Observadores";
+
+$mensaje = "<h3>Asignación de Observadores</h3>";
+$mensaje .= "<p>Los Observadores seleccionados para tu Demostración";
+$mensaje .= " del tema <b>" . $nombreDelTema ."</b>";
+$mensaje .= " son</p> " .$ldo ."";
+$mensaje .= "<p>Contactate con ellos y con el tutor para acordar la fecha y hora de la";
+$mensaje .= " Demostración.</p>";
+
+$query = sprintf('
+	insert into MensajesPrivados (de,para,asunto,mensaje,fecha)
+	values (%d,%d,"%s",\'%s\',"%s");',$idTutor,$idAlumno,$asunto,$mensaje,$fecha);
+
+if(!$db -> query($query)) die("Error." . $query . $db->error);
+
+//Mensaje para el Tutor
+$asunto = "Asignación de Observadores";
+
+$mensaje = "<h3>Asignación de Observadores</h3>";
+$mensaje .= "<p>Los Observadores seleccionados para la Demostración";
+$mensaje .= " del Tema " . $nombreDelTema ." que impartes a <b>";
+$mensaje .= $nombreDelAlumno . "</b> son " .$ldo ."</p>";
+$mensaje .= "<p>Contactate con ellos y con el tutor para acordar la fecha y hora de la";
+$mensaje .= " Demostración.</p>";
+
+$query = sprintf('
+	insert into MensajesPrivados (de,para,asunto,mensaje,fecha)
+	values (%d,%d,"%s",\'%s\',"%s");',$idAlumno,$idTutor,$asunto,$mensaje,$fecha);
+
+if (!$db->query($query))die("Error. " .$query . $db->error);
 
 $db->close();
 

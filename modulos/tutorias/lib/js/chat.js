@@ -349,8 +349,8 @@ actualizaListaDeProductos = function(){
         data: {idTutoria: idTutoria},
         success: function(html){
             $('#listaDeProductos').html(html);
-			$('#listaDeProductos div:odd').addClass("filaImpar");
-			$('#listaDeProductos div:even').addClass("filaPar");
+//			$('#listaDeProductos div:odd').addClass("filaImpar");
+//			$('#listaDeProductos div:even').addClass("filaPar");
             var productos = $('#listaDeProductos div');
 			
 			//manda el producto por el chat

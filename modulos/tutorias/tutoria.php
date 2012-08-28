@@ -60,7 +60,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
                 if($_GET['tipoDeUsuario'] == 'tutor'){ 
                     echo '<img id="siguienteEtapa"';
 					echo ' src="../../lib/img/ok.png"';
-					echo ' title="Preciona para cambiar a la Siguiente Etapa"';
+					echo ' title="Presiona para cambiar a la Siguiente Etapa"';
 					echo ' alt="Click para cambiar a la Siguiente Etapa"';
 					echo ' class="boton"/>';
                 }
@@ -116,11 +116,13 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
           <?php
           break;
       case ("moderador"): // Es el tutor en etapa de demostracion
+		  echo '<div class="columna">';
 		  echo '<div id="pendientes">';
 		  echo '<h3>Pendientes </h3>';
           echo '<div id="listaDePendientes"></div>';
 		  echo '<div style="clear:left"></div>';
 		  echo '<button id="aprobar"><img src="../../lib/img/ok.png"> Aprobar</button>';
+		  echo '</div>';
 		  echo '</div>';
           break;
       case ("alumno"):?>
