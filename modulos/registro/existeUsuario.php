@@ -1,5 +1,5 @@
 <?php
-include "../../../../configuracion.php";
+include "../../configuracion.php";
 header('Content-Type: text/html; charset=UTF-8');
 
 $db = dameConexion();

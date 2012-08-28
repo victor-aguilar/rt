@@ -1,4 +1,6 @@
-<?php require_once('../../../../Connections/esviap_conn.php'); 
+<?php 
+
+require_once('../../Connections/esviap_conn.php'); 
 session_start();
 header('Content-Type: text/html; charset=UTF-8');
 
@@ -85,7 +87,7 @@ insert
 //echo $qstr;
   mysql_select_db($database_esviap_conn, $esviap_conn);
   $Result1 = mysql_query($insertSQL, $esviap_conn) or die(mysql_error());
-  $insertGoTo = "../../../../index.php";
+  $insertGoTo = "../../index.php";
   header(sprintf("Location: %s", $insertGoTo));
 
 ?>

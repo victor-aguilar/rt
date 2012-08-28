@@ -34,7 +34,7 @@ header('Content-Type: text/html; charset=UTF-8');
   </div>
   <div class="anuncio" style="background:#E3E8EE; height:3px;" >
       Ingresar datos 
-      <a href="lib/php/ingreso1.php">
+      <a href="ingreso1.php">
           <img src="lib/img/vcard.png" width="63" height="57" alt="alta de usuario" align="absmiddle"/>
       </a></div>
 </div>

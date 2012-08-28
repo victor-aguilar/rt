@@ -18,15 +18,12 @@ asigna('idTurno');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
-<link rel="stylesheet" type="text/css" href="../css/esviap.css" />
+<link rel="stylesheet" type="text/css" href="lib/css/esviap.css" />
 <!-- InstanceParam name="id" type="text" value="center" -->
 </head>
 
-<body>
-<p align="center"><img src="../img/esviap_logo.png" width="523" height="74" alt="logo ESVIAP" /></p>
-<div id="up">
-</div>
-<script type="text/javascript" src="../js/jquery.js"></script>
+<?php include "../../lib/php/encabezado.php"?>
+<script type="text/javascript" src="lib/js/jquery.js"></script>
 <!-- InstanceBeginEditable name="Region1" -->
 <script language="JavaScript">
 function validapwd(cad) {
@@ -108,26 +105,11 @@ else{
       </table>
     </form>
     <p>&nbsp;</p>
-    <table width="100%" border="0" cellspacing="0">
-      <tr>
-        <td>Selecciona una imagen por favor</td>
-      </tr>
-      <tr>
-        <td><img src="../img/users/Boy.png" width="35" height="35" /></td>
-      </tr>
-      <tr>
-        <td><img src="../img/users/Lady.png" width="35" height="35" /></td>
-      </tr>
-    </table>
-    <p>&nbsp;</p>
   </div>
   <div class="anuncio" style="background:#E3E8EE; height:3px; visibility:hidden" >continuar <a href="ingreso_1.php"><img src="../img/next.png" width="63" height="57" alt="alta de usuario" align="absmiddle"/></a></div>
 </div>
 <!-- InstanceEndEditable -->
-<div id="footer" >
-<p align="center" >Subsecretar&iacute;a de Educaci&oacute;n B&aacute;sica, Viaducto R&iacute;o Piedad 507, 4o piso. Granjas M&eacute;xico, Iztacalco 08400. M&eacute;xico D.F. </p>
-</p>
-</div>
+<?php include "../../lib/php/pieDePagina.php"?>
 
 </body>
 <!-- InstanceEnd --></html>

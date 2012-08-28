@@ -18,16 +18,14 @@ asigna('idModalidad');
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Documento sin t&iacute;tulo</title>
-<link rel="stylesheet" type="text/css" href="../css/esviap.css" />
+<link rel="stylesheet" type="text/css" href="lib/css/esviap.css" />
 <!-- InstanceParam name="id" type="text" value="center" -->
 </head>
 
 <body>
-<p align="center"><img src="../img/esviap_logo.png" width="523" height="74" alt="logo ESVIAP" /></p>
-<div id="up">
-</div>
+<?php include "../../lib/php/encabezado.php"?>
 <!-- InstanceBeginEditable name="Region1" -->
 <script language="JavaScript">
 function validapwd(cad) {
@@ -109,13 +107,7 @@ errors += 'Sexo es obligatorio '; }
       </a>  </div>
 </div>
 <!-- InstanceEndEditable -->
-<div id="footer" >
-<p align="center" >
-    Subsecretar&iacute;a de Educaci&oacute;n B&aacute;sica, 
-    Viaducto R&iacute;o Piedad 507, 4o piso. Granjas M&eacute;xico, 
-    Iztacalco 08400. M&eacute;xico D.F. </p>
-</p>
-</div>
+<?php include "../../lib/php/pieDePagina.php"?>
 
 </body>
 <!-- InstanceEnd --></html>
