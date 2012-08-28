@@ -21,7 +21,7 @@ and open the template in the editor.
 		  <ul>
 			 <li title="buscaTutorias">Mis Tutorías</li>
 			 <li title="buscaTutorados">¿Donde soy Tutorado?</li>
-			 <li title="buscaDondeSoyObservador">¿Donde soy Obsevador? </li>
+			 <li title="buscaDondeSoyObservador">¿Donde soy Observador? </li>
 		  </ul>
 	   </div>
 	   <div id="contenido"></div>

@@ -546,7 +546,7 @@ $(document).ready(function(){
                       $('#mensaje').val("En la Etapa de Demostracion");
                       break;
                   default:
-                      $('#mensaje').val("Nueva Etapa Iniciada");
+                      $('#mensaje').val("Etapa: " + etapas[idEtapa]);
               }
               $('#enviarMensaje').click();
               
