@@ -13,8 +13,7 @@
     <body>
 	
 	   <?php include "../../lib/php/encabezado.php"?>
-	   
-        <p id="barraDeNavegacion"></p>
+		<?php include "../../lib/php/menu.php"?>
         <div id="buscarPor">
             <select size="2">
                 <option value="tema">Tema</option>

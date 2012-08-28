@@ -2,8 +2,6 @@ var idUsuario = 0;
 var ruta="../tutorias/tutoria.php"
 
 $(document).ready(function(){
-   
-	creaBarraDeNavegacion();
 	
 	//todo esto se puede mejorar con un $.load
 	$('ul li').click(function(){

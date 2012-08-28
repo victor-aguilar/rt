@@ -16,7 +16,7 @@ and open the template in the editor.
     </head>
     <body>
 	   <?php include "../../lib/php/encabezado.php"?>
-	   <p id="barraDeNavegacion"></p>
+	   <?php include "../../lib/php/menu.php"?>
 	   <div id="menu">
 		  <ul>
 			 <li title="buscaTutorias">Mis Tutorías</li>

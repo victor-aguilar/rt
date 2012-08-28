@@ -1,3 +1,10 @@
+<?php
+
+include "../../configuracion.php";
+session_start();
+administraSesion();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +18,8 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/esviap.css"/>
     </head>
     <body>
-	   <?php include "../../lib/php/encabezado.php" ?>
+	    <?php include "../../lib/php/encabezado.php" ?>
+		<?php include "../../lib/php/menu.php" ?>
 	   
         <p id="barraDeNavegacion"></p>
         <div id="actualizar"><img src="../../lib/img/actualizar.png"/></div>

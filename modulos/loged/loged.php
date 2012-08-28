@@ -39,6 +39,7 @@ administraSesion();
             echo 'alt="Click para subir un nuevo avatar." />';
             ?>
 			<p><?php echo $_SESSION['nombre']; ?></p>
+			<p><a href="cerrarSesion.php">Cerrar Sesion </p>
 		</div>
 		
 		<div id="menu">

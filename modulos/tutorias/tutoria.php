@@ -32,8 +32,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
   </head>
   <body>
 	 <?php include "../../lib/php/encabezado.php" ?>
-    <button name="home" onclick="window.location='../../modulos/loged/loged.php'">
-		<img src="../../lib/img/escritorio.png"/>HOME</button>
+	 <?php include "../../lib/php/menu.php"?>
     <div>
         
 			<h3> Tema: <?php echo $nombreDelTema ?></h3>
@@ -130,14 +129,12 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
 			<div class="columna">
 			<div id="productos">
 				<h3>Productos</h3>
-				<div class="columna">
 					<div id="listaDeProductos"></div>
 					<div id="subirProductos">
 						<button value="1">Registro de Proceso de Estudio</button>
 						<button value="2">Guion de Tutoria</button>
 						<button value="3">Demostracion Publica</button>
 					</div>
-				</div>
 			</div>
 			</div>
           <?php

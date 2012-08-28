@@ -1,6 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/esviap.css"/>
+		<script type="text/javascript" src="../../lib/js/jquery.js"></script>
+		<script type="text/javascript" src="recuperacionDeContrasena.js"></script>
+	</head>
+	<body>
+<?php 
+include "../../lib/php/encabezado.php";
+include "../../lib/php/menu.php";
+
+if(!isset($_POST['email'])){?>
+		
+		<div>
+			<form method="post" action="recuperacionDeContrasena.php">
+			<label> ¿Cual es tu correo electronico? </label>
+			<input type="text" value="" name="email" id="email"/>
+			<button id="enviar">Enviar contraseña</button>
+			<div id="m"></div>
+			</form>
+		</div>
+		 <?php include "../../lib/php/pieDePagina.php"?>
+	</body>
+</html>
 <?php
-
-
+exit();
+}
 
 include "../../configuracion.php";
 
@@ -33,11 +60,24 @@ if ($result -> num_rows > 0){
 	
 	mail( $_POST['email'] , $asunto, $mensaje ,$headers);
 	
-	echo "Correo enviado. En algunos segundos recibiras un correo con tu";
-	echo " usuario y contraseña.";
-        echo "<br> <br> Ya puedes cerrar esta ventan.";
+	echo "<p>Correo enviado. En algunos segundos recibiras un correo con tu";
+	echo " usuario y contraseña.</p>";
+    echo "<p>Ya puedes cerrar esta ventan.</p>";
 }else{
-	echo "Lo sieto, no hay ningun usuario con esta cuenta de correo";
+	?>
+		<div>
+			<form method="post" action="recuperacionDeContrasena.php">
+			<label> ¿Cual es tu correo electronico? </label>
+			<input type="text" value="" name="email" id="email"/>
+			<button id="enviar">Enviar contraseña</button>
+			<div id="m"></div>
+			</form>
+		</div>
+<?php
+	echo "<p>Lo sieto, no hay ningun usuario con esta cuenta de correo</p>";
 }
 
+include "../../lib/php/pieDePagina.php"
 ?>
+	</body>
+</html>
