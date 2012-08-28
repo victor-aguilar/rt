@@ -2,9 +2,12 @@
 
 header('Content-Type: text/html; charset=UTF-8');
 include "../../../../configuracion.php";
+include "../../../../lib/php/queries.php";
 
 $db = dameConexion();
-$query = sprintf("call autorizaTema(%d);", $_POST['idTutoria']);
+
+$idTema = dameIdTemaIdAlumnoDeTutoria($_POST['idTutoria'],$db);
+$query = sprintf("update Temas set autorizado = true where idTema = %d;", $idTema);
 
 $db -> query($query);
 

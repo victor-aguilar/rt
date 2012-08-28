@@ -581,7 +581,7 @@ $(document).ready(function(){
           break;
      case "sinodal":
           autorizacion = 0;
-          inicializaComponentesDeSinodal()
+          //inicializaComponentesDeSinodal()
           break;
      case "alumno":
          if(idEtapa == DEMOSTRACION){

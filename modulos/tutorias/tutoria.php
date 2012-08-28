@@ -143,12 +143,6 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
           <?php
           break;
 	  case ("sinodal"):
-		    echo '<div class"columna">';
-			echo '<div id="pendientes">';
-			echo '<h3>Lista de Pendientes</h3>';
-			echo '<div id="listaDePendientes"></div>';
-			echo '</div>';
-			echo '</div>';
 			break;
       }
       ?>
