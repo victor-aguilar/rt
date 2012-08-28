@@ -6,18 +6,19 @@ include "../../../../lib/php/queries.php";
 
 $db = dameConexion();
 
-$idTema = dameIdTemaIdAlumnoDeTutoria($_POST['idTutoria'],$db);
-$query = sprintf("update Temas set autorizado = true where idTema = %d;", $idTema);
+$t = dameIdTemaIdAlumnoDeTutoria($_POST['idTutoria'],$db);
+$idTema = $t[0];
+$idAlumno = $t[1];
+$query = sprintf("update Temas set autorizado = true 
+	where idUsuario = %d and temaPadre = %d;", $idAlumno,$idTema);
 
-$db -> query($query);
-
-if($db -> errno != 0){
+if($db -> query($query)){
 	echo "Error al autorizar tema. " .$query  . $db-> error;
 	$db->close();
 	exit();
 }
 
-echo "<p>El Demostrador ya apuede tutorar en este tema.</p>";
+echo "El Demostrador ya apuede tutorar en este tema.";
 
 $db->close();
 ?>
