@@ -14,8 +14,6 @@ var nombreDelTema = "";
 var nombreDelAlumno = "";
 
 $(document).ready(function(){
-
-	creaBarraDeNavegacion();
 	
     //conseguimos el id del usuario
     idUsuario = dameIdUsuario();
@@ -172,7 +170,6 @@ buscaTutoresPorTema = function(idsTemas){
 		        idsTemas: idsTemas
 		    },
 		    success: function(html){
-				alert(html);
 		        $('#lista2 select').html(html);
 
 		        $('#lista2 select').change(function(){

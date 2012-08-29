@@ -35,7 +35,8 @@ header('Content-Type: text/html; charset=UTF-8');
   <div class="anuncio" style="background:#E3E8EE; height:3px;" >
       Ingresar datos 
       <a href="ingreso1.php">
-          <img src="lib/img/vcard.png" width="63" height="57" alt="alta de usuario" align="absmiddle"/>
+          <img src="lib/img/vcard.png" width="63" height="57" alt="alta de usuario" align="absmiddle" 
+			   style="text-decoration:none;"/>
       </a></div>
 </div>
 <!-- InstanceEndEditable -->

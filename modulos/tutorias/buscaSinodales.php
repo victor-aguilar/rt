@@ -27,13 +27,18 @@ if($db->connect_errno){
   exit();
 }
 
+$delete = sprintf("delete from Sinodales where idTutoria = %d;",$idTutoria);
+
+if(!$db->query($delete))die("Error." . $db->error);
+
 $buscaTema= sprintf("
     select 
 		Temas.nombre, 
 		Temas.idTema,
 		Temas.idUsuario as idTutor,
 		Tutorias.estudiante as idEstudiante,
-		Usuarios.nombre as nombreDelTutor
+		Usuarios.nombre as nombreDelTutor,
+		Usuarios.email as correoDelTutor
 		from Tutorias, Temas, Usuarios
 	where 
 		Tutorias.idTutoria = %d and
@@ -48,19 +53,22 @@ $idTema=$row ['idTema'];
 $idAlumno = $row['idEstudiante'];
 $idTutor = $row['idTutor'];
 $nombreDelTutor = $row['nombreDelTutor'];
+$correoDelTutor = $row['correoDelTutor'];
 
 $query = sprintf("select nombre,email from Usuarios where idUsuario = %d;", $idAlumno);
 $result = $db->query($query);
 $row = $result -> fetch_assoc();
 
 $nombreDelAlumno = $row['nombre'];
-$emailDelAlumno = $row['email'];
+$correoDelAlumno = $row['email'];
 
 $result->free();
 
 $mensaje .= " para la demostración de <b>" .$nombreDelAlumno ."</b>"; 
+$mensaje .= " (<b>".$correoDelAlumno . "</b>)";
 $mensaje .= " en el tema <b>".$nombreDelTema."</b>";
 $mensaje .= " que es impartido por <b>" .$nombreDelTutor ."</b>";
+$mensaje .= "(". $correoDelTutor . ")";
 $mensaje .= " e inpacta a los siguientes términos: </p>";
 
 $buscaEstandar = sprintf("
@@ -140,14 +148,17 @@ while ($row = $result -> fetch_assoc()){
 }
 
 $mensaje .= "<p>Favor de contactar al estudiante <b>".$nombreDelAlumno;
-$mensaje .= "</b> en el correo: <b>".$emailDelAlumno . '</b></p>';
+$mensaje .= "</b> en el correo: <b>".$correoDelAlumno . '</b></p>';
 $mensaje .= "<p>Gracias.</p>";
 $mensaje .= " </body></html>";
 
 
 $ldo = "<ul>";
 
-$buscaObservadores= sprintf("select * from Usuarios order by rand() limit 3;");
+$buscaObservadores= sprintf("
+	select * from Usuarios
+	where idUsuario not in (%d,%d)
+	order by rand() limit 3;", $idAlumno,$idTutor);
 
 $result = $db->query($buscaObservadores);
 
@@ -189,6 +200,8 @@ $asunto = "Asignación de Observadores";
 $mensaje = "<h3>Asignación de Observadores</h3>";
 $mensaje .= "<p>Los Observadores seleccionados para tu Demostración";
 $mensaje .= " del tema <b>" . $nombreDelTema ."</b>";
+$mensaje .= " impoartido por <b>" .$nombreDelTutor ."</b>" ;
+$mensaje .= " (<b>".$correoDelTutor ."</b>)";
 $mensaje .= " son</p> " .$ldo ."";
 $mensaje .= "<p>Contactate con ellos y con el tutor para acordar la fecha y hora de la";
 $mensaje .= " Demostración.</p>";
@@ -204,8 +217,10 @@ $asunto = "Asignación de Observadores";
 
 $mensaje = "<h3>Asignación de Observadores</h3>";
 $mensaje .= "<p>Los Observadores seleccionados para la Demostración";
-$mensaje .= " del Tema " . $nombreDelTema ." que impartes a <b>";
-$mensaje .= $nombreDelAlumno . "</b> son " .$ldo ."</p>";
+$mensaje .= " del Tema <b>" . $nombreDelTema ."</b> que impartes a <b>";
+$mensaje .= $nombreDelAlumno . "</b>";
+$mensaje .= "(<b>".$correoDelAlumno ."</b>)";
+$mensaje .= " son " .$ldo ."</p>";
 $mensaje .= "<p>Contactate con ellos y con el tutor para acordar la fecha y hora de la";
 $mensaje .= " Demostración.</p>";
 

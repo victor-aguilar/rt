@@ -16,8 +16,8 @@
 		<?php include "../../lib/php/menu.php"?>
         <div id="buscarPor">
             <select size="2">
-                <option value="tema">Tema</option>
-                <option value="tutor">Tutor</option>
+                <option value="tema">Busqueda por Tema</option>
+                <option value="tutor">Busqueda por Tutor</option>
             </select>
         </div>
         <div id="lista1">

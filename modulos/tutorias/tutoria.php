@@ -19,7 +19,6 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
     
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="cache-control" content="no-cahce"/>
     <link rel="StyleSheet" href="lib/css/estilos.css" type="text/css"/>
 	<link rel="StyleSheet" href="lib/css/chat.css" type="text/css"/>
     <link rel="StyleSheet" href="../../lib/css/esviap.css" type="text/css"/>
@@ -62,6 +61,11 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
 					echo ' src="../../lib/img/ok.png"';
 					echo ' title="Presiona para cambiar a la Siguiente Etapa"';
 					echo ' alt="Click para cambiar a la Siguiente Etapa"';
+					echo ' class="boton"/>';
+					echo '<img id="buscaSinodales"';
+					echo ' src="../../lib/img/buscar.png"';
+					echo ' title="Presiona para buscar (nuevos) sinodales"';
+					echo ' alt="Click para buscar (nuevos) sinodales"';
 					echo ' class="boton"/>';
                 }
                 ?>
