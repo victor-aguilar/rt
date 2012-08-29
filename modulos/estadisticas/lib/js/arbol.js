@@ -4,7 +4,7 @@ function temas(accion,padre){
         url:"lib/php/buscaTemas.php",
         dataType: "xml",
         data:{
-            accion: accion,
+            accion: accion
         },
         success: escribeTemas,
         error: error
