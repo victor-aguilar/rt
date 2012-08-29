@@ -54,7 +54,7 @@
 	  </tr>
     </table>
 </form>
-    <p></p>
+    <p><a href="modulos/estadisticas/estadisticas.php">Estadisticas</a></p>
     <p></p>
     <p><strong><a href="Privacidad.html">Política  de privacidad y manejo de datos personales</a></strong></p>
     <tr><td valign="top" height="20">

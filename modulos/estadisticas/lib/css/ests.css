@@ -1,0 +1,23 @@
+/* 
+    Document   : ests
+    Created on : 27-ago-2012, 22:59:33
+    Author     : Administrador
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#informacion  {
+ position: absolute;
+ left:50%;
+ top:29px;
+ width:412px;
+ height:283px;
+ z-index:1;
+ margin-left:-206px;
+ background-color: #ffffff;
+}
+
+#temass{
+    width: 400px;
+    float: left;
+}

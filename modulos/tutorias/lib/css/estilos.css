@@ -17,6 +17,9 @@
 	width:100%;
 }
 
+.mensaje{
+}
+
 #subirArchivo{
     display:block;
     float:left;
@@ -29,6 +32,7 @@
   border-style: solid;
   overflow:auto;
   color:black;
+  background-color:#66839A;
 }
 
 .nick{

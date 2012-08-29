@@ -21,6 +21,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="cache-control" content="no-cahce"/>
     <link rel="StyleSheet" href="lib/css/estilos.css" type="text/css"/>
+	<link rel="StyleSheet" href="lib/css/chat.css" type="text/css"/>
     <link rel="StyleSheet" href="../../lib/css/esviap.css" type="text/css"/>
     
     <script type="text/javascript" src="../../lib/js/jquery.js"></script>

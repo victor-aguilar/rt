@@ -105,10 +105,13 @@ actulizaConversacion = function(xml){
     var mAnteriores = conversacion.html(); // mensajesAnteriores
     var mNuevos = "";//mensajesNuevos
     
-    mNuevos += '<span class="nick">';
-    mNuevos += $(this).attr("nick") + "</span>: ";
     mNuevos += '<span class="fecha">' + $(this).attr("fecha") + "</span><br/>";
-    mNuevos += '<span class="mensaje">' + $(this).text() + "</span><br/>";
+	mNuevos += '<div class="sbl"><div class="sbr"><div class="stl"><div class="str">'
+    mNuevos += '<span class="mensaje">' + $(this).text() + "</span>";
+	mNuevos += '</div></div></div></div><div class="sb">';
+	mNuevos += '<img class="character" src="../../avatares/'+idUsuario+'.jpg"/>';
+	mNuevos += '<b class="nick">';
+    mNuevos += $(this).attr("nick") + "</b>";
     conversacion.html(mAnteriores + mNuevos);
     autoScroll("ventanaDeConversacion");
     });
@@ -504,7 +507,7 @@ $(document).ready(function(){
   
   tipoDeUsuario = getUrlVars()['tipoDeUsuario'];
   idTutoria = getUrlVars()['idTutoria'];
-  idUsuario = getUrlVars()['idUsuario'];
+  idUsuario = dameIdUsuario();
   
   //inicializamos el reproductor de sonido segun el soporte que tenga el navegador
 	var html5 = '<audio controls preload="auto" autobuffer autoplay="autoplay">';
