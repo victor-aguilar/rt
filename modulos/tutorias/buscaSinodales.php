@@ -68,7 +68,7 @@ $mensaje .= " para la demostración de <b>" .$nombreDelAlumno ."</b>";
 $mensaje .= " (<b>".$correoDelAlumno . "</b>)";
 $mensaje .= " en el tema <b>".$nombreDelTema."</b>";
 $mensaje .= " que es impartido por <b>" .$nombreDelTutor ."</b>";
-$mensaje .= "(". $correoDelTutor . ")";
+$mensaje .= "(<b>". $correoDelTutor . "</b>)";
 $mensaje .= " e inpacta a los siguientes términos: </p>";
 
 $buscaEstandar = sprintf("
@@ -200,7 +200,7 @@ $asunto = "Asignación de Observadores";
 $mensaje = "<h3>Asignación de Observadores</h3>";
 $mensaje .= "<p>Los Observadores seleccionados para tu Demostración";
 $mensaje .= " del tema <b>" . $nombreDelTema ."</b>";
-$mensaje .= " impoartido por <b>" .$nombreDelTutor ."</b>" ;
+$mensaje .= " impartido por <b>" .$nombreDelTutor ."</b>" ;
 $mensaje .= " (<b>".$correoDelTutor ."</b>)";
 $mensaje .= " son</p> " .$ldo ."";
 $mensaje .= "<p>Contactate con ellos y con el tutor para acordar la fecha y hora de la";

@@ -71,7 +71,7 @@
     Solo para la ventana del TUTOR 
 */
 
-#recursos,#productos,#pendientes,#añadirTemaDeCatalogo{
+#recursos,#productos,#pendientes{
     margin-left: 20px;
     float:left;
 	width:100%;
@@ -125,15 +125,11 @@
 	cursor:pointer;
 }
 
-#siguienteEtapa,#sonidoOnOff,#buscaSinodales{
+#siguienteEtapa,#sonidoOnOff,#buscaSinodales,#añadirTemaDeCatalogo{
 	float:right;
 }
 
 #subirProductos button, #subirRecurso{
 	display:block;
 	width: 100%;
-}
-
-#añadirTemaDeCatalogo img,#añadirTemaDeCatalogo div{
-	display:inline;
 }

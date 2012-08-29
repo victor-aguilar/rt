@@ -25,7 +25,7 @@
                     $buscaUsuarios.= ' where sexo !=3';
                     break;
             }
-            $buscaUsuarios.=";";
+            $buscaUsuarios.=" order by nick;";
             }
             
             if(isset($_GET['busca'])){
@@ -53,10 +53,23 @@
                                         Usuarios.idUsuario
                                         order by
                                         Usuarios.nick;';
+                        break;
+                    case 'entidad':
+                        $buscaUsuarios=sprintf('select 
+                                        * 
+                                        from 
+                                        Usuarios, Entidades 
+                                        where 
+                                        Entidades.idEntidad = Usuarios.idEntidad 
+                                        and 
+                                        Entidades.nombre = "%s" 
+                                        order by 
+                                        Usuarios.nick;',
+                                        $_GET['entidad']);
+                        break;  
                 }
             }
             $resultadoDeBuscaUsuarios = $db->query($buscaUsuarios);
-            
             ?>
 <!DOCTYPE html>
 <html>

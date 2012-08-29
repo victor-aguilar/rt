@@ -1,40 +1,40 @@
 
 function creaBotones(){
 
-        var textoAnterior=$("#listaDePendientes").html();
-        var numero=numeroDeBoton;
+	var textoAnterior=$("#listaDePendientes").html();
+	var numero=numeroDeBoton;
 
-        var texto='<div name="div'+numero+'">'+textoAnterior+'<br /><input type=button id="botonAceptarMensaje'+
-        numero+'" value="Permitir" class="botonAceptar" name="aceptar" ('+numero+')"><hr>'
-//        +
-//        '<input type=button id="botonRechazarMensaje'+
-//        numero+'" value="Rechazar" class="botonRechazar" name="rechazar" ('+numero+')"> <br />'+"</div>";
-        $("#listaDePendientes").html(texto); 
-        
-//        $('[name="rechazar"]').click(function(){
-//            $(this).siblings('[name="aceptar"]').hide();
-//        var rechaza =  $(this).siblings('[name="mensaje"]').html();
-//        rechaza+="<br> <b> Has Rechazado el Mensaje Previo";
-//        $(this).siblings('[name="mensaje"]').html(rechaza);
-//            $(this).hide();
-//        })
-        
-        $('[name="aceptar"]').click(function(){
-        var mensajeAceptado=$(this).siblings("[name=mensaje]");
-        var aceptado = mensajeAceptado.html(); 
-        mensajeAceptado = mensajeAceptado.html();
-        mensajeAceptado+="<br> <b> Has Aceptado el Mensaje Previo"
-        $(this).siblings('[name="mensaje"]').html(mensajeAceptado);
-        var fechaDeMensajeAnterior= $(this).siblings('[name="fecha"]').html();
-        var idUsuarioAnterior=$(this).siblings('[name="idUsuarioMensaje"]').html();
-        
-        enviaMensaje(aceptado, idUsuarioAnterior);
-        borraMensaje(idUsuarioAnterior,fechaDeMensajeAnterior);
-        $(this).hide();                     
-        });
-        
-        
-        numeroDeBoton++;
+	var texto='<div name="div'+numero+'">'+textoAnterior+'<br /><input type=button id="botonAceptarMensaje'+
+	numero+'" value="Permitir" class="botonAceptar" name="aceptar" ('+numero+')"><hr>'
+	//        +
+	//        '<input type=button id="botonRechazarMensaje'+
+	//        numero+'" value="Rechazar" class="botonRechazar" name="rechazar" ('+numero+')"> <br />'+"</div>";
+	$("#listaDePendientes").html(texto); 
+
+	//        $('[name="rechazar"]').click(function(){
+	//            $(this).siblings('[name="aceptar"]').hide();
+	//        var rechaza =  $(this).siblings('[name="mensaje"]').html();
+	//        rechaza+="<br> <b> Has Rechazado el Mensaje Previo";
+	//        $(this).siblings('[name="mensaje"]').html(rechaza);
+	//            $(this).hide();
+	//        })
+
+	$('[name="aceptar"]').click(function(){
+	var mensajeAceptado=$(this).siblings("[name=mensaje]");
+	var aceptado = mensajeAceptado.html(); 
+	mensajeAceptado = mensajeAceptado.html();
+	mensajeAceptado+="<br> <b> Has Aceptado el Mensaje Previo"
+	$(this).siblings('[name="mensaje"]').html(mensajeAceptado);
+	var fechaDeMensajeAnterior= $(this).siblings('[name="fecha"]').html();
+	var idUsuarioAnterior=$(this).siblings('[name="idUsuarioMensaje"]').html();
+
+	enviaMensaje(aceptado, idUsuarioAnterior);
+	borraMensaje(idUsuarioAnterior,fechaDeMensajeAnterior);
+	$(this).hide();                     
+	});
+
+
+	numeroDeBoton++;
 }
 
 function acabaDemostracion(){
@@ -44,6 +44,7 @@ function acabaDemostracion(){
         enviaMensaje("Concluye la Tutoria",idUsuario);
     }
 }
+
 function empiezaDemostracion(){
     t=setTimeout('empiezaDemostracion()',1000);
 
@@ -81,11 +82,7 @@ function descargaListaDePendientes(){
     });
     
     reiniciaTemporalizadorT();
-    }
-    
-    function error(xhr,status,error){
-        alert(status + ". " + error+". "+xhr);
-    }
+}
     
 function actualizaListaDePendientes(xml){
     $(xml).find("mensaje").each(function(){
@@ -115,30 +112,28 @@ function actualizaListaDePendientes(xml){
 
 
 
-    function enviaMensaje(aceptado, idUsuarioA){
+function enviaMensaje(aceptado, idUsuarioA){
 
-        var mensajeAReenviar=aceptado;
-            $.ajax({
-    type: "POST",
-    url: "../demostracion/guardaMensaje.php",
-    data: 
-        {idTutoria : idTutoria, 
-        idUsuario : idUsuarioA,
-        idEtapa: idEtapa,
-        mensaje: mensajeAReenviar
-        },
-     error : function(){alert('error al enviar menseaje')}
-    });
-   
-   
-    }
+	var mensajeAReenviar=aceptado;
+	$.ajax({
+		type: "POST",
+		url: "../demostracion/guardaMensaje.php",
+		data: 
+			{idTutoria : idTutoria, 
+			idUsuario : idUsuarioA,
+			idEtapa: idEtapa,
+			mensaje: mensajeAReenviar
+			},
+		 error : error
+	});
+}
     
     
-    function autoScroll(div){
+function autoScroll(div){
     $('#'+ div).scrollTop($('#' + div)[0].scrollHeight);
 }
 
-    function reiniciaTemporalizadorT(){
+function reiniciaTemporalizadorT(){
     window.clearInterval(tempoPendientes);
     tempoPendientes = window.setInterval("descargaListaDePendientes()",intervaloPendientes);
 }
@@ -161,7 +156,7 @@ function inicializaPendientes(){
       descargaListaDePendientes();
   $('[name="botonAcabaDemostracion"]').click(function(){
       acabaDemostracion();
-  })
+	})
   });
     
 }

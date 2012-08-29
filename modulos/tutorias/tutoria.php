@@ -48,6 +48,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
                 <div style="clear:both"></div>
                 <label id="caracteresRestantes" >255</label>
                 <button id="enviarMensaje">Enviar</button>
+				
 				<img class="boton" 
 					 src="../../lib/img/sonidoOn.png" 
 					 alt="Sonido: On"
@@ -57,16 +58,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
                 
                 <?php 
                 if($_GET['tipoDeUsuario'] == 'tutor'){ 
-                    echo '<img id="siguienteEtapa"';
-					echo ' src="../../lib/img/ok.png"';
-					echo ' title="Presiona para cambiar a la Siguiente Etapa"';
-					echo ' alt="Click para cambiar a la Siguiente Etapa"';
-					echo ' class="boton"/>';
-					echo '<img id="buscaSinodales"';
-					echo ' src="../../lib/img/buscar.png"';
-					echo ' title="Presiona para buscar (nuevos) sinodales"';
-					echo ' alt="Click para buscar (nuevos) sinodales"';
-					echo ' class="boton"/>';
+                    include 'lib/php/botonesDeTutor.php';
                 }
                 ?>
                 
@@ -80,7 +72,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
       switch ( $tipoDeUsuario){
       case ("tutor"):
           ?>
-					<div class="columna">        
+			<div class="columna">        
 			<div id="recursos"> 
 				<h3>Recursos</h3> 
 				<div id="listaDeRecursos"></div>
@@ -98,24 +90,16 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
 				<button value="4">Registro de Tutoria</button>
 				</div>
 			</div>
+			</div>
 			
 			<div style="clear:both;"></div>
-			
-			<div id="añadirTemaDeCatalogo">
-				<br/>
-				<img class="boton" 
-					 src="../../lib/img/temasDeCatalogo.png"
-					 title="Añadir Tema de Catalogo al Tutorado"
-					 alt="Click para Añadir Tema de Catalogo al Tutorado"/>
-				<div>
-					<input class="bordeNegro" 
-						   type="text" 
-						   value="" 
-						   placeholder="Nombre del Tema"/>
-					<button>Guardar </button>
-				</div>
+			<div id="temaCaptura">
+				<input class="bordeNegro" 
+					   type="text" 
+					   value="" 
+					   placeholder="Nombre del Tema"/>
+				<button>Guardar </button>
 			</div>
-					</div>
         
           <?php
           break;

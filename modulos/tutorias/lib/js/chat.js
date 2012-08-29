@@ -4,7 +4,7 @@ var idTutoria   = 0;
 var idUsuario   = 0;
 var tipoDeUsuario = "alumno";
 var idEtapa = -1;
-var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostracion");
+var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostracion","Aprobado");
 
 var autorizacion = 1;
 var mensaje = "";
@@ -463,20 +463,21 @@ buscaSinodales = function(){
 
 inicializaAgregarTemaDeCatalogo = function(){
 	$('#añadirTemaDeCatalogo').show('slow');
-	$('#añadirTemaDeCatalogo img').click( function(){
-		$(this).siblings('div').toggle('fast').children('input');
+	$('#añadirTemaDeCatalogo').click( function(){
+		$('#temaCaptura').toggle('slow');
 	});
 	
-	$('#añadirTemaDeCatalogo div').hide();
+	$('#temaCaptura').hide();
+	$('#temaCaptura button').prop("disabled",true);
 	
-	$('#añadirTemaDeCatalogo div button').click(function(){
+	$('#temaCaptura button').click(function(){
 		//$(this).siblings('input').addClass("bordeRojo");
 		var nombreDelTema = $(this).siblings('input').val();
 		
 		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
 ¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
 		
-		if( nombreDelTema != "" && conf){
+		if(conf){
 			$.ajax({
 				context:this,
 				url:'lib/php/agregarTemaDeCatalogo.php',
@@ -494,6 +495,15 @@ inicializaAgregarTemaDeCatalogo = function(){
 			});
 		}
 	});
+	
+	$('#temaCaptura input').keyup(function(){
+		if( $(this).val() != ""){
+			$(this).siblings('button').prop("disabled",false);
+		}else{
+			$(this).siblings('button').prop("disabled",true);
+		}
+	})
+	
 }
 
 /*
@@ -554,19 +564,23 @@ $(document).ready(function(){
               $('#enviarMensaje').click();
               
               if(idEtapa == BUSQUEDA_DE_SINODALES){
-                buscaSinodales();
+				  $('#buscaSinodales').show();
               }
           });
 		  
 		  $('#buscaSinodales').click(function(){
-			  $.ajax({
-				  type:'POST',
-				  url:'buscaSinodales.php',
-				  data:{idTutoria:idTutoria},
-				  typedata:"html",
-				  error: error
-			  });
-		  });
+				$.ajax({
+					type:'POST',
+					url:'buscaSinodales.php',
+					data:{idTutoria:idTutoria},
+					typedata:"html",
+					error: error
+				});
+
+				$('#mensaje').val("Buscando Sinodales...");
+				$('#enviarMensaje').click();
+				
+			}).hide();
 		  
           break;
      case "moderador":
@@ -579,11 +593,17 @@ $(document).ready(function(){
 				  type:'POST',
 				  data:{idTutoria:idTutoria},
 				  typeData:"text",
-				  success:function(text){
-					  idEtapa = 6;
-					  alert(text);
-				  }
+				  success:function(){
+					  idEtapa=6;
+					  var mensaje = "¡Demostración Aprobada!";
+					  mensaje += "¡Felicidades! Ahora ya puedes tutorar.";
+
+					  $('#mensaje').val(mensaje);
+					  $('#enviarMensaje').click();
+				  },
+				  error:error
 			  });
+			  
 		  });
 		  
           break;

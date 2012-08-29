@@ -32,7 +32,7 @@ administraSesion();
             $imagen = $_SESSION['idUsuario'] . ".jpg";
             
             if( !file_exists("../../avatares/".$imagen)){
-                $imagen = "default.png";
+                $imagen = "default.jpg";
             }
             
             echo '<img src="../../avatares/' .$imagen .'"';
