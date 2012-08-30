@@ -5,7 +5,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/esviap.css"/>
 		<script type="text/javascript" src="../../lib/js/jquery.js"></script>
-		<script type="text/javascript" src="recuperacionDeContrasena.js"></script>
 	</head>
 	<body>
 <?php 
@@ -18,8 +17,7 @@ if(!isset($_POST['email'])){?>
 			<form method="post" action="recuperacionDeContrasena.php">
 			<label> ¿Cual es tu correo electronico? </label>
 			<input type="text" value="" name="email" id="email"/>
-			<button id="enviar">Enviar contraseña</button>
-			<div id="m"></div>
+			<input type="submit" value="Enviar Contraseña"/>
 			</form>
 		</div>
 		 <?php include "../../lib/php/pieDePagina.php"?>
@@ -70,7 +68,6 @@ if ($result -> num_rows > 0){
 			<label> ¿Cual es tu correo electronico? </label>
 			<input type="text" value="" name="email" id="email"/>
 			<button id="enviar">Enviar contraseña</button>
-			<div id="m"></div>
 			</form>
 		</div>
 <?php

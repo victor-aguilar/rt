@@ -132,6 +132,8 @@ actulizaConversacion = function(xml){
                 tipoDeUsuario != "sinodal"){
                 cambiaADemostracion();
             }
+		case (BUSQUEDA_DE_SINODALES):
+				  $('#buscaSinodales').show();
             break;
     }
     
@@ -553,19 +555,20 @@ $(document).ready(function(){
 		  inicializaAgregarTemaDeCatalogo();
 
           $('#siguienteEtapa').click(function(){
+			  
               idEtapa++;
               switch(idEtapa){
                   case(DEMOSTRACION):
                       $('#mensaje').val("En la Etapa de Demostracion");
                       break;
+				  case (BUSQUEDA_DE_SINODALES):
+					  buscaSinodales();
+					  $('#mensaje').val("Etapa: " + etapas[idEtapa]);
+					  break;
                   default:
                       $('#mensaje').val("Etapa: " + etapas[idEtapa]);
               }
               $('#enviarMensaje').click();
-              
-              if(idEtapa == BUSQUEDA_DE_SINODALES){
-				  $('#buscaSinodales').show();
-              }
           });
 		  
 		  $('#buscaSinodales').click(function(){

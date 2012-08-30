@@ -71,4 +71,38 @@ function dameNombreDelTemaDeLaTutoria($idTutoria,$db){
 	
 	return $row['nombre'];
 }
+
+function dameNombreDelTutorDeLaTutoria($idTutoria,$db){
+	$query = sprintf('
+			select Usuarios.nombre from Usuarios,Temas,Tutorias 
+			where 
+				Tutorias.idTutoria = %d and 
+				Tutorias.idTema = Temas.idTema and
+				Temas.idUsuario = Usuarios.idUsuario;',$_GET['idTutoria']);
+	$result = $db->query($query);
+	
+	if(!$result) 
+		die ("Error al obtener el nombre del producto." .$query . $db->error);
+	
+	$row = $result -> fetch_assoc();
+	
+	return $row['nombre'];
+}
+
+function dameNombreDelEstudiante($idTutoria,$db){
+	$query = sprintf('
+		select Usuarios.nombre 
+			from Usuarios natural join Tutorias
+			where 
+				Tutorias.estudiante = Usuarios.idUsuario and
+				Tutorias.idTutoria = %d;',$idTutoria);
+	$result = $db->query($query);
+	
+	if(!$result) 
+		die ("Error al obtener el nombre del producto." .$query . $db->error);
+	
+	$row = $result -> fetch_assoc();
+	
+	return $row['nombre'];
+}
 ?>

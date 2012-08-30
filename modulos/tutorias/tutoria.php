@@ -7,6 +7,27 @@ administraSesion();
 
 $db = dameConexion();
 $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
+
+switch($_GET['tipoDeUsuario']){
+	case ("alumno"):
+		$nombreDelOtro = dameNombreDelTutorDeLaTutoria($_GET['idTutoria'],$db);
+		$otros = "Tutor: " . $nombreDelOtro;
+		break;
+	case("demostrador"):
+		$nombreDelOtro = dameNombreDelTutorDeLaTutoria($_GET['idTutoria'],$db);
+		$otros = "Moderador: " . $nombreDelOtro;
+		break;
+	case("tutor"):
+		$nombreDelOtro = dameNombreDelEstudiante($_GET['idTutoria'],$db);
+		$otros = "Tutorado: " .$nombreDelOtro;
+		break;
+	case("moderador"):
+		$nombreDelOtro = dameNombreDelEstudiante($_GET['idTutoria'],$db);
+		$otros = "Demostrador: " .$nombreDelOtro;
+		break;
+	default:
+		$otros = "";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +57,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
     <div>
         
 			<h3> Tema: <?php echo $nombreDelTema ?></h3>
-			<h3> <?php echo ucfirst($_GET['tipoDeUsuario']) . ": " .$_SESSION['nombre']; ?></h3>
+			<h3> <?php echo ucfirst($_GET['tipoDeUsuario']) . ": " .$_SESSION['nombre'] . "," . $otros; ?></h3>
 			<h3>Etapa: <span id="etapa"></span></h3>
 		<div id="chat">
 			<div id="sonido"></div>
