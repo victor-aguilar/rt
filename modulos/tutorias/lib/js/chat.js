@@ -76,7 +76,7 @@ descargaMensajesPrevios = function(){
             idTutoria : idTutoria
         },
         dataType: "xml",
-        success:actulizaConversacion,
+        success:actualizaConversacion,
         error: error
     });
 };
@@ -87,7 +87,7 @@ descargaMensajesPrevios = function(){
  * Recibe un acrhivo xml.
  */
 
-actulizaConversacion = function(xml){
+actualizaConversacion = function(xml){
     
 	var tmp;
 	
@@ -166,7 +166,7 @@ descargaMensajesNuevos= function(){
         tipoDeUsuario : tipoDeUsuario,
 		numeroDeProductos: numeroDeProductos},
     dataType: "xml",
-    success: actulizaConversacion,
+    success: actualizaConversacion,
     error: error
     }); 
     

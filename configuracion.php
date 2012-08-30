@@ -1,5 +1,5 @@
 <?php
-
+		
 define("HOST","localhost");
 define("USER", "liceocom_rt");
 define("PASSWORD","r2d2");
@@ -13,6 +13,7 @@ function dameConexion(){
 	
 	if(!$db) die ("Error al conectarse a la base de datos.");
 	$db ->set_charset('utf8');
+	echo "Ocurrio un erro";
         
 	return $db;
 }
