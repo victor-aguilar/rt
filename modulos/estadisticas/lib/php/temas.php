@@ -9,24 +9,25 @@ if ($db->connect_errno) {
     exit();
 }
 
-$cuentaTemas = sprintf('select count(*) as cuantos from Temas');
+$cuentaTemas = sprintf('select count(*) as cuantos from Temas;');
 $resultadoDeCuentaTemas = $db->query($cuentaTemas);
 $dato = $resultadoDeCuentaTemas->fetch_assoc();
 
     $cuentaTemasPorAsignatura = sprintf('select count(distinct EstandaresDeTema.idTema) as cuantos,
-                                asignaturas.nombre as asignatura
+                                Asignaturas.nombre as asignatura
                                 from 
-                                temas, estandaresdetema , estandares, asignaturas
+                                Temas, EstandaresDeTema , Estandares, Asignaturas
                                 where 
-                                estandaresdetema.idTema= temas.idtema 
+                                EstandaresDeTema.idTema= Temas.idtema 
                                 and 
-                                estandares.idestandar = estandaresdetema.idestandar
+                                Estandares.idEstandar = EstandaresDeTema.idEstandar
                                 and
                                 Asignaturas.idAsignatura = Estandares.idAsignatura
                                 group by
                                 asignatura
                                 ;');
 $resultadoDeCuentaTemasPorAsignatura = $db->query($cuentaTemasPorAsignatura);
+
 ?>
 <!DOCTYPE html>
 <html>

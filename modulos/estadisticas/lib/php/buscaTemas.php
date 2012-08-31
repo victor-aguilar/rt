@@ -44,14 +44,25 @@ header('Content-Type: text/xml; charset=UTF-8');
     
     $resultadoDeTemas = $db ->query($buscaTemas);
     
+    $buscaPadres = sprintf('select temaPadre as idTema from temas where temaPadre;');
+    
+    
     $xml="";
     $xml .= '<temas accion="'.$_POST['accion'].'">';
     $xml .= '<query>'.$buscaTemas.'</query>';
     while ($resultadoDeTemas && $filaDeTemas = $resultadoDeTemas -> fetch_assoc()){
+        $resultadoDePadres = $db->query($buscaPadres);
         $xml.='<tema';
         $xml.=' idTema="'.$filaDeTemas['idTema'].'"';
         $xml.=' nick="'.$filaDeTemas['nick'].'"';
         $xml.=' padre="'.$filaDeTemas['temaPadre'].'"' ;
+        $xml.=' esPadre="';
+        while ($resultadoDePadres && $filaX = $resultadoDePadres -> fetch_assoc()){
+            if($filaDeTemas['idTema']==$filaX['idTema']){
+                $xml.='si';
+            }
+        }
+        $xml.='"';
         $xml.='>';
         $xml.=$filaDeTemas['nombre'];
         $xml.='</tema>';

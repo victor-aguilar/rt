@@ -35,7 +35,7 @@ $resultadoDeBuscaTemas = $db->query($buscaTemas);
                     </li>
                 </ul>
             </div>
-            <div id="informacion">
+            <div id="informacion" style="display : none">
 
             </div>
         </div>
