@@ -191,6 +191,9 @@ inicializaChat = function(){
   
     $('#enviarMensaje').click(function(){
         mensaje = $("#mensaje").val().trim();
+		if(mensaje.lenght > 255){
+			mensaje = mensaje.substr(0, 254);
+		}
         //mensajes[mensajes.length] = $("#message").val();
         $("#mensaje").val("");
         //guardaMensaje();
