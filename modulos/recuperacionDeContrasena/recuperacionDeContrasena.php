@@ -71,7 +71,7 @@ if ($result -> num_rows > 0){
 			</form>
 		</div>
 <?php
-	echo "<p>Lo sieto, no hay ningun usuario con esta cuenta de correo</p>";
+	echo "<p>Lo siento, no hay ningun usuario con esta cuenta de correo</p>";
 }
 
 include "../../lib/php/pieDePagina.php"
