@@ -1,8 +1,10 @@
 <?php 
 
-require_once('../../Connections/esviap_conn.php'); 
+include "../../configuracion.php";
 session_start();
 header('Content-Type: text/html; charset=UTF-8');
+
+$db = dameConexion();
 
 function asigna($dato){
 	if(isset($_POST[$dato]))
@@ -31,27 +33,10 @@ $email = $_SESSION['email'];
 $telefono = $_SESSION['telefono'];
 $contraseña = $_SESSION['contraseña'];
 $cct = $_SESSION['cct'];
-
 $idEntidad = $_SESSION['idEntidad'];
-if($idEntidad == ""){
-    $idEntidad=1;
-    intval($idEntidad);
-    }
 $idMunicipio = $_SESSION['idMunicipio'];
-if($idMunicipio==""){
-    $idMunicipio =0;
-    intval($idMunicipio);
-}
 $idLocalidad = $_SESSION['idLocalidad'];
-if($idLocalidad==""){
-    $idLocalidad=0;
-    intval($idLocalidad);
-}
 $idNodo = $_SESSION['idNodo'];
-if($idNodo==""){
-    $idNodo=1;
-    intval($idNodo);
-}
 $idTurno = $_SESSION['idTurno'];
 if($idTurno==""){
     $idTurno=1;
@@ -60,33 +45,49 @@ if($idTurno==""){
 if($idTurno==0){
     $idTurno =1;
 }
-$idNivel = $_SESSION['idNivel'];
-if($idNivel==""){
-    $idNivel=1;
-    intval($idNivel);
-}
+$idNiveles = $_SESSION['idNivel']; //esto puede ser una lista separada por comas. Mas de una seleccion.
 $idModalidad = $_SESSION['idModalidad'];
-if($idModalidad==""){
-    $idModalidad=1;
-    intval($idModalidad);
+//todo
+if($idModalidad==0){
+    $idModalidad="null";
+}else{
+	$idModalidad = "" . $idModalidad; //lo hacemos cadena
 }
+
 $insertSQL=  sprintf("
 insert 
     into Usuarios 
     (nick,nombre,apellidos,sexo,
     email,telefono,contraseña,
     cct,idEntidad,idMunicipio,
-    idLocalidad,idNodo,idTurno,idNivel,idModalidad) 
+    idLocalidad,idNodo,idTurno,idModalidad) 
     values 
-    ('%s','%s','%s','%s','%s',%d,'%s','%s',%d,%d,%d,%d,%d,%d,%d);",
+    ('%s','%s','%s','%s','%s',%d,'%s','%s',%d,%d,%d,%d,%d,%s);",
         $nick,$nombre,$apellidos,$sexo,
         $email,$telefono,$contraseña,$cct,
         $idEntidad,$idMunicipio,$idLocalidad,
-        $idNodo,$idTurno,$idNivel,$idModalidad);
+        $idNodo,$idTurno,$idModalidad);
 
-//echo $qstr;
-  mysql_select_db($database_esviap_conn, $esviap_conn);
-  $Result1 = mysql_query($insertSQL, $esviap_conn) or die(mysql_error());
+$db -> query($insertSQL);
+$idUsuario = $db->insert_id;
+
+//Tenemos que insertar una fila por cada nivel.
+
+$s = "";
+foreach($idNiveles as $v){
+	$s .= "(" .$v ."," .$idUsuario ."),";
+}
+
+$s = substr($s, 0, strlen($s)-1);
+
+$insertNiveles = sprintf('
+	insert into Niveles values %s;',$s);
+
+if(!$db->query($insertNiveles)){
+	echo $insertNiveles;
+	echo $db->error;
+}
+
   $insertGoTo = "../../index.php";
   header(sprintf("Location: %s", $insertGoTo));
 

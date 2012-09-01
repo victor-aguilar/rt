@@ -63,7 +63,7 @@ errors += 'Sexo es obligatorio '; }
         <tr valign="baseline">
           <td height="29" align="right" nowrap="nowrap">Sexo:</td>
           <td><label>
-            <input type="radio" name="sexo" value="hombre" id="Sexo" />
+				  <input type="radio" name="sexo" value="hombre" id="Sexo" checked/>
             Hombre</label>
             <label>
               <input type="radio" name="sexo" value="mujer" id="Sexo" />

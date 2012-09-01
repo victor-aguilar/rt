@@ -80,7 +80,7 @@ else{
 </script>
 
 <div id="center">
-  <div class="anuncio" style="background:#E3E8EE">Alta de usuario en el Espacio Virtual de Aprendizaje</div>
+  <div class="anuncio" style="background:#E3E8EE">Alta de usuario en la plataforma EIMLE</div>
   <div class="anuncio" style=" width:400px; height:246px; padding-top:100px; text-align:justify">
     <form action="alta.php" method="POST" name="form" id="form" onsubmit="return validaForm()">
       <p>Por &uacute;ltimo, define un  nombre de usuario y una contrase&ntilde;a para tu ingreso seguro a la plataforma:</p>

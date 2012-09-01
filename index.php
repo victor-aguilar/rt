@@ -21,7 +21,7 @@
     <td valign="top" align="center">
 
     <p></p>
-    <p class="azul1_0">EIMLE es una Plataforma de apoyo a la tutorías a distancia, ofreciendo herramientas de comunicación a tutores e interesados en adquirir conocimientos por medio de tutorías</p>
+    <p class="azul1_0">EIMLE es una Plataforma de apoyo a las tutorías a distancia, ofreciendo herramientas de comunicación a tutores e interesados en adquirir conocimientos por medio de tutorías</p>
     <p></p>
     <p></p>
 <form id="form1">

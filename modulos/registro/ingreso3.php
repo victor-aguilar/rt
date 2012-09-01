@@ -97,6 +97,34 @@ $totalRows_rs_nodos = mysql_num_rows($rs_nodos);
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Ingreso</title>
 <link rel="stylesheet" type="text/css" href="lib/css/esviap.css" />
+
+<script type="text/javascript">
+
+function multiNivel(){
+	document.getElementById('nivel').setAttribute('multiple', 'multiple');
+	document.getElementById('nivel').setAttribute('size', '4');
+	var m = 'Manten Precionado <b>Ctrl</b> en Windows o linux y <b>Command</b> si estas usando Mac ';
+	m += 'para seleccionar mas de un nivel.';
+	document.getElementById('nivelMensaje').innerHTML = m;
+}
+
+function simpleNivel(){
+	document.getElementById('nivel').removeAttribute('multiple');
+	document.getElementById('nivel').setAttribute('size', '1');
+	document.getElementById('nivelMensaje').innerHTML="";
+}
+
+function toggleNivel(event){
+	var nivel = document.getElementById('nodo').value;
+	if( nivel == "1"){
+		multiNivel();
+	}else{
+		simpleNivel();
+	}
+}
+</script>
+
+
 <!-- InstanceParam name="id" type="text" value="center" -->
 </head>
 
@@ -133,7 +161,7 @@ $totalRows_rs_nodos = mysql_num_rows($rs_nodos);
           
           <tr valign="baseline">
             <td nowrap="nowrap" align="right">Nodo:</td>
-            <td><select name="idNodo" id="Nodo" onchange="validanodo()">
+            <td><select name="idNodo" id="nodo" onchange="toggleNivel()">
               <?php
 			  do {  
 			  ?>
@@ -153,18 +181,22 @@ $totalRows_rs_nodos = mysql_num_rows($rs_nodos);
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">Nivel:</td>
                 <td>
-                  <select name="idNivel" id="nivel">
+					<!-- los corchetes en el nombre son para que php
+							detecte el multi select -->
+					<select name="idNivel[]" id="nivel">
                     <option value="1">Preescolar</option>
                     <option value="2">Primaria</option>
                     <option value="3">Secundaria</option>
                     <option value="4">Educaci&oacute;n especial</option>
                   </select>
+					<div id="nivelMensaje"></div>
                 </td>
               </tr>
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">Modalidad:</td>
                 <td>
                   <select name="idModalidad" id="modalidad">
+					<option value='0'>no aplica</option>
                     <option value='1'>Preescolar Inicial</option>
                     <option value='2'>Preescolar General</option>
                     <option value='3'>Preescolar Comunitario</option>
