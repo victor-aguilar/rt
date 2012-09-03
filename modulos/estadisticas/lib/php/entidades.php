@@ -42,7 +42,7 @@ $resultadoDeEntidades = $db->query($buscaEntidades);
             while ($resultadoDeEntidades && $filaDeEntidades = $resultadoDeEntidades->fetch_assoc()) {
                 echo '<tr>';
                     echo '<td>';
-                        echo '<a href="buscaUsuarios.php?busca=entidad&entidad='.$filaDeEntidades['nombre'].'">';
+                        echo '<a href="lib/php/buscaUsuarios.php?busca=entidad&entidad='.$filaDeEntidades['nombre'].'">';
                             echo $filaDeEntidades['nombre'];
                         echo '</a>';
                     echo '</td>';

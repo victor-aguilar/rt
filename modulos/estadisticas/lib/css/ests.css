@@ -48,3 +48,16 @@
 button{
     cursor: pointer;
 }
+
+
+table {
+	margin-right:auto;
+	margin-left:auto;
+	width: 300px;
+	border: black solid thin;
+}
+
+table td{
+	border: black solid thin;
+	padding:6px;
+}

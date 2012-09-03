@@ -34,7 +34,7 @@ $buscaTutoriasEnEtapaX = 'select
         <table border="1">
             <tr>
                 <td>
-                    <a href="buscaTutorias.php?accion=todos">
+                    <a href="lib/php/buscaTutorias.php?accion=todos">
                         Tutorias
                     </a>
                 </td>
@@ -46,7 +46,7 @@ $buscaTutoriasEnEtapaX = 'select
             </tr>
             <tr>
                 <td>
-                    <a href="buscaTutorias.php?accion=terminadas">
+                    <a href="lib/php/buscaTutorias.php?accion=terminadas">
                         Terminadas
                     </a>
                 </td>
@@ -61,7 +61,7 @@ $buscaTutoriasEnEtapaX = 'select
             </tr>
             <tr>
                 <td>
-                    <a href="buscaTutorias.php?accion=demostracion">
+                    <a href="lib/php/buscaTutorias.php?accion=demostracion">
                         En Demostracion
                     </a>
                 </td>
@@ -76,7 +76,7 @@ $buscaTutoriasEnEtapaX = 'select
             </tr>
             <tr>
                 <td>
-                    <a href="buscaTutorias.php?accion=espera">
+                    <a href="lib/php/buscaTutorias.php?accion=espera">
                         En espera de Demostracion
                     </a>
                 </td>
@@ -91,7 +91,7 @@ $buscaTutoriasEnEtapaX = 'select
             </tr>
             <tr>
                 <td>
-                    <a href="buscaTutorias.php?accion=tutoria">
+                    <a href="lib/php/buscaTutorias.php?accion=tutoria">
                         En tutoria
                     </a>
                 </td>

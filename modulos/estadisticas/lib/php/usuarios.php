@@ -30,14 +30,14 @@ $resultadoDeCuentaTutorados = $db->query($cuentaTutorados);
         <title></title>
     </head>
     <body>
-    <center>
         <table border="1">
             <tr>
-                <th>
-                    <a href="buscausuarios.php?sexo=todos">
-                        USUARIOS
+                <td>
+                    <a href="lib/php/buscausuarios.php?sexo=todos">
+                        Usuarios
                     </a>
-                </th>
+                </td>
+				<td></td>
             </tr>
             <tr>
                 <td>
@@ -51,7 +51,7 @@ $resultadoDeCuentaTutorados = $db->query($cuentaTutorados);
             </tr>
             <tr>
                 <td>
-                    <a href="buscausuarios.php?sexo=mujer">
+                    <a href="lib/php/buscausuarios.php?sexo=mujer">
                         Mujeres
                     </a>
                 </td>
@@ -64,7 +64,7 @@ $resultadoDeCuentaTutorados = $db->query($cuentaTutorados);
             </tr>
             <tr>
                 <td>
-                    <a href="buscausuarios.php?sexo=hombre">
+                    <a href="lib/php/buscausuarios.php?sexo=hombre">
                         Hombres
                     </a>
                 </td>
@@ -77,7 +77,7 @@ $resultadoDeCuentaTutorados = $db->query($cuentaTutorados);
             </tr>
             <tr>
                 <td>
-                    <a href="buscausuarios.php?busca=tutores">                    
+                    <a href="lib/php/buscausuarios.php?busca=tutores">                    
                     Tutores
                     </a>
                 </td>
@@ -90,7 +90,7 @@ $resultadoDeCuentaTutorados = $db->query($cuentaTutorados);
             </tr>
             <tr>
                 <td>
-                    <a href="buscausuarios.php?busca=tutorados">                    
+                    <a href="lib/php/buscausuarios.php?busca=tutorados">                    
                     Tutorados
                     </a>
                 </td>
@@ -106,7 +106,6 @@ $resultadoDeCuentaTutorados = $db->query($cuentaTutorados);
         <table border ="1">
 
         </table>
-    </center>
     </body>
 </html>
 <?php 

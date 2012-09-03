@@ -12,14 +12,14 @@
     </head>
     <body>
 	
-	   <?php include "../../lib/php/encabezado.php"?>
-		<?php include "../../lib/php/menu.php"?>
-        <div id="buscarPor">
+<?php include "../../lib/php/encabezado.php"?>
+<?php include "../../lib/php/menu.php"?>
+<!--        <div id="buscarPor">
             <select size="2">
                 <option value="tema">Busqueda por Tema</option>
                 <option value="tutor">Busqueda por Tutor</option>
             </select>
-        </div>
+        </div>-->
         <div id="lista1">
             <select size="10">
             </select>
@@ -28,6 +28,15 @@
             <select size="10">
             </select>
         </div>
+		<div id="lista3">
+            <select size="10">
+            </select>
+        </div>
+		<div id="lista4">
+            <select size="10">
+            </select>
+        </div>
+
         <div id="enviarSolicitud">
             <button type="button" value="Enviar Solicitud" >Enviar Solicitud</button>
         </div>

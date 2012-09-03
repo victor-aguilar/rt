@@ -52,7 +52,7 @@ $resultadoDeCuentaTemasPorAsignatura = $db->query($cuentaTemasPorAsignatura);
             while ($resultadoDeCuentaTemasPorAsignatura && $fila = $resultadoDeCuentaTemasPorAsignatura->fetch_assoc()) {
                 echo'<tr>';
                     echo '<td>';
-                        echo '<a href="buscaTemasTabla.php?accion=asignatura&asignatura='.$fila['asignatura'].'">';
+                        echo '<a href="lib/php/buscaTemasTabla.php?accion=asignatura&asignatura='.$fila['asignatura'].'">';
                             echo $fila['asignatura'];
                         echo '</a>';
                     echo '</td>';

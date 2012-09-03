@@ -1,9 +1,9 @@
 <?php
 		
 define("HOST","localhost");
-define("USER", "rt");
+define("USER", "liceocom_rt");
 define("PASSWORD","r2d2");
-define("DB","tutorias");
+define("DB","liceocom_tutorias");
 
 date_default_timezone_set("America/Mexico_City");
 

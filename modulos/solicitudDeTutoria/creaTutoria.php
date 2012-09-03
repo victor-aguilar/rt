@@ -9,8 +9,7 @@ header('refresh:3; url="../../modulos/loged/loged.php"');
 
 administraSesion();
 
-$db = dameConexion();// Regresa un objeto
-if(!$db) die ("Error al conectarse a la base de datos.");
+$db = dameConexion();
 
 $para = $_GET['idTutorado'];
 $de = $_SESSION['idUsuario'];
@@ -36,6 +35,17 @@ if(! $db -> query($query)) echo ("Error al enviar mensaje de confirmacion");
 
 $query = sprintf("insert into Tutorias (estudiante,idTema) values(%d,%d);",
         $_GET['idTutorado'],$_GET['idTema']);
+
+$idTutoria = $db->insert_id;
+
+//Insertamos un mensaje en la tutoria recien creada para sea detectada en las
+//estadisticas.
+
+//$mensaje = "El primer mensaje de la tutoria";
+//$query = sprintf('call guardaMensaje(%d,%d,"%s","%s",false,%d,@mili)',
+//		$idTutoria,$_SESSION['idUsuario'], getActualData(),$mensaje, 1);
+//
+//if (! $db->query($query)) die("Error." . $db->error);
 
 if(! $db->query($query) ){
     $html = "<p>Error al crear la tutoria.</p><p> Tutor"; 
