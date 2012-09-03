@@ -26,11 +26,9 @@ $resultadoDeEntidades = $db->query($buscaEntidades);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="StyleSheet" href="../../../../lib/css/esviap.css" type="text/css"/>
         <title></title>
     </head>
     <body>
-        <?php include "../../../../lib/php/encabezado.php" ?>
         <table border="1"> 
             <tr>
                 <td>
@@ -54,8 +52,7 @@ $resultadoDeEntidades = $db->query($buscaEntidades);
                 echo '</tr>';
             }
             ?>
-        </table>      
-        <?php include "../../../../lib/php/pieDePagina.php" ?>  
+        </table>        
     </body>
 </html>
 <?php

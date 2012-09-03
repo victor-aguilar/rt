@@ -26,8 +26,8 @@
 #misDatos img{
 	display:block;
 	margin:auto;
-	max-height:170px;
-	max-width:230px;
+	max-height:210px;
+	max-width:130px;
     cursor:pointer;
 }
 
@@ -59,15 +59,16 @@ ul{
 
 li{
 	width:230px;
-	border: purple solid thin;
+	border: none;
 	padding: 5px;
 	margin-top:5px;
-	background-color:orange;
-	color: purple;
+	background-color:#E6B54A;
+	color: rgb(247,180.44);
 	cursor:pointer;
+	font-weight: bold;
+	background-image: url(../../lib/img/btn1.png);
 }
 
 li:hover{
 	margin-left:10px;
 }
-

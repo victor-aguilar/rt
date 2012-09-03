@@ -22,7 +22,7 @@ administraSesion();
 		<?php include "../../lib/php/menu.php" ?>
 	   
         <p id="barraDeNavegacion"></p>
-        <div id="actualizar"><img src="../../lib/img/actualizar.png"/></div>
+        <div id="actualizar"><img src="../../lib/img/actualizar.png" alt="Revisar si existen mensajes nuevos"/></div>
         <div id="bandejaDeEntrada"></div>
         <div id="mensaje"></div>
 	   <div style="clear:both;"></div>

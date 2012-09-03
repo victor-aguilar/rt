@@ -15,14 +15,14 @@
 
 <body>
 <p align="center"><img src="lib/img/eimle.png"alt="logo ESVIAP" /></p>
+<p align="center"><img src="lib/img/tured.png" width="680" height="32" border="0" /></p>
 
-<table height="800" align="center" width="600px">
+<table height="429" align="center" width="600px">
   <tr>
-    <td valign="top" align="center">
+    <td height="401" align="center" valign="top">
 
     <p></p>
-    <p class="azul1_0">EIMLE es una Plataforma de apoyo a las tutorías a distancia, ofreciendo herramientas de comunicación a tutores e interesados en adquirir conocimientos por medio de tutorías</p>
-    <p></p>
+    <p class="azul1_0">TURed es una Plataforma de apoyo a las tutorías a distancia, ofreciendo herramientas de comunicación a tutores e interesados en adquirir conocimientos por medio de tutorías</p>
     <p></p>
 <form id="form1">
     <table width="352" border="0" cellspacing="0" align="center" class="azul1">
@@ -54,11 +54,11 @@
 	  </tr>
     </table>
 </form>
-    <p></p>
-    <p></p>
+<p></p>
     <p><strong><a href="Privacidad.html">Política  de privacidad y manejo de datos personales</a><a href="modulos/estadisticas/index.php">.</a></strong></p>
-    <tr><td valign="top" height="20">
+  <tr><td valign="top" height="20">
 <?php include "lib/php/pieDePagina.php" ?>
 </td></tr></table>
+<p>&nbsp;</p>
 </body>
 </html>

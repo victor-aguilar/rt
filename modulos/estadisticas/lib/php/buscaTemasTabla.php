@@ -34,14 +34,9 @@ $resultadoDeTemas=$db->query($buscaTemas);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="StyleSheet" href="../../../../lib/css/esviap.css" type="text/css"/>
-        <link rel="StyleSheet" href="../css/ests.css" type="text/css"/>
-        <script type="text/javascript" src="../../../../lib/js/jquery.js"></script>
-        <script type="text/javascript" src="../js/informacion.js"></script>
         <title></title>
     </head>
     <body>
-        <?php include "../../../../lib/php/encabezado.php" ?>
         <table border="1">
             <tr>
                 <td>
@@ -57,19 +52,13 @@ $resultadoDeTemas=$db->query($buscaTemas);
                     echo'<td>';
                            echo $fila['idTema'];
                     echo'</td>';
-                    echo'<td id="nombre" accion="tema" onclick="busca(event)">';
+                    echo'<td>';
                            echo $fila['tema'];
                     echo'</td>';
                 echo'</tr>';
             }
             ?>
         </table>
-        <div>
-            <table id="informaciones" border="1">
-                
-            </table>
-        </div>
-        <?php include "../../../../lib/php/pieDePagina.php" ?>
     </body>
 </html>
 <?php

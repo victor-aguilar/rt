@@ -33,11 +33,9 @@ $resultadoDeCuentaTemasPorAsignatura = $db->query($cuentaTemasPorAsignatura);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="StyleSheet" href="../../../../lib/css/esviap.css" type="text/css"/>
         <title></title>
     </head>
     <body>
-        <?php include "../../../../lib/php/encabezado.php" ?>
         <table border="1">
             <tr>
                 <td>
@@ -65,7 +63,6 @@ $resultadoDeCuentaTemasPorAsignatura = $db->query($cuentaTemasPorAsignatura);
             }
             ?>
         </table>
-        <?php include "../../../../lib/php/pieDePagina.php" ?>
 
     </body>
 </html>

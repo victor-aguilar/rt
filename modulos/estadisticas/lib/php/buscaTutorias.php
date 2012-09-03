@@ -106,14 +106,9 @@ $resultadoDeTutorias = $db ->query($buscaTutorias);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="StyleSheet" href="../../../../lib/css/esviap.css" type="text/css"/>
-        <link rel="StyleSheet" href="../css/ests.css" type="text/css"/>
-        <script type="text/javascript" src="../../../../lib/js/jquery.js"></script>
-        <script type="text/javascript" src="../js/informacion.js"></script>
         <title></title>
     </head>
     <body>
-        <?php include "../../lib/php/encabezado.php" ?>
         <table border="1">
             <tr>
                 <td>
@@ -135,24 +130,18 @@ $resultadoDeTutorias = $db ->query($buscaTutorias);
                     echo '<td>';
                         echo $filaDeTutorias['idTutoria'];
                     echo '</td>';
-                    echo '<td id="nombre" accion="tema" onclick="busca(event)">';
+                    echo '<td>';
                         echo $filaDeTutorias['tema'];
                     echo '</td>';
-                    echo '<td id="nombre" accion="usuario" onclick="busca(event)">';
+                    echo '<td>';
                         echo $filaDeTutorias['estudiante'];
                     echo '</td>';
-                    echo '<td id="nombre" accion="usuario" onclick="busca(event)">';
+                    echo '<td>';
                         echo $filaDeTutorias['Tutor'];
                     echo '</td>';
                 echo '</tr>';
             }
             ?>
         </table>
-        <div>
-            <table id="informaciones" border="1">
-                
-            </table>
-        </div>
-        <?php include "../../../../lib/php/pieDePagina.php" ?>
     </body>
 </html>

@@ -1,1 +1,0 @@
-INSERT INTO `Temas` (`idTema`,`nombre`,`idUsuario`,`keyWords`) VALUES (80,'unos',0,NULL);

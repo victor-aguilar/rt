@@ -48,14 +48,3 @@
 button{
     cursor: pointer;
 }
-
-#nombre {
-    cursor: pointer;
-}
-
-#informaciones {
-    border: 0;
-    font: caption;
-    width:  600px;
-    overflow: auto;
-}

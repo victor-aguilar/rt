@@ -2,6 +2,7 @@
 include '../../configuracion.php';
 header('Content-Type: text/html; charset=UTF-8');
 
+$db = dameConexion();
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,6 @@ header('Content-Type: text/html; charset=UTF-8');
     </head>
     <body>
         <?php include "../../lib/php/encabezado.php" ?>
-		
         <div id="wrapper">
 			<a href="estadisticas.php" title="Estadisticas de EIMLE">Estadisticas</a>
             <div id="temass">

@@ -69,7 +69,7 @@ insert
         $idNodo,$idTurno,$idModalidad);
 
 if(!$db -> query($insertSQL)){
-	echo "Error al insertar usuario";
+	echo "Error al insertar usuario" . $insertSQL . $db->error;
 }
 $idUsuario = $db->insert_id;
 

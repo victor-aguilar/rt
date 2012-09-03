@@ -28,11 +28,9 @@ $buscaTutoriasEnEtapaX = 'select
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="StyleSheet" href="../../../../lib/css/esviap.css" type="text/css"/>
         <title></title>
     </head>
     <body>
-        <?php include "../../../../lib/php/encabezado.php" ?>
         <table border="1">
             <tr>
                 <td>
@@ -111,7 +109,6 @@ $buscaTutoriasEnEtapaX = 'select
         </table>
         <?php
         ?>
-        <?php include "../../../../lib/php/pieDePagina.php" ?>
     </body>
 </html>
 <?php
