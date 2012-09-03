@@ -2,16 +2,6 @@
 include '../../configuracion.php';
 header('Content-Type: text/html; charset=UTF-8');
 
-$db = dameConexion();
-
-if ($db->connect_errno) {
-    printf($db->connect_error);
-    exit();
-}
-
-$buscaTemas = 'select * from Temas order by nombre;';
-
-$resultadoDeBuscaTemas = $db->query($buscaTemas);
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +17,9 @@ $resultadoDeBuscaTemas = $db->query($buscaTemas);
     </head>
     <body>
         <?php include "../../lib/php/encabezado.php" ?>
+		
         <div id="wrapper">
+			<a href="estadisticas.php" title="Estadisticas de EIMLE">Estadisticas</a>
             <div id="temass">
                 <ul id="temas" class="s">
                     <li>

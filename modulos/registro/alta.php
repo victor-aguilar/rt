@@ -68,7 +68,9 @@ insert
         $idEntidad,$idMunicipio,$idLocalidad,
         $idNodo,$idTurno,$idModalidad);
 
-$db -> query($insertSQL);
+if(!$db -> query($insertSQL)){
+	echo "Error al insertar usuario";
+}
 $idUsuario = $db->insert_id;
 
 //Tenemos que insertar una fila por cada nivel.
@@ -88,8 +90,8 @@ if(!$db->query($insertNiveles)){
 	echo $db->error;
 }
 
-  $insertGoTo = "../../index.php";
-  header(sprintf("Location: %s", $insertGoTo));
+$insertGoTo = "../../index.php";
+header(sprintf("Location: %s", $insertGoTo));
 
 ?>
 

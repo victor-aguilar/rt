@@ -9,15 +9,13 @@ $nick = $_POST['nick'];
 $contraseña = $_POST['contraseña'];
 $idUsuario = "";
 $db = dameConexion();
-$db->set_charset('utf8');
 
 $buscaUsuario = sprintf("select idUsuario,nombre 
 	from Usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
 $result = $db->query($buscaUsuario);
 
 if(!$result){
-	echo $buscaUsuario;
-	echo $db->error;
+	die($buscaUsuario . " - " . $db->error);
 }
 
 if($result && $row= $result ->fetch_assoc()){
@@ -27,6 +25,6 @@ if($result && $row= $result ->fetch_assoc()){
 $_SESSION['idUsuario'] = $idUsuario;
 $_SESSION['nick'] = $nick;
 $_SESSION['nombre'] = $row['nombre'];
-print ($idUsuario);
+print ('exito');
 $db ->close();
 ?>

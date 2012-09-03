@@ -24,12 +24,12 @@ function escribeTemas(xml){
         lista += ' nick="'+$(this).attr('nick')+'"';
         lista += '>';
         if($(this).attr('esPadre')=='si'){
-        lista += '<button name="hijos">+</button>';
+        lista += '<button name="hijos" onclick="busca(event)">+</button>';
         }
         lista += '<span>';
         lista += $(this).text();
         lista += '</span>';
-        lista += '<button name="info">?</button>';
+        lista += '<button name="info" onclick="informacion(event)"><</button>';
         lista += '<div id="tableInfo" style="display : none">';
         lista += '<table border="1"><tr><td>ID Tema</td><td>'+$(this).attr('idTema')+'</td></tr>';
         lista += '<tr><td>Tutor</td><td>'+$(this).attr('nick')+'</td></tr>';
@@ -40,12 +40,12 @@ function escribeTemas(xml){
         $('#temas').html(anterior+lista);
     })       
 
-    $('[name="hijos"]').click(function(event){
-        busca(event);
-    });
-    $('[name="info"]').click(function(event){
-        informacion(event);
-    })
+//    $('[name="hijos"]').click(function(event){
+//        busca(event);
+//    });
+//    $('[name="info"]').click(function(event){
+//        informacion(event);
+//    })
     lista="";
     anterior="";
     nodoPadre="";
@@ -102,12 +102,12 @@ function escribeTemasA(xml){
         lista += ' nick="'+$(this).attr('nick')+'"';
         lista += '>';
         if($(this).attr('esPadre')=='si'){
-        lista += '<button name="hijos">+</button>';
+        lista += '<button name="hijos" onclick="busca(event)">+</button>';
         }
         lista += '<span>';
         lista += $(this).text();
         lista += '</span>';
-        lista += '<button name="info">?</button>';
+        lista += '<button name="info" onclick="informacion(event)">?</button>';
         lista += '<div id="tableInfo" style="display : none">';
         lista += '<table border="1"><tr><td>ID Tema</td><td>'+$(this).attr('idTema')+'</td></tr>';
         lista += '<tr><td>Tutor</td><td>'+$(this).attr('nick')+'</td></tr>';
@@ -117,13 +117,13 @@ function escribeTemasA(xml){
         lista += '</ul>';
     }) 
     nodoPadre.innerHTML= anterior + lista;
-    $('[name="hijos"]').click(function(event){
-        busca(event);
-    });
-
-    $('[name="info"]').click(function(event){        
-        informacion(event);
-    })
+//    $('[name="hijos"]').click(function(event){
+//        busca(event);
+//    });
+//
+//    $('[name="info"]').click(function(event){        
+//        informacion(event);
+//    })
     lista="";
     anterior="";
     nodoPadre="";

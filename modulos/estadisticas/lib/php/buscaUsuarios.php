@@ -75,9 +75,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="StyleSheet" href="../../../../lib/css/esviap.css" type="text/css"/>
+        <link rel="StyleSheet" href="../css/ests.css" type="text/css"/>
+        <script type="text/javascript" src="../../../../lib/js/jquery.js"></script>
+        <script type="text/javascript" src="../js/informacion.js"></script>
         <title></title>
     </head>
     <body>
+        <?php include "../../lib/php/encabezado.php" ?>
         <table border="1">
             <tr>
                 <td>
@@ -93,12 +98,18 @@
                         echo '<td>';
                             echo $filaDeBuscaUsuarios['idUsuario'];
                         echo '</td>';
-                        echo '<td>';
+                        echo '<td id="nombre" accion="usuario" onclick="busca(event)">';
                             echo $filaDeBuscaUsuarios['nick'];
                         echo '</td>';
                     echo '</tr>';
                 }
             ?>
         </table>
+        <div>
+            <table id="informaciones" border="1">
+                
+            </table>
+        </div>
+        <?php include "../../../../lib/php/pieDePagina.php" ?>
     </body>
 </html>
