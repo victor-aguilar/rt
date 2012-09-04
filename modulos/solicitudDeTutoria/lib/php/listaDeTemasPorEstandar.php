@@ -1,8 +1,7 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
-include "../../configuracion.php";
-include "../../lib/php/utils.php";
+include "../../../../configuracion.php";
 
 define("LIMITE", 20);
 
@@ -16,7 +15,7 @@ $n = "";
 $v = "";
 
 $query = sprintf(
-		"select nombre,idUsuario 
+		"select nombre,idTema 
 			from EstandaresDeTema natural join temas 
 			where idEstandar = %d 
 			group by idTema;",$idEstandar);
@@ -32,9 +31,10 @@ while($row = $result->fetch_assoc()){
         $v .= "," .$row['idTema'];
     }else{
 
-        $html .= '<option value="' . $v . '">';
+        $html .= '<option value="' . $v .'"';
+		$html .= ' title="' . $row['nombre'] . '">';
         $html .= $row['nombre'];
-        $html .= '</opction>';
+        $html .= '</option>';
 
         $n = $row['nombre'];
     }

@@ -21,18 +21,22 @@
             </select>
         </div>-->
         <div id="lista1">
+			<h3>Componente/Eje/Categoria</h3>
             <select size="10">
             </select>
         </div>
         <div id="lista2">
+			<h3>Estandares</h3>
             <select size="10">
             </select>
         </div>
 		<div id="lista3">
+			<h3>Temas</h3>
             <select size="10">
             </select>
         </div>
 		<div id="lista4">
+			<h3>Tutores</h3>
             <select size="10">
             </select>
         </div>

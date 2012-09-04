@@ -8,8 +8,8 @@ $ubicacion="local";
 //	$username_esviap_conn = "rt";}
 //	
 //else {	
-	$database_esviap_conn = "tutorias";
-	$username_esviap_conn = "rt";
+	$database_esviap_conn = "liceocom_tutorias";
+	$username_esviap_conn = "liceocom_rt";
 //}
 $hostname_esviap_conn = "localhost";
 $password_esviap_conn = "r2d2";

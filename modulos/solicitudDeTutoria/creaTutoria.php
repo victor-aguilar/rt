@@ -5,7 +5,7 @@ include "../../lib/php/utils.php";
 include "../../lib/php/queries.php";
 
 header('Content-Type: text/html; charset=UTF-8');
-header('refresh:3; url="../../modulos/loged/loged.php"'); 
+header('refresh:3; url="../../modulos/mensajesPrivados/bandejaDeEntrada.php"'); 
 
 administraSesion();
 
@@ -25,7 +25,7 @@ $nombreDelTutor = dameNombreDelTutorDelTema($idTema,$db);
 
 $mensaje = "<p>Hola <b>" . $nombreDelTutorado ."</b>!</p> <p>Fuiste aceptado en la tutoria";
 $mensaje .= " con el tema <b>" . $nombreDelTema ."</b> impartida por <b>";
-$mensaje .= $nombreDelTutor ."</b></p>";
+$mensaje .= $nombreDelTutor .".</b></p>";
 
 $query = sprintf('insert into MensajesPrivados 
 	(de,para,asunto,mensaje,fecha,leido) values(%d,%d,\'%s\',\'%s\',"%s",%s)',

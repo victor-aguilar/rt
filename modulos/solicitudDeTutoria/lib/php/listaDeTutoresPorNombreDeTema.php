@@ -1,8 +1,7 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
-include "../../configuracion.php";
-include "../../lib/php/utils.php";
+include "../../../../configuracion.php";
 
 define("LIMITE", 20);
 

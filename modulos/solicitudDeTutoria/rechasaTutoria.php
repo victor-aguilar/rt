@@ -13,7 +13,7 @@
             var mensaje;
             mensaje = "<p>El tutor <b>" + decodeURIComponent(getUrlVars()['nombreDelTutor']) + "</b>";
             mensaje += " no acepto tutorarte en el tema <b>" + decodeURIComponent(getUrlVars()['nombreDelTema']);
-            mensaje += "</b></p><p>Puedes probar con otro tutor </p>";
+            mensaje += "</b></p><p>Puedes probar con otro tutor. </p>";
             $.ajax({
                 type: "POST",
                 url: "../../modulos/mensajesPrivados/mensajesPrivados.php",
@@ -38,6 +38,6 @@
         </script>
     </head>
     <body>
-		<center><p style='margin-top:auto;margin-bottom:auto;'> Tutoria Cancelada. Regresando al Home... </p></center>
+		<center><p style='margin-top:auto;margin-bottom:auto;'> Tutoria Cancelada. Regresando al la bandeja de entrada... </p></center>
     </body>
 </html>

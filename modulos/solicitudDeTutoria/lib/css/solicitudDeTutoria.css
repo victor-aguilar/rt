@@ -7,20 +7,17 @@
 */
 body{
 }
-#lista1, #lista2, #enviarSolicitud,#buscarPor{
-    width:200px;
+#lista1,#lista2,#lista3,#lista4, #enviarSolicitud{
+    max-width:400px;
     float:left;
     margin-left:10px;
     margin-top: 10px;
 }
 
-#buscarPor{
-    width:auto;
-}
-
 #lista1 select, #lista2 select{
     width:100%;
 }
+
 #m{
     margin-top:50px;
 }
