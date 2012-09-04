@@ -223,6 +223,7 @@ buscaEstandaresPorCEC = function(idCEC){
 	
 	var fun_temas = function (){
 		$('#lista2').children('select').change(function(){
+			$('#lista4').hide('slow');
 			$('#enviarSolicitud button').prop('disabled',true);
 			buscaTemasPorEstandar($(this).val());
 			$('#lista3').show('slow');
