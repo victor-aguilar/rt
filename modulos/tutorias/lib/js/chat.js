@@ -465,26 +465,9 @@ buscaSinodales = function(){
         error: error
     });
 }
+agregaTemaDeCatalogo = function(nombreDelTema){
 
-inicializaAgregarTemaDeCatalogo = function(){
-	$('#añadirTemaDeCatalogo').show('slow');
-	$('#añadirTemaDeCatalogo').click( function(){
-		$('#temaCaptura').toggle('slow');
-	});
-	
-	$('#temaCaptura').hide();
-	$('#temaCaptura button').prop("disabled",true);
-	
-	$('#temaCaptura button').click(function(){
-		//$(this).siblings('input').addClass("bordeRojo");
-		var nombreDelTema = $(this).siblings('input').val();
-		
-		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
-¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
-		
-		if(conf){
-			$.ajax({
-				context:this,
+		$.ajax({
 				url:'lib/php/agregarTemaDeCatalogo.php',
 				data:{
 				   idTutoria: idTutoria,
@@ -493,12 +476,30 @@ inicializaAgregarTemaDeCatalogo = function(){
 				type:'POST',
 				typeData:"text",
 				success:function(text){
-					$(this).siblings('input').val("");
+					$('#temaCaptura').children('input').val("");
 					alert(text);
-					$('#añadirTemasDeCatalogo button').click();
+					$('#añadirTemasDeCatalogo').children('button').click();
 				}
 			});
-		}
+	}
+inicializaAgregarTemaDeCatalogo = function(){
+	$('#añadirTemaDeCatalogo').show('slow');
+	$('#añadirTemaDeCatalogo').click( function(){
+		$('#temaCaptura').toggle('slow');
+	});
+	
+	$('#temaCaptura').hide();
+	$('#temaCaptura').children('button').prop("disabled",true);
+	
+	$('#temaCaptura').children('button').click(function(){
+		//$(this).siblings('input').addClass("bordeRojo");
+		var nombreDelTema = $('#temaCaptura').children('input').val();
+
+		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
+¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
+		if(conf){
+			agregaTemaDeCatalogo(nombreDelTema);
+		}	
 	});
 	
 	$('#temaCaptura input').keyup(function(){
@@ -594,6 +595,9 @@ $(document).ready(function(){
 		  $("#añadirTemaDeCatalogo").hide();
 		  
 		  $('#aprobar').click(function(){
+			  
+			  agregaTemaDeCatalogo(dameNombreDelTema(idTutoria));
+			  
 			  $.ajax({
 				  url:'lib/php/aprobar.php',
 				  type:'POST',
