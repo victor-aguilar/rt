@@ -31,7 +31,7 @@
             </select>
         </div>
 		<div id="lista3">
-			<h3>Temas</h3>
+			<h3>Catálogo</h3>
             <select size="10">
             </select>
         </div>
