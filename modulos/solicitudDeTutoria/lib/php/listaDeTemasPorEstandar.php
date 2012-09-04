@@ -25,19 +25,10 @@ $result = $db -> query($query);
 if(!$result) die ("Error: ".  $db->error);;
 
 while($row = $result->fetch_assoc()){
-    $v = $row['idTema'];
-    //suponemos que no hay diferencia entre mayuscuals y minusculas
-    if ( $n == $row['nombre'] ){
-        $v .= "," .$row['idTema'];
-    }else{
-
-        $html .= '<option value="' . $v .'"';
-		$html .= ' title="' . $row['nombre'] . '">';
-        $html .= $row['nombre'];
-        $html .= '</option>';
-
-        $n = $row['nombre'];
-    }
+	$html .= '<option value="' . $row['idTema'] .'"';
+	$html .= ' title="' . $row['nombre'] . '">';
+	$html .= $row['nombre'];
+	$html .= '</option>';
 }
 
 $result -> free();
