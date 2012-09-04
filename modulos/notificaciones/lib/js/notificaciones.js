@@ -5,7 +5,7 @@ var idUsuario=0;
 function buscaNotificaciones(){
     $.ajax({
         type: "POST",
-        url: "modulos/notificaciones/lib/php/buscaNotificaciones.php",
+        url: "../../modulos/notificaciones/lib/php/buscaNotificaciones.php",
         data:{
             idUsuario:idUsuario
         },
@@ -18,9 +18,9 @@ function buscaNotificaciones(){
 function hayNotificaciones(text){
 
     if (text == ""){
-  	$('#misDatos img').attr('src','../../lib/img/correo.png');  
+  	$('#imagen_correo').attr('src','../../lib/img/correo.png');  
 }else{
-	$('#misDatos img').attr('src','../../lib/img/hayCorreo.png');  
+	$('#imagen_correo').attr('src','../../lib/img/hayCorreo.png');  
 }
 }
 
