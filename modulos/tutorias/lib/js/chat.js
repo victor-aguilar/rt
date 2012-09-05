@@ -8,8 +8,7 @@ var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demost
 
 var autorizacion = 1;
 var mensaje = "";
-var ultimaVerificacion = "0";
-var ultimoMili = "0"; // usada para distiguir fechas guardada en la misma fecha ( o segundo);
+var idUltimoMensaje = 0;
 
 //Para la sincronizacion de la peticiones AJAX
 var hayPeticionAjax = false;
@@ -71,7 +70,7 @@ var rutaDelAudio = "lib/audio/mensaje_nuevo";
 descargaMensajesPrevios = function(){
     $.ajax({
         type: "POST",
-        url: "conversacionesPrevias.php",
+        url: "mensajesPrevios.php",
         data: {
             idTutoria : idTutoria
         },
@@ -91,39 +90,34 @@ actualizaConversacion = function(xml){
     
 	var tmp;
 	
-    var uv = $(xml).find("ultimaverificacion");
+    idUltimoMensaje = parseInt($(xml).find("idUltimoMensaje").text());
     var mensajes = $(xml).find("mensaje");
-	var pn = $(xml).find("productosnuevos");
-    
-    ultimaVerificacion = uv.text();
-    ultimoMili = uv.attr("ultimoMili");
+
     mensaje = "";
         
     //Agregra los mensajes a la ventana de conversacion.
     mensajes.each(function(){
-    var conversacion = $('#ventanaDeConversacion');
-    var mAnteriores = conversacion.html(); // mensajesAnteriores
-    var mNuevos = "";//mensajesNuevos
-    
-    mNuevos += '<span class="fecha">' + $(this).attr("fecha") + "</span><br/>";
-	mNuevos += '<div class="sbl"><div class="sbr"><div class="stl"><div class="str">'
-    mNuevos += '<span class="mensaje">' + $(this).text() + "</span>";
-	mNuevos += '</div></div></div></div><div class="sb">';
-	mNuevos += '<img class="character" src="../../avatares/'+$(this).attr('idUsuario')+'.jpg"/>';
-	mNuevos += '<b class="nick">';
-    mNuevos += $(this).attr("nick") + "</b>";
-    conversacion.html(mAnteriores + mNuevos);
-    autoScroll("ventanaDeConversacion");
+		var conversacion = $('#ventanaDeConversacion');
+		var mAnteriores = conversacion.html(); // mensajesAnteriores
+		var mNuevos = "";//mensajesNuevos
+
+		mNuevos += '<span class="fecha">' + $(this).attr("fecha") + "</span><br/>";
+		mNuevos += '<div class="sbl"><div class="sbr"><div class="stl"><div class="str">'
+		mNuevos += '<span class="mensaje">' + $(this).text() + "</span>";
+		mNuevos += '</div></div></div></div><div class="sb">';
+		mNuevos += '<img class="character" src="../../avatares/'+$(this).attr('idUsuario')+'.jpg"/>';
+		mNuevos += '<b class="nick">';
+		mNuevos += $(this).attr("nick") + "</b>";
+		conversacion.html(mAnteriores + mNuevos);
+		autoScroll("ventanaDeConversacion");
     });
 	
 	if(mensajes.length != 0 && 
 		$('#sonidoOnOff').attr('value') == "on"){
 		$('#sonido').html(player);
 	}
-	
-    
-    idEtapa = parseInt($(xml).find('ultimaetapa').text());
 
+    idEtapa = parseInt($(xml).find('ultimaEtapa').text());
     $('#etapa').text(etapas[idEtapa]);
     switch(idEtapa){
         case (DEMOSTRACION):
@@ -137,7 +131,7 @@ actualizaConversacion = function(xml){
             break;
     }
     
-	tmp = parseInt(pn.text());
+	tmp = parseInt($(xml).find("productosNuevos").text());
 	
     if(  tmp != numeroDeProductos ){
 		numeroDeProductos = tmp;
@@ -160,8 +154,7 @@ descargaMensajesNuevos= function(){
     data: 
         {idTutoria : idTutoria, 
         mensaje: mensaje,
-        ultimaVerificacion : ultimaVerificacion,
-        ultimoMili: ultimoMili,
+        idUltimoMensaje: idUltimoMensaje,
         idEtapa: idEtapa,
         tipoDeUsuario : tipoDeUsuario,
 		numeroDeProductos: numeroDeProductos},

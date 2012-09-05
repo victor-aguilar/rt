@@ -1,160 +1,117 @@
 <?php
 session_start();
-header('Content-Type: text/xml; charset=UTF-8');
-
+header('Content-Type: text/html; charset=UTF-8');
 include "../../configuracion.php";
 include "../../lib/php/utils.php";
 
-/*Construimos el xml a partir de los datos recuperados de la tabla;
- *
- * El xml tiene el siguiente formato:
- * 
- * <mensajes>
- *   <mensaje idUsuario="victor" fecha="2012-07-11 01:27:00">
- *      Un mensaje de ejemplo :)
- *   </mensaje>
- *   <mensaje idUsuario="masterchif" fecha="2012-07-11 01:28:00">
- *      Mensaje desde Halo :)
- *   </mensaje>
- *   <ultimaverificacion ultimoMili="2">2012-07-11 01:28:00</ultimaverificacion>
- *   <error>Errores </error>
- * </mensajes>
- * 
- * La unica etiqueta obligatoria dentro de <mensajes> es <ultimaverificacion>
- */
+administraSesion();
+$db = dameConexion();
 
 //Datos enviados por el usuario.
 $idTutoria = $_POST['idTutoria'];
 $idUsuario = $_SESSION['idUsuario'];
-$mensaje = $_POST['mensaje'];
+$mensaje = $db->real_escape_string($_POST['mensaje']);
 $idEtapa = $_POST['idEtapa'];
 $tipoDeUsuario = $_POST['tipoDeUsuario'];
-$ultimoMili = $_POST['ultimoMili']; //Se utiliza para hacer unica la fecha.
-$ultimaVerificacion = $_POST['ultimaVerificacion'];
+$idUltimoMensaje = $_POST['idUltimoMensaje'];
 
-//Regresaresmo un archivo xml con elemento root = mensajes.
 
-$fecha = getActualDate();
-$borrar = "1"; //minutos
+//$borrar = "1"; //minutos
+$error = "";
 $etapaDemostracion = 5;
 $autorizacion = ($tipoDeUsuario === "sinodal")? 0: 1;
-$error = "";
-$numeroDeProductos = $_POST['numeroDeProductos'];
 
-$db = dameConexion();
-
-//Comprobamos conexion;
-if(!$db){ die ("Error al conectarse a la base de datos. " .$db->connect_error);}
-
-//Guardamos el mensaje nuevo;
-if($mensaje != ""){
-    $query = "call guardaMensaje(?,?,?,?,?,?,@mili);";
-    $stmt = $db ->stmt_init(); 
-    $stmt->prepare($query);
-    $stmt->bind_param("ddssdd", $idTutoria,$idUsuario,$fecha,$mensaje,$autorizacion,$idEtapa);
-    if(! $stmt->execute() ){
-        $xml = '<?xml version="1.0" encoding="utf-8"?><mensajes>'; 
-        $xml .= "<error><![CDATA[";
-        $xml .= "Error al llamer store procedure guardarMensaje.";
-        $xml .= sprintf("Parametros: %d, %d, %s, %s, %d, %d", 
-                $idTutoria,$idUsuario,$fecha,$mensaje,$autorizacion,$idEtapa);
-        $xml .= "]]></error>";
-        $xml .= "</mensajes>";
-        print($xml);
-        $stmt ->close();
-        $db -> close();
-        exit();
-    }
-    $stmt->close();
+// The sended message.
+if( $mensaje != ""){
+	$insert = sprintf(
+			'insert into MensajesPlus 
+				(idTutoria,idUsuario,idEtapa, autorizacion,mensaje) value
+				(%d,%d,%d,%d,"%s");',
+			$idTutoria,$idUsuario,$idEtapa,$autorizacion,$mensaje);
+	if(!$db->query($insert)){
+		logging("Consulta: " . $insert . "\n\t" . $db->error );
+		$error .= "<error>Error al guardar el mensaje</error>";
+	}
 }
 
-
-//Esta variable es usada unicamente el if siguiente.
-//$tmp = ($fecha == $ultimaVerificacion)? ">=": ">";
-//$tmp = ">";
-
-//Borramos mensajes viejos.
-$query = sprintf('
-    delete from Mensajes 
-        where idtutoria=%d and fecha < DATE_SUB("%s", INTERVAL %d MINUTE);'
-        ,$idTutoria,$fecha, $borrar);
-
-if(! $db -> query($query)){
-    echo $query;
-}
+////Borramos mensajes viejos.
+//$query = sprintf('
+//    delete from Mensajes 
+//        where idtutoria=%d and fecha < DATE_SUB("%s", INTERVAL %d MINUTE);'
+//        ,$idTutoria,$fecha, $borrar);
+//
+//if(! $db -> query($query)){
+//    echo $query;
+//}
 
 //Recuperamos los mensajes nuevos. Si se ralizo una insercion
 //(la condicion anterior) tambien se recupera esta ultima insercion.
 if ($idEtapa < $etapaDemostracion ){
-    $query = sprintf('select m.*, u.nick 
-                    from Mensajes as m, Usuarios as u
-                        where 
-                            m.idTutoria = %1$d and 
-                            u.idUsuario = m.idUsuario and
-                            (m.fecha > "%2$s" or
-                                (m.fecha = "%2$s" and m.mili > %3$d));',
-            $idTutoria, $ultimaVerificacion , $ultimoMili);
-    $error .= $query;
+    $query = sprintf('
+		select m.*, u.nick 
+		from MensajesPlus as m natural join Usuarios as u
+		where 
+			m.idTutoria = %d and 
+			u.idUsuario = m.idUsuario and
+			m.idMensaje > %d;',
+				$idTutoria, $idUltimoMensaje);
 }else{ //la etapa
-    $query = sprintf('select m.*, u.nick 
-                    from Mensajes as m, Usuarios as u
-                        where 
-                            m.idTutoria = %1$d and 
-                            autorizacion = true and
-                            m.idUsuario = u.idUsuario and
-                            (m.fecha > "%2$s" or
-                                (m.fecha = "%2$s" and m.mili > %3$d));',
-            $idTutoria, $ultimaVerificacion, $ultimoMili); 
-    $error .= $query;
+    $query = sprintf('
+		select m.*, u.nick 
+		from MensajesPlus as m natural join usuarios as u
+		where 
+			m.idTutoria = %d and 
+			u.idUsuario = m.idUsuario and
+			m.autorizacion = true and
+			m.idMensaje > %d;',
+				$idTutoria, $idUltimoMensaje); 
 }
 
-
-// Creamos el xml
-$xml = '<?xml version="1.0" encoding="utf-8"?><mensajes>'; 
-
 $result = $db->query($query);
-  
-while($result && $row = $result->fetch_assoc()){
-    $xml .= '<mensaje' .
+
+if(!$result){
+	logging("Consulta: " . $query ."\n\t" . $db->error);
+	$error = "<error>Error al obtener mensajes nuevos. " .$query. "</error>";
+}
+
+$idum = 0;
+$xml = '<?xml version="1.0" encoding="utf-8"?><mensajes>';
+while ($row = $result -> fetch_assoc()){
+	$xml .= '<mensaje' .
             ' idUsuario="' . $row['idUsuario'] . '"'.
             ' nick="' . $row['nick'] . '"' .
-            ' fecha="'. $row['fecha']  .'"' .
-            ' ultimoMili="' . $row['mili'] . '">';
+            ' fecha="'. $row['fecha']  .'">';
     $xml .= '<![CDATA[';
     $xml .= $row['mensaje'];
     $xml .= ']]>';
     $xml .= '</mensaje>';
     
     //Guardamos el milisegundo (mili) y la fecha del ultimo mensaje.
-    $ultimoMili = $row['mili'];
-    $ultimaVerificacion = $fecha;
+    $idUltimoMensaje= $row['idMensaje'];
     
     if ($idEtapa < $row['idEtapa']){
         $idEtapa = $row['idEtapa'];
     }
-    
 }
 
- $result = $db->query('
-	 select count(*) as numPro 
-	 from Productos 
-	 where idTutoria = ' . $idTutoria . ';');
+$resultp = $db->query(
+		sprintf('
+			select count(*) 
+			from Productos 
+			where idTutoria = %d;',$idTutoria));
 
- if (!$result) die ("Error: " .$db->error);
+ if (!$resultp) die ("Error: " .$db->error);
  
- $row = $result->fetch_row();
+ $row = $resultp->fetch_row();
  
- $xml .= "<productosnuevos>" . $row[0] . "</productosnuevos>";
+ $xml .= "<productosNuevos>" . $row[0] . "</productosNuevos>";
 
-$xml .= "<ultimaverificacion ultimoMili=\"" . $ultimoMili . "\">" ;
-$xml .= $ultimaVerificacion . "</ultimaverificacion>";
-$xml .= '<ultimaetapa>' . $idEtapa .'</ultimaetapa>' ;
-$xml .= "</mensajes>";
 
-if( $result && $result->free());
+$xml .= $error;
+$xml .= '<idUltimoMensaje>' . $idUltimoMensaje .'</idUltimoMensaje>';
+$xml .= '<ultimaEtapa>' . $idEtapa .'</ultimaEtapa>' ;
+$xml .= '</mensajes>';
 
 $db->close();
-
 print($xml);
-
 ?>
