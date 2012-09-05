@@ -23,7 +23,7 @@ function fetchUltimaEtapa($idTutoria,$db){
 
 function fetchMensajesNuevos(
 		$idTutoria,$idUltimoMensaje,$idEtapa,$tipoDeUsuario,$tabla,$db){
-	$talba = ($tabla == "historial")? 'HistorialPlus':'MensajesPlus';
+	$tabla = ($tabla == "historial")? 'HistorialPlus':'MensajesPlus';
 	$error = "";
 	if ($idEtapa < DEMOSTRACION ){
 		$query = sprintf('
@@ -41,7 +41,7 @@ function fetchMensajesNuevos(
 			//autorizado, es decir los pendientes.
 			$query = sprintf('
 				select m.*, u.nick 
-				from MensajesPlus as m natural join usuarios as u
+				from ' . $tabla . ' as m natural join usuarios as u
 				where 
 					m.idTutoria = %d and 
 					u.idUsuario = m.idUsuario and
