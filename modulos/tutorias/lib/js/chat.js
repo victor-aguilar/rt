@@ -72,7 +72,8 @@ descargaMensajesPrevios = function(){
         type: "POST",
         url: "mensajesPrevios.php",
         data: {
-            idTutoria : idTutoria
+            idTutoria : idTutoria,
+			tipoDeUsuario: tipoDeUsuario
         },
         dataType: "xml",
         success:actualizaConversacion,
@@ -91,7 +92,8 @@ actualizaConversacion = function(xml){
 	var tmp;
 	
     idUltimoMensaje = parseInt($(xml).find("idUltimoMensaje").text());
-    var mensajes = $(xml).find("mensaje");
+    var mensajes = $(xml).find('mensajes').children();
+	var pendientes = $(xml).find('pendientes').children();
 
     mensaje = "";
         
@@ -112,6 +114,35 @@ actualizaConversacion = function(xml){
 		autoScroll("ventanaDeConversacion");
     });
 	
+	//Agregamos los mensajes pendientes a la ventana de pendientes
+	pendientes.each(function(){
+		
+		var m = '<div class="mensajePendiente">';
+			m += $(this).attr('fecha') +"<br/>";
+			m += "De: " + $(this).attr('nick');
+			m += '<div value="' + $(this).attr('idUsuario') + "," 
+				+ $(this).attr('idMensaje') + '">';
+			m += $(this).text()
+			m += '</div>';
+			m += '<button>Autorizar</button>'
+			m += '</div>';
+			
+		$('#listaDePendientes').html( $('#listaDePendientes').html() + m);
+		$('#listaDePendientes').find('button').click(function(){
+			
+			var pendiente = $(this).siblings('div');
+			var tmp = pendiente.attr('value').split(','); 
+			$(this).parent().load(
+				'lib/php/autorizarMensaje.php',
+				{	idTutoria : idTutoria,
+					idUsuario: tmp[0], 
+					idMensaje : tmp[1],
+					idEtapa: DEMOSTRACION,
+					mensaje: pendiente.html()
+				});
+		});
+	});
+
 	if(mensajes.length != 0 && 
 		$('#sonidoOnOff').attr('value') == "on"){
 		$('#sonido').html(player);
@@ -584,7 +615,6 @@ $(document).ready(function(){
 		  
           break;
      case "moderador":
-          inicializaPendientes();
 		  $("#añadirTemaDeCatalogo").hide();
 		  
 		  $('#aprobar').click(function(){
@@ -623,7 +653,7 @@ $(document).ready(function(){
          if(idEtapa == DEMOSTRACION){
             cambiaADemostracion();
          }else{
-             inicializaProductos();
+            inicializaProductos();
          }
 
         break;

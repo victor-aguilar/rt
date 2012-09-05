@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tutoria>
+	<pendientes>
+		<pendiente idUsuario="2" nick="victor" fecha="2012-09-05 12:35:48"><![CDATA[no autorizado]]>
+		</pendiente>
+		<pendiente idUsuario="2" nick="victor" fecha="2012-09-05 13:16:03"><![CDATA[segundo no autorizado]]>
+		</pendiente>
+	</pendientes>
+	<mensajes>
+		<mensaje idUsuario="2" nick="victor" fecha="2012-09-05 12:35:48"><![CDATA[si autorizado]]>
+		</mensaje>
+		<mensaje idUsuario="2" nick="victor" fecha="2012-09-05 14:09:11"><![CDATA[k]]>
+		</mensaje>
+		<mensaje idUsuario="2" nick="victor" fecha="2012-09-05 14:09:16"><![CDATA[j]]>
+		</mensaje>
+		<mensaje idUsuario="2" nick="victor" fecha="2012-09-05 14:11:35"><![CDATA[no autorizado]]>
+		</mensaje>
+		<mensaje idUsuario="2" nick="victor" fecha="2012-09-05 14:11:54"><![CDATA[no autorizado]]>
+		</mensaje>
+		<mensaje idUsuario="2" nick="victor" fecha="2012-09-05 14:12:31"><![CDATA[no autorizado]]>
+		</mensaje>
+	</mensajes>
+	<ultimaEtapa>5</ultimaEtapa>
+	<idUltimoMensaje>38</idUltimoMensaje>
+	<productosNuevos>1</productosNuevos>
+</tutoria>

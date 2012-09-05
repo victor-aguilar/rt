@@ -48,7 +48,6 @@ switch($_GET['tipoDeUsuario']){
     <script type="text/javascript" src="../../lib/js/funciones.js"></script>
     <script type="text/javascript" src="../../lib/js/modernizr.js"></script>
     <script type="text/javascript" src="lib/js/chat.js"></script>
-    <script tupe="text/javascript" src="../demostracion/lib/js/demostraciones.js"></script>
 
   </head>
   <body>
