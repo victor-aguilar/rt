@@ -35,7 +35,7 @@ saveMensaje($idTutoria,$idUsuario,$idEtapa,$autorizacion,$mensaje,$db);
 //}
 
 $xml = '<?xml version="1.0" encoding="utf-8"?><tutoria>';
-$xml .= fetchMensajesNuevos($idTutoria,$idUltimoMensaje,$idEtapa,$tipoDeUsuario,$db);
+$xml .= fetchMensajesNuevos($idTutoria,$idUltimoMensaje,$idEtapa,$tipoDeUsuario,"mensajes",$db);
 $xml .= fetchNumProductos($idTutoria, $db);
 $xml .= '</tutoria>';
 

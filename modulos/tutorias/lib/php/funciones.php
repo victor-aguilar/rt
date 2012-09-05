@@ -23,7 +23,7 @@ function fetchUltimaEtapa($idTutoria,$db){
 
 function fetchMensajesNuevos(
 		$idTutoria,$idUltimoMensaje,$idEtapa,$tipoDeUsuario,$tabla,$db){
-	$talba = ($tabla == "historia")? 'HistorialPlus':'MensajesPlus';
+	$talba = ($tabla == "historial")? 'HistorialPlus':'MensajesPlus';
 	$error = "";
 	if ($idEtapa < DEMOSTRACION ){
 		$query = sprintf('

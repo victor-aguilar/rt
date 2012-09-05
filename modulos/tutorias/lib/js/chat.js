@@ -4,7 +4,7 @@ var idTutoria   = 0;
 var idUsuario   = 0;
 var tipoDeUsuario = "alumno";
 var idEtapa = -1;
-var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostracion","Aprobado");
+var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostración","Aprobado");
 
 var autorizacion = 1;
 var mensaje = "";
@@ -140,6 +140,7 @@ actualizaConversacion = function(xml){
 					idEtapa: DEMOSTRACION,
 					mensaje: pendiente.html()
 				});
+			$(this).parent().hide();
 		});
 	});
 
@@ -154,7 +155,8 @@ actualizaConversacion = function(xml){
         case (DEMOSTRACION):
             if(tipoDeUsuario != "moderador" &&
                 tipoDeUsuario != "demostrador" &&
-                tipoDeUsuario != "sinodal"){
+                tipoDeUsuario != "sinodal" &&
+				tipoDeUsuario != "observador"){
                 cambiaADemostracion();
             }
 		case (BUSQUEDA_DE_SINODALES):

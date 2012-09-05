@@ -26,7 +26,7 @@ switch($_GET['tipoDeUsuario']){
 		$otros = "Demostrador: " .$nombreDelOtro;
 		break;
 	default:
-		$otros = "";
+		$otros = "Observador/Sinodal";
 }
 ?>
 <!DOCTYPE html>
