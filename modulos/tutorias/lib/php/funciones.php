@@ -22,12 +22,13 @@ function fetchUltimaEtapa($idTutoria,$db){
 }
 
 function fetchMensajesNuevos(
-		$idTutoria,$idUltimoMensaje,$idEtapa,$tipoDeUsuario,$db){
+		$idTutoria,$idUltimoMensaje,$idEtapa,$tipoDeUsuario,$tabla,$db){
+	$talba = ($tabla == "historia")? 'HistorialPlus':'MensajesPlus';
 	$error = "";
 	if ($idEtapa < DEMOSTRACION ){
 		$query = sprintf('
 			select m.*, u.nick 
-			from MensajesPlus as m natural join Usuarios as u
+			from '.$tabla .' as m natural join Usuarios as u
 			where 
 				m.idTutoria = %d and 
 				u.idUsuario = m.idUsuario and
