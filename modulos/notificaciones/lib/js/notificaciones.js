@@ -19,9 +19,9 @@ function hayNotificaciones(text){
 
     if (text == ""){
   	$('#imagen_correo').attr('src','../../lib/img/correo.png');  
-}else{
-	$('#imagen_correo').attr('src','../../lib/img/hayCorreo.png');  
-}
+	}else{
+		$('#imagen_correo').attr('src','../../lib/img/hayCorreo.png');  
+	}
 }
 
 
