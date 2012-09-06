@@ -24,4 +24,9 @@ function administraSesion(){
         exit();
     }
 }
+
+$h = 'localhost';
+$u = 'rt';
+$p = 'r2d2';
+$b = 'tutorias';
 ?>
