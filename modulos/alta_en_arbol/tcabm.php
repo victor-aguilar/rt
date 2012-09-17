@@ -193,25 +193,21 @@ function valid_delete(){
 }
 
 </script>
-<style type="text/css">
-body {
-	background-color: #F0F0FF;
-}
-</style>
+<link href="../../lib/css/esviap.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body onload="carga()">
-<table width="100%" border="0" >
+<table width="98%" border="0" >
   <tr>
-    <th width="42%" scope="col"><img src="/rt/alta_en_arbol/img/pmle.png" alt="" width="335" height="94" /></th>
-    <th width="58%" scope="col"><h2 align="center">Espacio Virtual de Aprendizaje ESVIAP</h2>
-      <h3 align="center">M&oacute;dulo:
-        <?php 
+    <th width="42%" scope="col"><img src="../../lib/img/eimle.png" alt="" width="768" height="128" /></th>
+  </tr>
+  <tr>
+    <th scope="col">M&oacute;dulo:
+    <?php 
 	if ($_SESSION['modulo']=="tc") 
 	{echo "registro de temas de cat&aacute;logo";} 
 	else 
-	{echo "registro de KeyWords";} ?>
-      </h3></th>
+	{echo "registro de KeyWords";} ?></th>
   </tr>
 </table>
 <h2 align="center">

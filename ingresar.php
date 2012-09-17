@@ -9,24 +9,22 @@ $nick = $_POST['nick'];
 $contraseña = $_POST['contraseña'];
 $idUsuario = "";
 $db = dameConexion();
-$db->set_charset('utf8');
 
 $buscaUsuario = sprintf("select idUsuario,nombre 
 	from Usuarios where nick='%s' and contraseña ='%s';",$nick,$contraseña);
 $result = $db->query($buscaUsuario);
 
-if(!$result){
-	echo $buscaUsuario;
-	echo $db->error;
-}
+if(!$result) die($buscaUsuario . " - " . $db->error);
 
-if($result && $row= $result ->fetch_assoc()){
-    $idUsuario = $row['idUsuario'];
-}
+if($result -> num_rows == 0) die ( "Error1, no existe el usuario o la constraseña es incorrecta");
 
-$_SESSION['idUsuario'] = $idUsuario;
+$row = $result -> fetch_assoc();
+
+if(!$row) die ( "Error2, no existe el usuario o la constraseña es incorrecta");
+
+$_SESSION['idUsuario'] = $row['idUsuario'];
 $_SESSION['nick'] = $nick;
 $_SESSION['nombre'] = $row['nombre'];
-print ($idUsuario);
+print ("exito");
 $db ->close();
 ?>

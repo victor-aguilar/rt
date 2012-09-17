@@ -30,5 +30,6 @@ while($result && $row = $result->fetch_assoc()){
 	echo $visual.'</span>';
 	echo '<img src="../../lib/img/cancel.png" title="Borrar Recurso"/>';
 	echo '</div>';
+	echo '<span style="clear:both;display:none;"></span>';
 }
 ?>

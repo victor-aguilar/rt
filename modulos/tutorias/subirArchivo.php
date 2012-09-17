@@ -10,12 +10,6 @@ header('Content-Type: text/html; charset=UTF-8');
   </head>
   <body>
       <script type="text/javascript" src="../../lib/js/jquery.js"></script>
-      <script type="text/javascript">
-          $(document).ready(function(){
-            window.setTimeout(window.close, 3000);
-            window.opener.window.urlDelArchivo = $('#info').attr("value");
-          });
-      </script>
 <?php
 
 include "../../configuracion.php";
@@ -35,18 +29,18 @@ $idUsuario = $_SESSION['idUsuario'];
 $tipo       = $_POST['tipo'];
 $crp        = $_POST['crp']; // = recursos|chat|productos
 
-if ( $_FILES['archivo']['name'] == ""){
-	echo "Nombre del archivo invalido";
-	exit();
+if ( $tipo == "archivo"){
+	if($_FILES['archivo']['name'] == ""){
+		echo "Nombre del archivo invalido";
+		exit();
+	}else{
+		$nombreReal = utf8_encode($_FILES['archivo']['name']);
+		$nombreTemporal = $_FILES['archivo']['tmp_name'];
+	}
 }
 
-if( $_POST['url'] != ""){
+if( $tipo == "url" && $_POST['url'] != ""){
     $nombreReal = $_POST['url'];
-}else{
-	//Esta linea no funciona en: Windows XP
-	//Esta linea funciona en: Windows 7	
-    $nombreReal = utf8_encode($_FILES['archivo']['name']);
-    $nombreTemporal = $_FILES['archivo']['tmp_name'];
 }
 
 $esArchivo = ($tipo == "url" )?false:true; 
@@ -85,9 +79,13 @@ switch($crp){
 			exit();
         }
         echo "Archivo subido con exito. Cerrando...";
+		echo '<script type="text/javascript">
+				$(document).ready(function(){
+				window.setTimeout(window.close, 3000);
+				window.opener.window.urlDelArchivo = $("#info").attr("value");
+				});</script>';
         break;
     case ("recursos"):
-        
         if($esArchivo){
             
             $directorio = "../../archivosSubidos/recursos/". $idTema . "/";
@@ -125,9 +123,7 @@ switch($crp){
                     $idTema, $url,$descripcion ,$hint);
             
             if (!$db -> query($query)){
-                echo "Error en al insertar.<br>";
-                echo $query . "<br>";
-                echo $db -> error;
+                echo "<p>Error en al insertar.</p>";
                 exit();
             }
             
@@ -136,6 +132,11 @@ switch($crp){
             echo '</span>';
         }
         echo "Archivo subido con exito. Cerrando...";
+		echo '<script type="text/javascript">
+				$(document).ready(function(){
+				window.setTimeout(window.close, 3000);
+				window.opener.window.urlDelArchivo = $("#info").attr("value");
+				});</script>';
         break;
     case ("productos"):       
 		
@@ -148,9 +149,9 @@ switch($crp){
 		
         
         if (!$db -> query($query)){
-            echo "Error en al insertar.<br>";
-            echo $query . "<br>";
-            echo $db -> error;
+            echo "Error al insertar.<br>";
+            echo "<p>Posiblemente, ya subiste este producto.";
+			echo " Para actualizarlo, borralo y despues subelo.</p>";
             exit();
         }
         
@@ -168,6 +169,11 @@ switch($crp){
             exit();
         }
         echo "Archivo subido con exito. Cerrando...";
+		echo '<script type="text/javascript">
+				$(document).ready(function(){
+				window.setTimeout(window.close, 3000);
+				window.opener.window.urlDelArchivo = $("#info").attr("value");
+				});</script>';
         break;       
 }
 ?>

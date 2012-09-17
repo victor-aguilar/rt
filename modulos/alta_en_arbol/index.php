@@ -254,10 +254,9 @@ function respuestaAjaxdeltema(){
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+	<?php include "../../lib/php/encabezado.php"?>
+	<?php include "../../lib/php/menu.php"?>
 <table width="100%" border="0" >
-  <tr>
-    <th width="42%" scope="col"><img src="img/esviap_logo.png" width="521" height="80" /></th>
-  </tr>
   <tr>
     <th width="58%" scope="col">
     <h3 align="center">M&oacute;dulo: 
@@ -410,6 +409,7 @@ include ("listado_tc.php")
 ?>
 </div>
 </form>
+<?php include "../../lib/php/pieDePagina.php"?>
 </body>
 </html>
 <?php

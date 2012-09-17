@@ -14,48 +14,47 @@ var nombreDelTema = "";
 var nombreDelAlumno = "";
 
 $(document).ready(function(){
-
-	creaBarraDeNavegacion();
 	
     //conseguimos el id del usuario
     idUsuario = dameIdUsuario();
     nombreDelAlumno = dameNombreDeUsuario();
     
-    $('#lista1,#lista2').hide();
+    $('#lista2,#lista3,#lista4').hide();
     $('#enviarSolicitud button').prop('disabled',true);
     
     //inicializamos eventos
     $('#enviarSolicitud button').click(function(){
         
-        $('#lista1,#lista2').hide("slow");
-		$('#lista1 select').unbind('change');
+        $('#lista2,#lista3,#lista4').hide("slow");
 		$('#lista2 select').unbind('change');
+		$('#lista3 select').unbind('change');
+		$('#lista4 select').unbind('change');
         
         $(this).prop('disabled',true);
         
-	   mensaje += "<h1>Solicitud de tutoria</h1>";
-	   mensaje += "<p> Hola <b>" + nombreDelTutor + "</b></p>";
-	   mensaje += "<p>¿Te gustaría ser tutor de " + nombreDelAlumno + " en el tema: ";
-	   mensaje += "<b>" + nombreDelTema +"</b>?</p>";
-	   mensaje += "<p>Si la respuesta es afirmativa, has click:";
-	   mensaje += '<a href="';
-	   mensaje += "../../modulos/solicitudDeTutoria/creaTutoria.php?idTema=";
-	   mensaje += idTema+"&idTutorado="+idUsuario+'">';
-	   mensaje += "Aceptar Tutoria</a> </p>";
-	   mensaje += "<p>En caso contrario da click en: ";
-	   mensaje += '<a href=';
-	   mensaje += '../../modulos/solicitudDeTutoria/rechasaTutoria.php?';
-	   mensaje += 'de='+ idTutor;
-	   //bug de internet explorer.
-	   //mensaje += '&para=' + idUsuario;
-	   mensaje += '&from=' + idUsuario;
-	   mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
-	   mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
+		mensaje += "<h1>Solicitud de tutoria</h1>";
+		mensaje += "<p> Hola <b>" + nombreDelTutor + "</b></p>";
+		mensaje += "<p>¿Te gustaría ser tutor de " + nombreDelAlumno + " en el tema: ";
+		mensaje += "<b>" + nombreDelTema +"</b>?</p>";
+		mensaje += "<p>Si la respuesta es afirmativa, has click:";
+		mensaje += '<a href="';
+		mensaje += "../../modulos/solicitudDeTutoria/creaTutoria.php?idTema=";
+		mensaje += idTema+"&idTutorado="+idUsuario+'">';
+		mensaje += "Aceptar Tutoria</a> </p>";
+		mensaje += "<p>En caso contrario da click en: ";
+		mensaje += '<a href=';
+		mensaje += '../../modulos/solicitudDeTutoria/rechasaTutoria.php?';
+		mensaje += 'de='+ idTutor;
+		//bug de internet explorer.
+		//mensaje += '&para=' + idUsuario;
+		mensaje += '&from=' + idUsuario;
+		mensaje += '&nombreDelTutor=' + encodeURIComponent(nombreDelTutor);
+		mensaje += '&nombreDelTema=' + encodeURIComponent(nombreDelTema);
 
 
-	   mensaje += '>';
-	   mensaje += 'No aceptar</a>';
-	   mensaje += '</p>'
+		mensaje += '>';
+		mensaje += 'No aceptar</a>';
+		mensaje += '</p>'
         
         $.ajax({
             type: "POST",
@@ -76,30 +75,32 @@ $(document).ready(function(){
         });
 		
     });
+	
+	buscaComponenteEjeCategoria();
 
-    $('#buscarPor select').change(function(){
-
-        $('#lista1,#lista2').hide();
-		$('#lista1 select').unbind('change');
-		$('#lista2 select').unbind('change');
-      
-        $('#enviarSolicitud button').prop("disabled",true); 
-
-        var buscarPor = $(this).val();       
-        
-        
-        switch(buscarPor){
-            case ("tema"):
-                $('#lista1').show("slow");
-                    //accion = temas | tutores
-                buscaTemasPorNombre();
-                break;
-            case ("tutor"):
-                $('#lista1').show("slow");
-                buscaTutoresPorNick();
-                break;
-        }
-    });
+//    $('#buscarPor select').change(function(){
+//
+//        $('#lista1,#lista2').hide();
+//		$('#lista1 select').unbind('change');
+//		$('#lista2 select').unbind('change');
+//      
+//        $('#enviarSolicitud button').prop("disabled",true); 
+//
+//        var buscarPor = $(this).val();       
+//        
+//        
+//        switch(buscarPor){
+//            case ("tema"):
+//                $('#lista1').show("slow");
+//                    //accion = temas | tutores
+//                buscaTemasPorNombre();
+//                break;
+//            case ("tutor"):
+//                $('#lista1').show("slow");
+//                buscaTutoresPorNick();
+//                break;
+//        }
+//    });
     
 });
 
@@ -128,7 +129,7 @@ buscaTemasPorNombre = function()
 
             })
 		},
-		error: function(xhr,status,error){alert("Error: " + error);}
+		error: error
 	});
 }
 /**
@@ -158,38 +159,24 @@ buscaTutoresPorNick = function()
             
         });
         },
-        error: function(xhr,status,error){alert("Error: " + error);}
+        error: error
     })
 }
 
 buscaTutoresPorTema = function(idsTemas){
 
-	$.ajax({
-		    type: "POST",
-		    url: "listaDeTutoresPorNombreDeTema.php",
-		    typeData: "html",
-		    data:{
-		        idsTemas: idsTemas
-		    },
-		    success: function(html){
-
-		        $('#lista2 select').html(html);
-
-		        $('#lista2 select').change(function(){
-		            //(idTema,idTutor)
-		            var x = $(this).val().split(",");
-					var option = $('#lista2 select>option:selected');
-		            idTema = x[0];
-		            idTutor = x[1];
-		            nombreDelTutor = option.text();
-
-		            $('#enviarSolicitud button').prop('disabled',false);
-		        });
-
-		        $('#lista2').show("slow");
-		    },
-		    error:function(xhr,status,error){alert("Error: " + error)}
+	var fun_enviar = function(){
+		$('#lista4').children('select').change(function(){
+			var tmp = $(this).attr('value').split(',');
+			idTema = tmp[0];
+			idTutor = tmp[1];
+			nombreDelTutor = $(this).children('option:selected').text();
+			$('#enviarSolicitud button').prop('disabled',false);
 		});
+	}
+	$('#lista4').children('select').load(
+		'lib/php/listaDeTutoresPorNombreDeTema.php',
+		{idsTemas:idsTemas},fun_enviar);
 }
 
 buscaTemasPorTutor = function(){
@@ -213,6 +200,51 @@ buscaTemasPorTutor = function(){
 
                 $('#lista2').show("slow");
             },
-        error:function(xhr,status,error){alert("Error: " + error)}
+        error:error
     });
+}
+
+buscaComponenteEjeCategoria = function(){
+	
+	var fun_estandares = function(){
+		$('#lista1').children('select').change(function(){
+			$('#enviarSolicitud').children('button').prop('disabled',true);
+			$('#lista3,#lista4').hide('slow');
+			buscaEstandaresPorCEC($(this).val());
+			$('#lista2').show('slow');
+		});
+	}
+	
+	$('#lista1').children('select').load(
+		'lib/php/listaDeComponenteEjeCategoria.php',{},fun_estandares);
+}
+
+buscaEstandaresPorCEC = function(idCEC){
+	
+	var fun_temas = function (){
+		$('#lista2').children('select').change(function(){
+			$('#lista4').hide('slow');
+			$('#enviarSolicitud button').prop('disabled',true);
+			buscaTemasPorEstandar($(this).val());
+			$('#lista3').show('slow');
+		})
+	}
+	
+	$('#lista2').children('select').load(
+		'lib/php/listaDeEstandaresPorCEC.php',{idCEC:idCEC},fun_temas);
+}
+
+buscaTemasPorEstandar = function(idEstandar){
+	
+	var fun_tutores = function(){
+		$('#lista3').children('select').change(function(){
+			nombreDelTema = $(this).children('option:selected').text();
+			$('#enviarSolicitud button').prop('disabled',true);
+			buscaTutoresPorTema($(this).val());
+			$('#lista4').show('slow');
+		})
+	}
+	
+	$('#lista3').children('select').load(
+		'lib/php/listaDeTemasPorEstandar.php',{idEstandar:idEstandar},fun_tutores)
 }

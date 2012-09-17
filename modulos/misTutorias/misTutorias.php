@@ -16,12 +16,12 @@ and open the template in the editor.
     </head>
     <body>
 	   <?php include "../../lib/php/encabezado.php"?>
-	   <p id="barraDeNavegacion"></p>
+	   <?php include "../../lib/php/menu.php"?>
 	   <div id="menu">
 		  <ul>
 			 <li title="buscaTutorias">Mis Tutorías</li>
 			 <li title="buscaTutorados">¿Donde soy Tutorado?</li>
-			 <li title="buscaDondeSoyObservador">¿Donde soy Obsevador? </li>
+			 <li title="buscaDondeSoyObservador">¿Donde soy Observador? </li>
 		  </ul>
 	   </div>
 	   <div id="contenido"></div>

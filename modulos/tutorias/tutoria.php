@@ -7,6 +7,27 @@ administraSesion();
 
 $db = dameConexion();
 $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
+
+switch($_GET['tipoDeUsuario']){
+	case ("alumno"):
+		$nombreDelOtro = dameNombreDelTutorDeLaTutoria($_GET['idTutoria'],$db);
+		$otros = "Tutor: " . $nombreDelOtro;
+		break;
+	case("demostrador"):
+		$nombreDelOtro = dameNombreDelTutorDeLaTutoria($_GET['idTutoria'],$db);
+		$otros = "Moderador: " . $nombreDelOtro;
+		break;
+	case("tutor"):
+		$nombreDelOtro = dameNombreDelEstudiante($_GET['idTutoria'],$db);
+		$otros = "Tutorado: " .$nombreDelOtro;
+		break;
+	case("moderador"):
+		$nombreDelOtro = dameNombreDelEstudiante($_GET['idTutoria'],$db);
+		$otros = "Demostrador: " .$nombreDelOtro;
+		break;
+	default:
+		$otros = "Observador/Sinodal";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,25 +40,23 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
     
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="cache-control" content="no-cahce"/>
     <link rel="StyleSheet" href="lib/css/estilos.css" type="text/css"/>
+	<link rel="StyleSheet" href="lib/css/chat.css" type="text/css"/>
     <link rel="StyleSheet" href="../../lib/css/esviap.css" type="text/css"/>
     
     <script type="text/javascript" src="../../lib/js/jquery.js"></script>
     <script type="text/javascript" src="../../lib/js/funciones.js"></script>
     <script type="text/javascript" src="../../lib/js/modernizr.js"></script>
     <script type="text/javascript" src="lib/js/chat.js"></script>
-    <script tupe="text/javascript" src="../demostracion/lib/js/demostraciones.js"></script>
 
   </head>
   <body>
 	 <?php include "../../lib/php/encabezado.php" ?>
-    <button name="home" onclick="window.location='../../modulos/loged/loged.php'">
-		<img src="../../lib/img/escritorio.png"/>HOME</button>
+	 <?php include "../../lib/php/menu.php"?>
     <div>
         
 			<h3> Tema: <?php echo $nombreDelTema ?></h3>
-			<h3> <?php echo ucfirst($_GET['tipoDeUsuario']) . ": " .$_SESSION['nombre']; ?></h3>
+			<h3> <?php echo ucfirst($_GET['tipoDeUsuario']) . ": " .$_SESSION['nombre'] . "," . $otros; ?></h3>
 			<h3>Etapa: <span id="etapa"></span></h3>
 		<div id="chat">
 			<div id="sonido"></div>
@@ -49,6 +68,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
                 <div style="clear:both"></div>
                 <label id="caracteresRestantes" >255</label>
                 <button id="enviarMensaje">Enviar</button>
+				
 				<img class="boton" 
 					 src="../../lib/img/sonidoOn.png" 
 					 alt="Sonido: On"
@@ -58,11 +78,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
                 
                 <?php 
                 if($_GET['tipoDeUsuario'] == 'tutor'){ 
-                    echo '<img id="siguienteEtapa"';
-					echo ' src="../../lib/img/ok.png"';
-					echo ' title="Preciona para cambiar a la Siguiente Etapa"';
-					echo ' alt="Click para cambiar a la Siguiente Etapa"';
-					echo ' class="boton"/>';
+                    include 'lib/php/botonesDeTutor.php';
                 }
                 ?>
                 
@@ -76,7 +92,7 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
       switch ( $tipoDeUsuario){
       case ("tutor"):
           ?>
-					<div class="columna">        
+			<div class="columna">        
 			<div id="recursos"> 
 				<h3>Recursos</h3> 
 				<div id="listaDeRecursos"></div>
@@ -91,60 +107,48 @@ $nombreDelTema = dameNombreDelTemaDeLaTutoria($_GET['idTutoria'],$db);
 				<div id="listaDeProductos"></div>
 				<br>
 				<div id="subirProductos">
-				<button value="4">Registro de Tutoria</button>
+				<button value="4">Subir Registro de Tutoria</button>
 				</div>
+			</div>
 			</div>
 			
 			<div style="clear:both;"></div>
-			
-			<div id="añadirTemaDeCatalogo">
-				<br/>
-				<img class="boton" 
-					 src="../../lib/img/temasDeCatalogo.png"
-					 title="Añadir Tema de Catalogo al Tutorado"
-					 alt="Click para Añadir Tema de Catalogo al Tutorado"/>
-				<div>
-					<input class="bordeNegro" 
-						   type="text" 
-						   value="" 
-						   placeholder="Nombre del Tema"/>
-					<button>Guardar </button>
-				</div>
+			<div id="temaCaptura">
+				<input class="bordeNegro" 
+					   type="text" 
+					   value="" 
+					   placeholder="Nombre del Tema"/>
+				<button>Guardar </button>
 			</div>
-					</div>
         
           <?php
           break;
       case ("moderador"): // Es el tutor en etapa de demostracion
+		  echo '<div class="columna">';
 		  echo '<div id="pendientes">';
 		  echo '<h3>Pendientes </h3>';
           echo '<div id="listaDePendientes"></div>';
 		  echo '<div style="clear:left"></div>';
 		  echo '<button id="aprobar"><img src="../../lib/img/ok.png"> Aprobar</button>';
 		  echo '</div>';
+		  echo '</div>';
           break;
       case ("alumno"):?>
         
+			<div class="columna">
 			<div id="productos">
 				<h3>Productos</h3>
-				<div class="columna">
 					<div id="listaDeProductos"></div>
 					<div id="subirProductos">
-						<button value="1">Registro de Proceso de Estudio</button>
-						<button value="2">Guion de Tutoria</button>
-						<button value="3">Demostracion Publica</button>
+						<button value="1">Subir Registro de Proceso de Estudio</button>
+						<button value="2">Subir Guion de Tutoria</button>
+						<button value="3">Subir Demostracion Publica</button>
 					</div>
-				</div>
+			</div>
 			</div>
           <?php
           break;
 	  case ("sinodal"):
-		    echo '<div class"columna">';
-			echo '<div id="pendientes">';
-			echo '<h3>Lista de Pendientes</h3>';
-			echo '<div id="listaDePendientes"></div>';
-			echo '</div>';
-			echo '</div>';
 			break;
       }
       ?>

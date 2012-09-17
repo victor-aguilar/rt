@@ -1,0 +1,78 @@
+{
+  "elements": [
+    {
+      "type": "line",
+      "values": [
+        17000000,
+        17000000,
+        17000000,
+        17000000,
+        17000000,
+        17000000,
+        17000000,
+        17000000
+      ],
+      "dot-style": {
+        "type": "dot",
+        "colour": "#0000ff"
+      },
+      "text": "Germany",
+      "width": 2
+    },
+    {
+      "type": "line",
+      "values": [
+        10000000,
+        10000000,
+        10000000,
+        10000000,
+        10000000,
+        10000000,
+        10000000,
+        10000000
+      ],
+      "dot-style": {
+        "type": "dot",
+        "colour": "#ffff00"
+      },
+      "width": 2,
+      "text": "Albania",
+      "colour": "#ffff00"
+    },
+    {
+      "type": "line",
+      "values": [
+        4000000,
+        4000000,
+        4000000,
+        4000000,
+        4000000,
+        4000000,
+        4000000,
+        4000000
+      ],
+      "dot-style": {
+        "type": "dot",
+        "colour": "#ff00ff"
+      },
+      "width": 2,
+      "text": "Finland",
+      "colour": "#ff00ff"
+    }
+  ],
+  "title": {
+    "text": "Test Graph"
+  },
+  "legend": {
+    "visible": true
+  },
+  "inner_bg_grad": {
+    "fillType": "linear",
+    "alpha": [1,1],
+    "ratio": [0,255],
+    "angle": "0",
+    "colour1": "#ff0000",
+    "colour2": "#ffff00"
+  }
+
+}

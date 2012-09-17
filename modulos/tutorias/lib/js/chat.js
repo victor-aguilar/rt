@@ -4,12 +4,11 @@ var idTutoria   = 0;
 var idUsuario   = 0;
 var tipoDeUsuario = "alumno";
 var idEtapa = -1;
-var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostracion");
+var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostración","Aprobado");
 
 var autorizacion = 1;
 var mensaje = "";
-var ultimaVerificacion = "0";
-var ultimoMili = "0"; // usada para distiguir fechas guardada en la misma fecha ( o segundo);
+var idUltimoMensaje = 0;
 
 //Para la sincronizacion de la peticiones AJAX
 var hayPeticionAjax = false;
@@ -71,12 +70,13 @@ var rutaDelAudio = "lib/audio/mensaje_nuevo";
 descargaMensajesPrevios = function(){
     $.ajax({
         type: "POST",
-        url: "conversacionesPrevias.php",
+        url: "mensajesPrevios.php",
         data: {
-            idTutoria : idTutoria
+            idTutoria : idTutoria,
+			tipoDeUsuario: tipoDeUsuario
         },
         dataType: "xml",
-        success:actulizaConversacion,
+        success:actualizaConversacion,
         error: error
     });
 };
@@ -87,52 +87,84 @@ descargaMensajesPrevios = function(){
  * Recibe un acrhivo xml.
  */
 
-actulizaConversacion = function(xml){
+actualizaConversacion = function(xml){
     
 	var tmp;
 	
-    var uv = $(xml).find("ultimaverificacion");
-    var mensajes = $(xml).find("mensaje");
-	var pn = $(xml).find("productosnuevos");
-    
-    ultimaVerificacion = uv.text();
-    ultimoMili = uv.attr("ultimoMili");
+    idUltimoMensaje = parseInt($(xml).find("idUltimoMensaje").text());
+    var mensajes = $(xml).find('mensajes').children();
+	var pendientes = $(xml).find('pendientes').children();
+
     mensaje = "";
         
     //Agregra los mensajes a la ventana de conversacion.
     mensajes.each(function(){
-    var conversacion = $('#ventanaDeConversacion');
-    var mAnteriores = conversacion.html(); // mensajesAnteriores
-    var mNuevos = "";//mensajesNuevos
-    
-    mNuevos += '<span class="nick">';
-    mNuevos += $(this).attr("nick") + "</span>: ";
-    mNuevos += '<span class="fecha">' + $(this).attr("fecha") + "</span><br/>";
-    mNuevos += '<span class="mensaje">' + $(this).text() + "</span><br/>";
-    conversacion.html(mAnteriores + mNuevos);
-    autoScroll("ventanaDeConversacion");
+		var conversacion = $('#ventanaDeConversacion');
+		var mAnteriores = conversacion.html(); // mensajesAnteriores
+		var mNuevos = "";//mensajesNuevos
+
+		mNuevos += '<span class="fecha">' + $(this).attr("fecha") + "</span><br/>";
+		mNuevos += '<div class="sbl"><div class="sbr"><div class="stl"><div class="str">'
+		mNuevos += '<span class="mensaje">' + $(this).text() + "</span>";
+		mNuevos += '</div></div></div></div><div class="sb">';
+		mNuevos += '<img class="character" src="../../avatares/'+$(this).attr('idUsuario')+'.jpg"/>';
+		mNuevos += '<b class="nick">';
+		mNuevos += $(this).attr("nick") + "</b>";
+		conversacion.html(mAnteriores + mNuevos);
+		autoScroll("ventanaDeConversacion");
     });
 	
+	//Agregamos los mensajes pendientes a la ventana de pendientes
+	pendientes.each(function(){
+		
+		var m = '<div class="mensajePendiente">';
+			m += $(this).attr('fecha') +"<br/>";
+			m += "De: " + $(this).attr('nick');
+			m += '<div value="' + $(this).attr('idUsuario') + "," 
+				+ $(this).attr('idMensaje') + '">';
+			m += $(this).text()
+			m += '</div>';
+			m += '<button>Autorizar</button>'
+			m += '</div>';
+			
+		$('#listaDePendientes').html( $('#listaDePendientes').html() + m);
+		$('#listaDePendientes').find('button').click(function(){
+			
+			var pendiente = $(this).siblings('div');
+			var tmp = pendiente.attr('value').split(','); 
+			$(this).parent().load(
+				'lib/php/autorizarMensaje.php',
+				{	idTutoria : idTutoria,
+					idUsuario: tmp[0], 
+					idMensaje : tmp[1],
+					idEtapa: DEMOSTRACION,
+					mensaje: pendiente.html()
+				});
+			$(this).parent().hide();
+		});
+	});
+
 	if(mensajes.length != 0 && 
 		$('#sonidoOnOff').attr('value') == "on"){
 		$('#sonido').html(player);
 	}
-	
-    
-    idEtapa = parseInt($(xml).find('ultimaetapa').text());
 
+    idEtapa = parseInt($(xml).find('ultimaEtapa').text());
     $('#etapa').text(etapas[idEtapa]);
     switch(idEtapa){
         case (DEMOSTRACION):
             if(tipoDeUsuario != "moderador" &&
                 tipoDeUsuario != "demostrador" &&
-                tipoDeUsuario != "sinodal"){
+                tipoDeUsuario != "sinodal" &&
+				tipoDeUsuario != "observador"){
                 cambiaADemostracion();
             }
+		case (BUSQUEDA_DE_SINODALES):
+				  $('#buscaSinodales').show();
             break;
     }
     
-	tmp = parseInt(pn.text());
+	tmp = parseInt($(xml).find("productosNuevos").text());
 	
     if(  tmp != numeroDeProductos ){
 		numeroDeProductos = tmp;
@@ -155,13 +187,12 @@ descargaMensajesNuevos= function(){
     data: 
         {idTutoria : idTutoria, 
         mensaje: mensaje,
-        ultimaVerificacion : ultimaVerificacion,
-        ultimoMili: ultimoMili,
+        idUltimoMensaje: idUltimoMensaje,
         idEtapa: idEtapa,
         tipoDeUsuario : tipoDeUsuario,
 		numeroDeProductos: numeroDeProductos},
     dataType: "xml",
-    success: actulizaConversacion,
+    success: actualizaConversacion,
     error: error
     }); 
     
@@ -186,6 +217,9 @@ inicializaChat = function(){
   
     $('#enviarMensaje').click(function(){
         mensaje = $("#mensaje").val().trim();
+		if(mensaje.lenght > 255){
+			mensaje = mensaje.substr(0, 254);
+		}
         //mensajes[mensajes.length] = $("#message").val();
         $("#mensaje").val("");
         //guardaMensaje();
@@ -349,8 +383,8 @@ actualizaListaDeProductos = function(){
         data: {idTutoria: idTutoria},
         success: function(html){
             $('#listaDeProductos').html(html);
-			$('#listaDeProductos div:odd').addClass("filaImpar");
-			$('#listaDeProductos div:even').addClass("filaPar");
+//			$('#listaDeProductos div:odd').addClass("filaImpar");
+//			$('#listaDeProductos div:even').addClass("filaPar");
             var productos = $('#listaDeProductos div');
 			
 			//manda el producto por el chat
@@ -457,25 +491,9 @@ buscaSinodales = function(){
         error: error
     });
 }
+agregaTemaDeCatalogo = function(nombreDelTema){
 
-inicializaAgregarTemaDeCatalogo = function(){
-	$('#añadirTemaDeCatalogo').show('slow');
-	$('#añadirTemaDeCatalogo img').click( function(){
-		$(this).siblings('div').toggle('fast').children('input');
-	});
-	
-	$('#añadirTemaDeCatalogo div').hide();
-	
-	$('#añadirTemaDeCatalogo div button').click(function(){
-		//$(this).siblings('input').addClass("bordeRojo");
-		var nombreDelTema = $(this).siblings('input').val();
-		
-		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
-¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
-		
-		if( nombreDelTema != "" && conf){
-			$.ajax({
-				context:this,
+		$.ajax({
 				url:'lib/php/agregarTemaDeCatalogo.php',
 				data:{
 				   idTutoria: idTutoria,
@@ -484,13 +502,40 @@ inicializaAgregarTemaDeCatalogo = function(){
 				type:'POST',
 				typeData:"text",
 				success:function(text){
-					$(this).siblings('input').val("");
+					$('#temaCaptura').children('input').val("");
 					alert(text);
-					$('#añadirTemasDeCatalogo button').click();
+					$('#añadirTemasDeCatalogo').children('button').click();
 				}
 			});
-		}
+	}
+inicializaAgregarTemaDeCatalogo = function(){
+	$('#añadirTemaDeCatalogo').show('slow');
+	$('#añadirTemaDeCatalogo').click( function(){
+		$('#temaCaptura').toggle('slow');
 	});
+	
+	$('#temaCaptura').hide();
+	$('#temaCaptura').children('button').prop("disabled",true);
+	
+	$('#temaCaptura').children('button').click(function(){
+		//$(this).siblings('input').addClass("bordeRojo");
+		var nombreDelTema = $('#temaCaptura').children('input').val();
+
+		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
+¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
+		if(conf){
+			agregaTemaDeCatalogo(nombreDelTema);
+		}	
+	});
+	
+	$('#temaCaptura input').keyup(function(){
+		if( $(this).val() != ""){
+			$(this).siblings('button').prop("disabled",false);
+		}else{
+			$(this).siblings('button').prop("disabled",true);
+		}
+	})
+	
 }
 
 /*
@@ -504,7 +549,7 @@ $(document).ready(function(){
   
   tipoDeUsuario = getUrlVars()['tipoDeUsuario'];
   idTutoria = getUrlVars()['idTutoria'];
-  idUsuario = getUrlVars()['idUsuario'];
+  idUsuario = dameIdUsuario();
   
   //inicializamos el reproductor de sonido segun el soporte que tenga el navegador
 	var html5 = '<audio controls preload="auto" autobuffer autoplay="autoplay">';
@@ -540,37 +585,60 @@ $(document).ready(function(){
 		  inicializaAgregarTemaDeCatalogo();
 
           $('#siguienteEtapa').click(function(){
+			  
               idEtapa++;
               switch(idEtapa){
                   case(DEMOSTRACION):
                       $('#mensaje').val("En la Etapa de Demostracion");
                       break;
+				  case (BUSQUEDA_DE_SINODALES):
+					  buscaSinodales();
+					  $('#mensaje').val("Etapa: " + etapas[idEtapa]);
+					  break;
                   default:
-                      $('#mensaje').val("Nueva Etapa Iniciada");
+                      $('#mensaje').val("Etapa: " + etapas[idEtapa]);
               }
               $('#enviarMensaje').click();
-              
-              if(idEtapa == BUSQUEDA_DE_SINODALES){
-                buscaSinodales();
-              }
-          })
+          });
+		  
+		  $('#buscaSinodales').click(function(){
+				$.ajax({
+					type:'POST',
+					url:'buscaSinodales.php',
+					data:{idTutoria:idTutoria},
+					typedata:"html",
+					error: error
+				});
+
+				$('#mensaje').val("Buscando Sinodales...");
+				$('#enviarMensaje').click();
+				
+			}).hide();
 		  
           break;
      case "moderador":
-          inicializaPendientes();
 		  $("#añadirTemaDeCatalogo").hide();
 		  
 		  $('#aprobar').click(function(){
+			  
+			  agregaTemaDeCatalogo(dameNombreDelTema(idTutoria));
+			  
 			  $.ajax({
 				  url:'lib/php/aprobar.php',
 				  type:'POST',
 				  data:{idTutoria:idTutoria},
 				  typeData:"text",
-				  success:function(text){
-					  idEtapa = 6;
-					  alert(text);
-				  }
+				  success:function(){
+					  idEtapa=6;
+					  var mensaje = "¡Demostración Aprobada!";
+					  mensaje += "¡Felicidades! Ahora ya puedes tutorar.";
+
+					  $('#mensaje').val(mensaje);
+					  $('#enviarMensaje').click();
+				  },
+				  error:error
 			  });
+			  
 		  });
 		  
           break;
@@ -581,13 +649,13 @@ $(document).ready(function(){
           break;
      case "sinodal":
           autorizacion = 0;
-          inicializaComponentesDeSinodal()
+          //inicializaComponentesDeSinodal()
           break;
      case "alumno":
          if(idEtapa == DEMOSTRACION){
             cambiaADemostracion();
          }else{
-             inicializaProductos();
+            inicializaProductos();
          }
 
         break;

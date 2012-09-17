@@ -17,6 +17,9 @@
 	width:100%;
 }
 
+.mensaje{
+}
+
 #subirArchivo{
     display:block;
     float:left;
@@ -29,6 +32,7 @@
   border-style: solid;
   overflow:auto;
   color:black;
+  background-color:#66839A;
 }
 
 .nick{
@@ -54,11 +58,18 @@
 
 #listaDePendientes{
   height: 350px;
-  width: 300px;
+  width: 288px; /* 12px padding */
   border-width: 2px;
   border-color: black;
   border-style: solid;
   overflow:auto;
+  padding:6px;
+}
+
+.mensajePendiente{
+	border: purple solid 1px;
+	margin: 5px auto 5px auto;
+	padding:6px;
 }
 
 
@@ -67,14 +78,14 @@
     Solo para la ventana del TUTOR 
 */
 
-#recursos,#productos,#pendientes,#añadirTemaDeCatalogo{
+#recursos,#productos,#pendientes{
     margin-left: 20px;
     float:left;
 	width:100%;
 }
 
 #listaDeRecursos,#listaDeProductos{
-  height: 100px;
+  height: 120px;
   width: 100%;
   border-width: 2px;
   border-color: black;
@@ -85,20 +96,26 @@
 
 #listaDeRecursos img,
 #listaDeProductos img{
-	display:inline;
     cursor: pointer;
     float:right;
 }
 
 #listaDeProductos span,
 #listaDeRecursos span{
-	
+	width:250px;
+	display:block;
     cursor: pointer;
 	float:left;
+	overflow-x:hidden;
+}
+
+#listaDeProductos div,
+#listaDeRecursos div{
+	width:275px;
 }
 
 .columna{
-	width:360px;
+	width:300px;
 	margin-top:-20px;
 	float:left;
 }
@@ -115,15 +132,11 @@
 	cursor:pointer;
 }
 
-#siguienteEtapa,#sonidoOnOff{
+#siguienteEtapa,#sonidoOnOff,#buscaSinodales,#añadirTemaDeCatalogo{
 	float:right;
 }
 
 #subirProductos button, #subirRecurso{
 	display:block;
 	width: 100%;
-}
-
-#añadirTemaDeCatalogo img,#añadirTemaDeCatalogo div{
-	display:inline;
 }

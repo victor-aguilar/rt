@@ -2,10 +2,18 @@
 /* CSS Document */
 
 .azul1 {
-	background-color:#E3E8EE;
+	background-color:#FFF4E8;
+}
+.footer {
+	background-color:#FFF4E8;
+	color: #66C;
+}
+
+a {
+	color: #E3AA33;
 }
 .azul1_0 {
-	color: #36C;
+	color: #845F11;
 }
 .azul2 {
 	background-color:#001F5E;
@@ -18,10 +26,12 @@
 	margin: auto;
 	width: 100%;
 }
-body{ 
+body{
 	font-family:Verdana, Geneva, sans-serif;
-	color: #36C;
- 	background: transparent url(../img/bg1.jpg) no-repeat center top;
+	color: #E6B54A;
+	background-color:#FCF9ED;
+	/*background: transparent url(../img/bg1.jpg) no-repeat center top;*/
+	background-image:url(../img/bg4.png);
 	background-attachment: fixed;
   }
 #up {

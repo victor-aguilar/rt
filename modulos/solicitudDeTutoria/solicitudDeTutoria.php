@@ -1,3 +1,4 @@
+<?php header('Content-type:text/html; charset:utf-8'); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,23 +13,35 @@
     </head>
     <body>
 	
-	   <?php include "../../lib/php/encabezado.php"?>
-	   
-        <p id="barraDeNavegacion"></p>
-        <div id="buscarPor">
+<?php include "../../lib/php/encabezado.php"?>
+<?php include "../../lib/php/menu.php"?>
+<!--        <div id="buscarPor">
             <select size="2">
-                <option value="tema">Tema</option>
-                <option value="tutor">Tutor</option>
+                <option value="tema">Busqueda por Tema</option>
+                <option value="tutor">Busqueda por Tutor</option>
             </select>
-        </div>
+        </div>-->
         <div id="lista1">
+			<h3>Componente/Eje/Categoria</h3>
             <select size="10">
             </select>
         </div>
         <div id="lista2">
+			<h3>Estandares</h3>
             <select size="10">
             </select>
         </div>
+		<div id="lista3">
+			<h3>Catálogo</h3>
+            <select size="10">
+            </select>
+        </div>
+		<div id="lista4">
+			<h3>Tutores</h3>
+            <select size="10">
+            </select>
+        </div>
+
         <div id="enviarSolicitud">
             <button type="button" value="Enviar Solicitud" >Enviar Solicitud</button>
         </div>
