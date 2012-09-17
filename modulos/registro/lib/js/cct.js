@@ -28,7 +28,9 @@ function generarCCT(){
     var mail= $('#mail').attr('value');
     var entidad= $('#entidad').val();
     var localidad = $('#localidad').val();
-    var escuerla = $('#escuela').val();
+    var escuela = $('#escuela').val();
+    var municipio = $('#municipio').val();
+    
     $.ajax({
         type:'POST',
         url: 'lib/php/datos.php',
@@ -36,11 +38,12 @@ function generarCCT(){
             mail :      mail,
             entidad :   entidad,
             localidad : localidad,
+            municipio : municipio,
             escuela :   escuela
             
         },
         success : function(){
-            alert('tu CCT provisional sera enviado a tu correo electronico');
+            alert('tu CCT provisional sera enviado a tu correo electronico /n una vez reciba el CCT en su correo favor de registrarse');
             alert(mail+entidad+localidad);
         }
     })

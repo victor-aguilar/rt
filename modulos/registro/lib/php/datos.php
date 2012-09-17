@@ -8,6 +8,7 @@ $db=  dameConexion();
 
 $email = $_SESSION['email'];
 $entidad = $_POST['entidad'];
+$municipio = $_POST['municipio'];
 $localidad = $_POST['localidad'];
 $escuela = $_POST['escuela'];
 

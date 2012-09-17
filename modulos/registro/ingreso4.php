@@ -129,8 +129,13 @@ asigna('idModalidad');
 
                         </input>
                     </p>
+                    <p>Municipio:
+                        <input type="text" id="Municipio">
+
+                        </input>
+                    </p>
                     <p>Nombre de la escuela:
-                        <input type="text" id="localidad">
+                        <input type="text" id="escuela">
 
                         </input>
                     </p>
