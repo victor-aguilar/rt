@@ -92,47 +92,23 @@ $totalRows_rs_nodos = mysql_num_rows($rs_nodos);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/rt_/modulos/registro/templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Ingreso</title>
-<link rel="stylesheet" type="text/css" href="lib/css/esviap.css" />
-
-<script type="text/javascript">
-
-function multiNivel(){
-	document.getElementById('nivel').setAttribute('multiple', 'multiple');
-	document.getElementById('nivel').setAttribute('size', '4');
-	var m = 'Manten Precionado <b>Ctrl</b> en Windows o linux y <b>Command</b> si estas usando Mac ';
-	m += 'para seleccionar mas de un nivel.';
-	document.getElementById('nivelMensaje').innerHTML = m;
-}
-
-function simpleNivel(){
-	document.getElementById('nivel').removeAttribute('multiple');
-	document.getElementById('nivel').setAttribute('size', '1');
-	document.getElementById('nivelMensaje').innerHTML="";
-}
-
-function toggleNivel(event){
-	var nivel = document.getElementById('nodo').value;
-	if( nivel == "1"){
-		multiNivel();
-	}else{
-		simpleNivel();
-	}
-}
-</script>
-
-
+<title>Documento sin t&iacute;tulo</title>
+<link rel="stylesheet" type="text/css" href="../css/esviap.css" />
 <!-- InstanceParam name="id" type="text" value="center" -->
+<link href="../../lib/css/esviap.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<?php include "../../lib/php/encabezado.php"?>
+<p align="center"><img src="../../lib/img/eimle.png" width="768" height="128" alt="logo ESVIAP" /></p>
+<div id="up">
+</div>
+<!-- InstanceBeginEditable name="Region1" -->
 
 <div id="center">
-  <div class="anuncio" style="background:#E3E8EE">Alta de usuario en el Espacio Virtual de Aprendizaje</div>
+  <div class="anuncio" >Alta de usuario</div>
   <div class="anuncio" style=" width:400px; height:246px; padding-top:100px; text-align:justify">
     <form action="ingreso4.php" method="POST" name="form" id="form">
       <p>Ingresa tus datos sobre el lugar  donde vives:</p>
@@ -200,17 +176,17 @@ function toggleNivel(event){
                     <option value='1'>Preescolar Inicial</option>
                     <option value='2'>Preescolar General</option>
                     <option value='3'>Preescolar Comunitario</option>
-                    <option value='4'>Preescolar IndÃ­gena</option>
+                    <option value='4'>Preescolar Indígena</option>
                     <option value='5'>Primaria General</option>
                     <option value='6'>Primaria Comunitaria</option>
-                    <option value='7'>Primaria IndÃ­gena</option>
+                    <option value='7'>Primaria Indígena</option>
                     <option value='8'>Secundaria General</option>
-                    <option value='9'>Secundaria TÃ©cnica</option>
+                    <option value='9'>Secundaria Técnica</option>
                     <option value='10'>Secundaria Comunitaria</option>
                     <option value='11'>Secundaria Para Trabajadores</option>
                     <option value='12'>Telesecundaria</option>
-                    <option value='13'>EducaciÃ³n Especial CAM</option>
-                    <option value='14'>EducaciÃ³n Especial USAER</option>
+                    <option value='13'>Educación Especial CAM</option>
+                    <option value='14'>Educación Especial USAER</option>
                   </select>
                 </td>
               </tr>
@@ -226,8 +202,13 @@ function toggleNivel(event){
   </div>
   <div class="anuncio" style="background:#E3E8EE; height:3px; visibility:hidden" >continuar <a href="ingreso_1.php"><img src="../img/next.png" width="63" height="57" alt="alta de usuario" align="absmiddle"/></a></div>
 </div>
+
+
 <!-- InstanceEndEditable -->
-<?php include "../../lib/php/pieDePagina.php"?>
+<div id="footer" >
+<br />
+<?php include "../../lib/php/pieDePagina.php" ?>
+</div>
 
 </body>
 <!-- InstanceEnd --></html>

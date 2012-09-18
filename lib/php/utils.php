@@ -55,14 +55,4 @@ function utf8_encode_seguro($texto){
 function dameExtension($fileName){
 	return "." .strrev(strstr(strrev($fileName),".",true));
 }
-
-/*
- * Log errors in error.log file.
- */
-function logging($texto){
-	echo $texto;
-	$ddf = fopen('error.log','a');
-	fwrite($ddf,"[".date("r")."] Error: $texto");
-	fclose($ddf);
-}
 ?>

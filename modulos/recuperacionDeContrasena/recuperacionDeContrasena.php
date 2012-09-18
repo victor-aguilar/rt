@@ -9,6 +9,7 @@
 	<body>
 <?php 
 include "../../lib/php/encabezado.php";
+include "../../lib/php/menu.php";
 
 if(!isset($_POST['email'])){?>
 		
