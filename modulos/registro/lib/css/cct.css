@@ -1,0 +1,15 @@
+#noCCT{
+    cursor: pointer;
+}
+#preview{
+    cursor: pointer;
+}
+
+#mascara{
+    z-index: 9900;
+    display: none;
+}
+
+#cerrar{
+    cursor: pointer;
+}

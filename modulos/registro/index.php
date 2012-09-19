@@ -4,21 +4,18 @@ header('Content-Type: text/html; charset=UTF-8');
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/rt_/modulos/registro/templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Documento sin t&iacute;tulo</title>
-<link rel="stylesheet" type="text/css" href="../css/esviap.css" />
+<title>Alta en el Sistema</title>
+<link rel="stylesheet" type="text/css" href="lib/css/esviap.css" />
 <!-- InstanceParam name="id" type="text" value="center" -->
-<link href="../../lib/css/esviap.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<p align="center"><img src="../../lib/img/eimle.png" width="768" height="128" alt="logo ESVIAP" /></p>
-<div id="up">
-</div>
+<?php include "../../lib/php/encabezado.php" ?>
 <!-- InstanceBeginEditable name="Region1" -->
-<div id="center" align="center">
+<div id="center">
   <div class="anuncio" style="background:#EDF4FE; height:4px;">
       Alta de usuario en el Espacio Virtual de Aprendizaje
   </div>
@@ -41,10 +38,7 @@ header('Content-Type: text/html; charset=UTF-8');
       </a></div>
 </div>
 <!-- InstanceEndEditable -->
-<div id="footer" >
-<br />
 <?php include "../../lib/php/pieDePagina.php" ?>
-</div>
 
 </body>
 <!-- InstanceEnd --></html>

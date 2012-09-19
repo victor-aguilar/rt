@@ -19,14 +19,13 @@ $v = array(
 	$e->cuantasTutoriasBuscandoSinodalesHay(),
 	$e->cuantasTutoriasActivasHay() + $sinMensajes);
 
-$n = array("Finalizadas","En Demostración","En espera","En Proceso");
+$n = array("Finalizadas","En Demostración","En espera de Demostración","En Proceso");
 
 $d = array();
 $len=4;
 
 for ($i=0; $i< $len; $i++){
 	$slice = new pie_value(0+$v[$i], $n[$i]);
-		  $slice->set_colour( "#".dechex(rand(10000,16777215)) );
 	$slice->on_click('muestra_tabla_tutorias');
 	array_push($d, $slice);
 }
@@ -47,7 +46,7 @@ $pie->set_colours(
 $pie->set_values( $d );
 
 $chart = new open_flash_chart();
-$chart->set_title(new title("Tutorías"));
+$chart->set_title(new title("Tutorias"));
 $chart->add_element( $pie );
 
 echo $chart->toPrettyString();

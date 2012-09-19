@@ -39,7 +39,7 @@ where max ';
 <tr>
 <td>
 <a href="lib/php/buscaTutorias.php?accion=todos">
-Tutorías
+Tutorias
 </a>
 </td>
 <td>
@@ -66,7 +66,7 @@ echo $filaResult['cuantos'];
 <tr>
 <td>
 <a href="lib/php/buscaTutorias.php?accion=demostracion">
-En Demostración
+En Demostracion
 </a>
 </td>
 <td>
@@ -81,7 +81,7 @@ En Demostración
 <tr>
 <td>
 <a href="lib/php/buscaTutorias.php?accion=espera">
-En espera de Demostración
+En espera de Demostracion
 </a>
 </td>
 <td>
@@ -96,7 +96,7 @@ En espera de Demostración
 <tr>
 <td>
 <a href="lib/php/buscaTutorias.php?accion=tutoria">
-En tutoría
+En tutoria
 </a>
 </td>
 <td>

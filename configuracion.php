@@ -1,9 +1,13 @@
 <?php
-		
+
+//Datos de conexion
 define("HOST","localhost");
 define("USER", "rt");
 define("PASSWORD","r2d2");
 define("DB","tutorias");
+
+//Identificadores de estapas
+define('DEMOSTRACION',5);
 
 date_default_timezone_set("America/Mexico_City");
 
