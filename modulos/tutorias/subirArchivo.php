@@ -29,18 +29,18 @@ $idUsuario = $_SESSION['idUsuario'];
 $tipo       = $_POST['tipo'];
 $crp        = $_POST['crp']; // = recursos|chat|productos
 
-if ( $tipo == "archivo"){
-	if($_FILES['archivo']['name'] == ""){
-		echo "Nombre del archivo invalido";
-		exit();
-	}else{
-		$nombreReal = utf8_encode($_FILES['archivo']['name']);
-		$nombreTemporal = $_FILES['archivo']['tmp_name'];
-	}
+if ( $_FILES['archivo']['name'] == ""){
+	echo "Nombre del archivo invalido";
+	exit();
 }
 
-if( $tipo == "url" && $_POST['url'] != ""){
+if( $_POST['url'] != ""){
     $nombreReal = $_POST['url'];
+}else{
+	//Esta linea no funciona en: Windows XP
+	//Esta linea funciona en: Windows 7	
+    $nombreReal = utf8_encode($_FILES['archivo']['name']);
+    $nombreTemporal = $_FILES['archivo']['tmp_name'];
 }
 
 $esArchivo = ($tipo == "url" )?false:true; 
@@ -86,6 +86,7 @@ switch($crp){
 				});</script>';
         break;
     case ("recursos"):
+        
         if($esArchivo){
             
             $directorio = "../../archivosSubidos/recursos/". $idTema . "/";

@@ -14,16 +14,19 @@ asigna('idTurno');
 //var_dump($_SESSION);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/rt_/modulos/registro/templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
-<link rel="stylesheet" type="text/css" href="lib/css/esviap.css" />
+<link rel="stylesheet" type="text/css" href="../css/esviap.css" />
 <!-- InstanceParam name="id" type="text" value="center" -->
+<link href="../../lib/css/esviap.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php include "../../lib/php/encabezado.php"?>
-<script type="text/javascript" src="lib/js/jquery.js"></script>
+<body>
+<p align="center"><img src="../../lib/img/eimle.png" width="768" height="128" alt="logo ESVIAP" /></p>
+<div id="up">
+</div>
 <!-- InstanceBeginEditable name="Region1" -->
 <script language="JavaScript">
 function validapwd(cad) {
@@ -80,7 +83,7 @@ else{
 </script>
 
 <div id="center">
-  <div class="anuncio" style="background:#E3E8EE">Alta de usuario en la plataforma EIMLE</div>
+  <div class="anuncio" >Alta de usuario</div>
   <div class="anuncio" style=" width:400px; height:246px; padding-top:100px; text-align:justify">
     <form action="alta.php" method="POST" name="form" id="form" onsubmit="return validaForm()">
       <p>Por &uacute;ltimo, define un  nombre de usuario y una contrase&ntilde;a para tu ingreso seguro a la plataforma:</p>
@@ -109,7 +112,10 @@ else{
   <div class="anuncio" style="background:#E3E8EE; height:3px; visibility:hidden" >continuar <a href="ingreso_1.php"><img src="../img/next.png" width="63" height="57" alt="alta de usuario" align="absmiddle"/></a></div>
 </div>
 <!-- InstanceEndEditable -->
-<?php include "../../lib/php/pieDePagina.php"?>
+<div id="footer" >
+<br />
+<?php include "../../lib/php/pieDePagina.php" ?>
+</div>
 
 </body>
 <!-- InstanceEnd --></html>

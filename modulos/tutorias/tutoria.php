@@ -26,7 +26,7 @@ switch($_GET['tipoDeUsuario']){
 		$otros = "Demostrador: " .$nombreDelOtro;
 		break;
 	default:
-		$otros = "Observador/Sinodal";
+		$otros = "";
 }
 ?>
 <!DOCTYPE html>
@@ -48,6 +48,7 @@ switch($_GET['tipoDeUsuario']){
     <script type="text/javascript" src="../../lib/js/funciones.js"></script>
     <script type="text/javascript" src="../../lib/js/modernizr.js"></script>
     <script type="text/javascript" src="lib/js/chat.js"></script>
+    <script tupe="text/javascript" src="../demostracion/lib/js/demostraciones.js"></script>
 
   </head>
   <body>
@@ -107,7 +108,7 @@ switch($_GET['tipoDeUsuario']){
 				<div id="listaDeProductos"></div>
 				<br>
 				<div id="subirProductos">
-				<button value="4">Subir Registro de Tutoria</button>
+				<button value="4">Registro de Tutoria</button>
 				</div>
 			</div>
 			</div>
@@ -140,9 +141,9 @@ switch($_GET['tipoDeUsuario']){
 				<h3>Productos</h3>
 					<div id="listaDeProductos"></div>
 					<div id="subirProductos">
-						<button value="1">Subir Registro de Proceso de Estudio</button>
-						<button value="2">Subir Guion de Tutoria</button>
-						<button value="3">Subir Demostracion Publica</button>
+						<button value="1">Registro de Proceso de Estudio</button>
+						<button value="2">Guion de Tutoria</button>
+						<button value="3">Demostracion Publica</button>
 					</div>
 			</div>
 			</div>

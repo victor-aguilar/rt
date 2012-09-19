@@ -17,7 +17,7 @@ administraSesion();
 <script type="text/javascript" src="../../lib/js/jquery.js"></script>
 <script type="text/javascript" src="../../lib/js/funciones.js"></script>
 <script type="text/javascript" src="loged.js"></script>
-<script type="text/javascript" src="../../modulos/notificaciones/lib/js/notificaciones.js"></script>
+<script type="text/javascript" src="../../notificaciones/lib/js/notificaciones.js"></script>
 
 </head>
 
@@ -44,7 +44,7 @@ administraSesion();
 		
 		<div id="menu">
 			<ul>
-				<li value="bandejaDeEntrada"><img src="../../lib/img/correo.png" id="imagen_correo"/> Bandeja de entrada </li>
+				<li value="bandejaDeEntrada"><img src="../../lib/img/correo.png"/> Bandeja de entrada </li>
 				<li value="misTutorias"><img src="../../lib/img/chat.png"/> Mis Tutorías </li>
 				<li value="solicitudDeTutoria"><img src="../../lib/img/buscar.png"/> Solicitud de Tutoría</li>
 				<li value="index.php?uid=<?php echo $_SESSION['idUsuario']; ?>"> <img src="../../lib/img/temasDeCatalogo.png"/>Mis temas de catalogo </li>

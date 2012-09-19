@@ -3,17 +3,18 @@
 
 header('Content-Type: text/html; charset=UTF-8');
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Ingreso</title>
-<link rel="stylesheet" type="text/css" href="lib/css/esviap.css" />
-<!-- InstanceParam name="id" type="text" value="center" -->
+<title>Documento sin t&iacute;tulo</title>
+<link rel="stylesheet" type="text/css" href="../css/esviap.css" />
+<link href="../../lib/css/esviap.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<?php include '../../lib/php/encabezado.php'?>
-<!-- InstanceBeginEditable name="Region1" -->
+<p align="center"><img src="../../lib/img/eimle.png" width="768" height="128" alt="logo ESVIAP" /></p>
+<div id="up">
+</div>
 <script language="javascript">
 function validaForm() { 
 errors ='';
@@ -43,7 +44,7 @@ errors += 'Sexo es obligatorio '; }
 
 </script>
 <div id="center">
-  <div class="anuncio" style="background:#E3E8EE">Alta de usuario en el Espacio Virtual de Aprendizaje</div>
+  <div class="anuncio" >Alta de usuario</div>
   <div class="anuncio" style=" width:400px; height:246px; padding-top:100px; text-align:justify">
     <!---form action="ingreso2.php" method="get" name="form" id="form" onsubmit="MM_validateForm('Sexo','','R','Apellidos','','R','Nombre','','R');return document.MM_returnValue"--->
     <form action="ingreso2.php" method="POST" name="form" id="form" onsubmit="return validaForm();">
@@ -85,8 +86,10 @@ errors += 'Sexo es obligatorio '; }
           <img src="../img/next.png" width="63" height="57" alt="alta de usuario" align="absmiddle"/>
       </a></div>
 </div>
-<!-- InstanceEndEditable -->
-<?php include "../../lib/php/pieDePagina.php"?>
+<div id="footer" >
+  <br />
+<?php include "../../lib/php/pieDePagina.php" ?>
+</div>
 
 </body>
-<!-- InstanceEnd --></html>
+</html>

@@ -4,11 +4,12 @@ var idTutoria   = 0;
 var idUsuario   = 0;
 var tipoDeUsuario = "alumno";
 var idEtapa = -1;
-var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostración","Aprobado");
+var etapas = new Array("cero","uno","dos","tres","Busqueda De Sinodales","Demostracion","Aprobado");
 
 var autorizacion = 1;
 var mensaje = "";
-var idUltimoMensaje = 0;
+var ultimaVerificacion = "0";
+var ultimoMili = "0"; // usada para distiguir fechas guardada en la misma fecha ( o segundo);
 
 //Para la sincronizacion de la peticiones AJAX
 var hayPeticionAjax = false;
@@ -70,10 +71,9 @@ var rutaDelAudio = "lib/audio/mensaje_nuevo";
 descargaMensajesPrevios = function(){
     $.ajax({
         type: "POST",
-        url: "mensajesPrevios.php",
+        url: "conversacionesPrevias.php",
         data: {
-            idTutoria : idTutoria,
-			tipoDeUsuario: tipoDeUsuario
+            idTutoria : idTutoria
         },
         dataType: "xml",
         success:actualizaConversacion,
@@ -91,72 +91,45 @@ actualizaConversacion = function(xml){
     
 	var tmp;
 	
-    idUltimoMensaje = parseInt($(xml).find("idUltimoMensaje").text());
-    var mensajes = $(xml).find('mensajes').children();
-	var pendientes = $(xml).find('pendientes').children();
-
+    var uv = $(xml).find("ultimaverificacion");
+    var mensajes = $(xml).find("mensaje");
+	var pn = $(xml).find("productosnuevos");
+    
+    ultimaVerificacion = uv.text();
+    ultimoMili = uv.attr("ultimoMili");
     mensaje = "";
         
     //Agregra los mensajes a la ventana de conversacion.
     mensajes.each(function(){
-		var conversacion = $('#ventanaDeConversacion');
-		var mAnteriores = conversacion.html(); // mensajesAnteriores
-		var mNuevos = "";//mensajesNuevos
-
-		mNuevos += '<span class="fecha">' + $(this).attr("fecha") + "</span><br/>";
-		mNuevos += '<div class="sbl"><div class="sbr"><div class="stl"><div class="str">'
-		mNuevos += '<span class="mensaje">' + $(this).text() + "</span>";
-		mNuevos += '</div></div></div></div><div class="sb">';
-		mNuevos += '<img class="character" src="../../avatares/'+$(this).attr('idUsuario')+'.jpg"/>';
-		mNuevos += '<b class="nick">';
-		mNuevos += $(this).attr("nick") + "</b>";
-		conversacion.html(mAnteriores + mNuevos);
-		autoScroll("ventanaDeConversacion");
+    var conversacion = $('#ventanaDeConversacion');
+    var mAnteriores = conversacion.html(); // mensajesAnteriores
+    var mNuevos = "";//mensajesNuevos
+    
+    mNuevos += '<span class="fecha">' + $(this).attr("fecha") + "</span><br/>";
+	mNuevos += '<div class="sbl"><div class="sbr"><div class="stl"><div class="str">'
+    mNuevos += '<span class="mensaje">' + $(this).text() + "</span>";
+	mNuevos += '</div></div></div></div><div class="sb">';
+	mNuevos += '<img class="character" src="../../avatares/'+$(this).attr('idUsuario')+'.jpg"/>';
+	mNuevos += '<b class="nick">';
+    mNuevos += $(this).attr("nick") + "</b>";
+    conversacion.html(mAnteriores + mNuevos);
+    autoScroll("ventanaDeConversacion");
     });
 	
-	//Agregamos los mensajes pendientes a la ventana de pendientes
-	pendientes.each(function(){
-		
-		var m = '<div class="mensajePendiente">';
-			m += $(this).attr('fecha') +"<br/>";
-			m += "De: " + $(this).attr('nick');
-			m += '<div value="' + $(this).attr('idUsuario') + "," 
-				+ $(this).attr('idMensaje') + '">';
-			m += $(this).text()
-			m += '</div>';
-			m += '<button>Autorizar</button>'
-			m += '</div>';
-			
-		$('#listaDePendientes').html( $('#listaDePendientes').html() + m);
-		$('#listaDePendientes').find('button').click(function(){
-			
-			var pendiente = $(this).siblings('div');
-			var tmp = pendiente.attr('value').split(','); 
-			$(this).parent().load(
-				'lib/php/autorizarMensaje.php',
-				{	idTutoria : idTutoria,
-					idUsuario: tmp[0], 
-					idMensaje : tmp[1],
-					idEtapa: DEMOSTRACION,
-					mensaje: pendiente.html()
-				});
-			$(this).parent().hide();
-		});
-	});
-
 	if(mensajes.length != 0 && 
 		$('#sonidoOnOff').attr('value') == "on"){
 		$('#sonido').html(player);
 	}
+	
+    
+    idEtapa = parseInt($(xml).find('ultimaetapa').text());
 
-    idEtapa = parseInt($(xml).find('ultimaEtapa').text());
     $('#etapa').text(etapas[idEtapa]);
     switch(idEtapa){
         case (DEMOSTRACION):
             if(tipoDeUsuario != "moderador" &&
                 tipoDeUsuario != "demostrador" &&
-                tipoDeUsuario != "sinodal" &&
-				tipoDeUsuario != "observador"){
+                tipoDeUsuario != "sinodal"){
                 cambiaADemostracion();
             }
 		case (BUSQUEDA_DE_SINODALES):
@@ -164,7 +137,7 @@ actualizaConversacion = function(xml){
             break;
     }
     
-	tmp = parseInt($(xml).find("productosNuevos").text());
+	tmp = parseInt(pn.text());
 	
     if(  tmp != numeroDeProductos ){
 		numeroDeProductos = tmp;
@@ -187,7 +160,8 @@ descargaMensajesNuevos= function(){
     data: 
         {idTutoria : idTutoria, 
         mensaje: mensaje,
-        idUltimoMensaje: idUltimoMensaje,
+        ultimaVerificacion : ultimaVerificacion,
+        ultimoMili: ultimoMili,
         idEtapa: idEtapa,
         tipoDeUsuario : tipoDeUsuario,
 		numeroDeProductos: numeroDeProductos},
@@ -491,9 +465,26 @@ buscaSinodales = function(){
         error: error
     });
 }
-agregaTemaDeCatalogo = function(nombreDelTema){
 
-		$.ajax({
+inicializaAgregarTemaDeCatalogo = function(){
+	$('#añadirTemaDeCatalogo').show('slow');
+	$('#añadirTemaDeCatalogo').click( function(){
+		$('#temaCaptura').toggle('slow');
+	});
+	
+	$('#temaCaptura').hide();
+	$('#temaCaptura button').prop("disabled",true);
+	
+	$('#temaCaptura button').click(function(){
+		//$(this).siblings('input').addClass("bordeRojo");
+		var nombreDelTema = $(this).siblings('input').val();
+		
+		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
+¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
+		
+		if(conf){
+			$.ajax({
+				context:this,
 				url:'lib/php/agregarTemaDeCatalogo.php',
 				data:{
 				   idTutoria: idTutoria,
@@ -502,30 +493,12 @@ agregaTemaDeCatalogo = function(nombreDelTema){
 				type:'POST',
 				typeData:"text",
 				success:function(text){
-					$('#temaCaptura').children('input').val("");
+					$(this).siblings('input').val("");
 					alert(text);
-					$('#añadirTemasDeCatalogo').children('button').click();
+					$('#añadirTemasDeCatalogo button').click();
 				}
 			});
-	}
-inicializaAgregarTemaDeCatalogo = function(){
-	$('#añadirTemaDeCatalogo').show('slow');
-	$('#añadirTemaDeCatalogo').click( function(){
-		$('#temaCaptura').toggle('slow');
-	});
-	
-	$('#temaCaptura').hide();
-	$('#temaCaptura').children('button').prop("disabled",true);
-	
-	$('#temaCaptura').children('button').click(function(){
-		//$(this).siblings('input').addClass("bordeRojo");
-		var nombreDelTema = $('#temaCaptura').children('input').val();
-
-		var conf = confirm("Una vez agregado el tema no podra ser borrado.\n\
-¿Estas seguro que quieres guardar el tema con el nombre "+nombreDelTema + "?");
-		if(conf){
-			agregaTemaDeCatalogo(nombreDelTema);
-		}	
+		}
 	});
 	
 	$('#temaCaptura input').keyup(function(){
@@ -617,12 +590,10 @@ $(document).ready(function(){
 		  
           break;
      case "moderador":
+          inicializaPendientes();
 		  $("#añadirTemaDeCatalogo").hide();
 		  
 		  $('#aprobar').click(function(){
-			  
-			  agregaTemaDeCatalogo(dameNombreDelTema(idTutoria));
-			  
 			  $.ajax({
 				  url:'lib/php/aprobar.php',
 				  type:'POST',
@@ -655,7 +626,7 @@ $(document).ready(function(){
          if(idEtapa == DEMOSTRACION){
             cambiaADemostracion();
          }else{
-            inicializaProductos();
+             inicializaProductos();
          }
 
         break;

@@ -14,7 +14,7 @@
 					$('#tabla').hide();
 					swfobject.embedSWF(
 					"../../lib/ofc/open-flash-chart.swf", "chart",
-					"500", "500", "9.0.0", "expressInstall.swf",
+					"800", "400", "9.0.0", "expressInstall.swf",
 					{"data-file":"graficas/datos/" + $(this).attr('value') } );
 				});
 			})
@@ -40,24 +40,24 @@
 				$('#tabla').load( "tablas/" + nombre ).show();
 			}	
 			</script>
-        <title>Estadisticas</title>
+        <title>Estadisticas TURed</title>
     </head>
     <body>
 		<?php include "../../lib/php/encabezado.php" ?>
 		<div style="text-align: center" id="menu">
-        <a value="temas.php" href="#">Catálogos</a>
-        <a value="tutorias.php" href="#">Tutorias</a>
+        <a value="temas.php" href="#">Catálogo</a>
+        <a value="tutorias.php" href="#">Tutorías</a>
         <a value="entidades.php" href="#">Entidades</a>
         <a value="usuarios.php" href="#">Usuarios</a>
 		</div>
 		<br>
-		<div id="info">
-			<div id="chart"></div>
-			<div id="tabla"></div>
+		<div id="info" align="left">
+			<div id="chart"  align="left"></div>
+			<div id="tabla"  align="left"></div>
 		</div>
         <?php
         // put your code here
         ?>
 		<?php include "../../lib/php/pieDePagina.php" ?>
     </body>
-</html>
+</html> 
