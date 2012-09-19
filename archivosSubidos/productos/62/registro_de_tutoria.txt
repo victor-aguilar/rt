@@ -1,0 +1,12 @@
+http://basica.sep.gob.mx/dgdgie/cva/sitio/
+
+http://dfi.basica.sep.gob.mx/dgdgie/programas/centrodoc/index.asp
+
+http://siabuc.dfi.basica.sep.gob.mx/dgdgie/programas/centrodoc/index.asp
+
+Línea 121
+
+
+                                	<a href="http://dfi.basica.sep.gob.mx/dgdgie/programas/centrodoc/index.asp" target="_blank"> Centro de Documentación y Biblioteca "Mtro. Luis Guevara Ramírez"</a>
+
+                                	<a href="http://siabuc.dfi.basica.sep.gob.mx/dgdgie/programas/centrodoc/index.asp" target="_blank"> Centro de Documentación y Biblioteca "Mtro. Luis Guevara Ramírez"</a>

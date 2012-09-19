@@ -1,0 +1,14 @@
+El copy paste no identifica el número de caracteres, dar un espacio para que realice el cálculo de número de caracteres disponibles para el mensaje
+
+Los nombres de los archivos deben estandarizarse
+
+deben tener un solo punto
+no debe contener:
+espacios (utilizar _)
+acentos
+ñ´s
+utilizar minúsculas
+
+tomar en cuenta que se ocultan las ventanas emergentes en ocasiones (cambio de avatar, 
+
+
