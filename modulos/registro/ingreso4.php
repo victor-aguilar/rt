@@ -103,7 +103,9 @@ errors += 'Sexo es obligatorio '; }
     </form>
     <p>&nbsp;</p>
 <p>&nbsp;</p>
-  </div>
+  </div><p>
+      
+  </p>
   <div class="anuncio" style="background:#E3E8EE; height:3px; visibility:hidden" >
       continuar <a href="ingreso_1.php">
           <img src="../img/next.png" width="63" height="57" alt="alta de usuario" align="absmiddle"/>
